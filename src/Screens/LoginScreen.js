@@ -5,7 +5,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
-import { login } from '../redux/actions/userActions.js'
+import { login, getUserData } from '../redux/actions/userActions.js'
 import { Link } from 'react-router-dom'
 
 function LoginScreen({ location, history }) {
@@ -20,13 +20,8 @@ function LoginScreen({ location, history }) {
 
     //check the query string. if there is then take left size of query which is number
     const redirect = location.search ? location.search.split('=')[1] : '/';
-    const getCompanies = async () => {
-        let response = await axios.get('/api/Companies')
-        console.log('Companies:' + JSON.stringify(response.data))
-    }
     //we want to redirect if we already logged in
     useEffect(() => {
-        getCompanies();
         if (currentUser) {//if user info exist than means we already are logged in
             history.push(redirect)//redirect to whatever is in redirect
         }
@@ -35,7 +30,11 @@ function LoginScreen({ location, history }) {
     const submitHandler = (e) => {
         e.preventDefault();//prevemnt default behaviour when submit button is clicked. preved refresh of page
         //DISPATCH LOGIN action. pass email and password that user typed
-        dispatch(login(email, password));
+        dispatch(login(email, password, ()=>{
+            dispatch(getUserData(1,()=>{
+                console.log('Yee')
+            }))
+        }));
     }
     return (
         <>

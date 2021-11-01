@@ -17,13 +17,14 @@ function HomeScreen({ location, history }) {
 
     useEffect(()=>{
         if(currentUser){
-            dispatch(getUserData(()=>{
-                console.log('Got user data')
-            }));
+            // dispatch(getUserData(()=>{
+            //     console.log('Got user data')
+            // }));
+            // console.log('Home screen has user')
         }else{
             history.push(redirect);
         }
-    },[history,currentUser,redirect]);
+    },[history,redirect]);
 
 
 

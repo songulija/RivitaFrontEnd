@@ -1,20 +1,38 @@
-import Button from '@restart/ui/esm/Button';
-import React from 'react'
-import { useState } from 'react';
-import { Form } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { Container, Row, Col, Image } from 'react-bootstrap'
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import "../styles/Login.css";
+import { register, getUserData } from '../redux/actions/userActions.js'
+import { Link } from 'react-router-dom'
 
-export const RegisterScreen = ({ location, history }) => {
+function RegisterScreen({ location, history }) {
+    const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const usersReducer = useSelector((state)=> state.usersReducer);
+    const redirect = location.search ? location.search.split('=')[1] : '/';
+    const submitHandler = ()=>{
+
+    }
+
+    useEffect(()=>{
+        console.log('Register screen')
+        if(usersReducer.currentUser !== null){
+
+        }else{
+            history.push('/')
+        }
+    },[dispatch, history,usersReducer.currentUser])
     return (
-        <div>
-            <h1>Sign In</h1>
-
-            <Form>
-
-
+        <div className="Login my-auto container-fluid vh-100 vw-100">
+            <Form onSubmit={submitHandler}>
+                <h1 className="h3 mb-3 fw-normal">Naudotojų registracija</h1>
                 <Form.Group controlId='text'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
@@ -70,3 +88,5 @@ export const RegisterScreen = ({ location, history }) => {
         </div>
     )
 }
+
+export default RegisterScreen;

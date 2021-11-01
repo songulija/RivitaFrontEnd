@@ -1,41 +1,77 @@
-import React,{useState,useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
-import {getUserData} from '../redux/actions/userActions'
+import React from 'react'
+import { connect } from 'react-redux'
+import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
+import { getUserData, logout, removeUserData } from '../redux/actions/userActions'
+import { withRouter } from 'react-router';
 
-const Header = ({history,location}) => {
-    const dispatch = useDispatch();
-    const usersReducer = useSelector((state) => state.usersReducer);
-    const [user,setUser] = useState(null)
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: null
+        }
+    }
 
-    useEffect(()=>{
-        dispatch(getUserData(()=>{
-            console.log('Header got data')
-        }));
-    },[history, dispatch])
-    return (
-        <div>
-            <Navbar bg="light" expand="lg">
-                <Container>
-                    <Navbar.Brand href="/">Rivita</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#home">Transportacijos</Nav.Link>
-                            <Nav.Link href="#link"></Nav.Link>
-                            {usersReducer.role === 'Administrator'?
-                            <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Kompanijos</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Transportacijos</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Vagonai</NavDropdown.Item>
-                            </NavDropdown>:null}
-                            
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </div>
-    )
+    logoutHandler = () => {
+        this.props.logout();
+        this.props.removeUserData();
+        console.log('Logged out')
+    }
+
+    componentDidMount() {
+        if (this.props.usersReducer.currentUser !== null) {
+            console.log('Hello')
+            this.props.getUserData(1, () => {
+                console.log('Got users data')
+                // const reducer = JSON.parse(JSON.stringify(this.props.usersReducer));
+                console.log('SSSS:' + JSON.stringify(this.props.usersReducer));
+
+                // this.setState({user: reducer.user});
+            });
+
+        }
+
+    }
+    render() {
+        const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer));
+        console.log('FFFF:' + JSON.stringify(naudotojas));
+        return (
+            <div>
+                <Navbar bg="light" expand="lg">
+                    <Container>
+                        <Navbar.Brand href="/">Rivita</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto">
+                                <Nav.Link href="#home">Transportacijos</Nav.Link>
+                                <Nav.Link href="#link"></Nav.Link>
+                                {naudotojas.role ?
+                                    <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
+                                        <NavDropdown.Item href="#action/3.1">Kompanijos</NavDropdown.Item>
+                                        <NavDropdown.Item href="#action/3.2">Transportacijos</NavDropdown.Item>
+                                        <NavDropdown.Item href="#action/3.3">Vagonai</NavDropdown.Item>
+                                        <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>
+                                    </NavDropdown> : null}
+                                {this.props.usersReducer.currentUser ?
+                                    <Button onClick={this.logoutHandler}>Logout</Button>
+                                    : null}
+
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </div>
+        )
+    }
+
 }
 
-export default Header;
+//selecting part of data from store. like with useSelector
+const mapStateToProps = (state) => {
+    return {
+        usersReducer: state.usersReducer,
+        userInfoReducer: state.userInfoReducer
+    }
+}
+
+export default connect(mapStateToProps, { getUserData, logout,removeUserData })(withRouter(Header));

@@ -1,7 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password,callback) => async (dispatch) => {
     try {
         dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
             type: 'USER_LOGIN_REQUEST'
@@ -24,11 +24,11 @@ export const login = (email, password) => async (dispatch) => {
         dispatch({//dispatch action with type/name USER_LOGIN_SUCCESS. and send data as payload
             type: 'USER_LOGIN_SUCCESS',
             payload: response.data
-        })
+        });
 
         //then we want to set our user to local storage. set this 'userInfo' and pass data as as string(json)
         localStorage.setItem('currentUser', response.data.token);
-
+        callback();
 
     } catch (error) {//if something fails then dispatch action with type/name PRODUCT_DETAILS_FAIL and pass error data as payload
         console.log(error)
@@ -39,8 +39,9 @@ export const login = (email, password) => async (dispatch) => {
     }
 }
 
-export const getUserData = (callback) => async(dispatch, getState)=>{
+export const getUserData = (num,callback) => async(dispatch, getState)=>{
     try{
+        let numb = num;
         dispatch({
             type: 'USER_DATA_REQUEST'
         });
@@ -55,13 +56,15 @@ export const getUserData = (callback) => async(dispatch, getState)=>{
             userRole = 'User'
         }
         // const user = {
-        //     'role': userRole,
-        //     'exp':userData.exp
+        //     role: userRole,
+        //     exp:userData.exp
         // }
-
+        //{role: userRole, exp: userData.exp}
+        // console.log('Action got:'+JSON.stringify(user))
+        //
         dispatch({
             type: 'USER_DATA_SUCCESS',
-            payload: {role: userRole, exp: userData.exp}
+            payload: {role:userRole,exp:userData.exp}
         });
         callback()
     }catch(error){
@@ -73,6 +76,11 @@ export const getUserData = (callback) => async(dispatch, getState)=>{
                     : error.message,
         })
     }
+}
+
+export const removeUserData = () => (dispatch)=>{
+    dispatch({type: 'USER_DATA_REMOVE'})
+
 }
 
 export const logout = () => (dispatch) => {
