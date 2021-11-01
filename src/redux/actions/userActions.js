@@ -54,14 +54,14 @@ export const getUserData = (callback) => async(dispatch, getState)=>{
         }else if(userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'User'){
             userRole = 'User'
         }
-        const user = {
-            'userRole': userRole,
-            'exp':userData.exp
-        }
+        // const user = {
+        //     'role': userRole,
+        //     'exp':userData.exp
+        // }
 
         dispatch({
             type: 'USER_DATA_SUCCESS',
-            payload: user
+            payload: {role: userRole, exp: userData.exp}
         });
         callback()
     }catch(error){
