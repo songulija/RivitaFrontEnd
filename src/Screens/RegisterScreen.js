@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 import { Form } from 'react-bootstrap'
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({ location, history }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
