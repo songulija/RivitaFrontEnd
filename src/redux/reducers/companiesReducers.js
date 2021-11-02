@@ -8,7 +8,7 @@ export const companiesReducer = (state = { companies: []}, action) => {
         case 'COMPANIES_FETCH_SUCCESS':
             return {...state, 'loading':false, companies:action.payload}
         case 'ERROR':
-            return {'loading':false, 'error':action.payload}
+            return {loading:false, 'error':action.payload}
         default:
             return state
     }

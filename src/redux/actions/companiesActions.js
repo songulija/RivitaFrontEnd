@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getCompanies = (callback) => async (dispatch) => {
+export const getCompanies = (num,callback) => async (dispatch,getState) => {
     try {
         dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
             type: 'COMPANIES_FETCH_REQUEST'

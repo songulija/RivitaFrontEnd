@@ -20,13 +20,8 @@ class Header extends React.Component {
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null) {
-            console.log('Hello')
             this.props.getUserData(1, () => {
-                console.log('Got users data')
-                // const reducer = JSON.parse(JSON.stringify(this.props.usersReducer));
                 console.log('SSSS:' + JSON.stringify(this.props.usersReducer));
-
-                // this.setState({user: reducer.user});
             });
 
         }
@@ -47,7 +42,7 @@ class Header extends React.Component {
                                 <Nav.Link href="#link"></Nav.Link>
                                 {naudotojas.role ?
                                     <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
-                                        <NavDropdown.Item href="#action/3.1">Kompanijos</NavDropdown.Item>
+                                        <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
                                         <NavDropdown.Item href="#action/3.2">Transportacijos</NavDropdown.Item>
                                         <NavDropdown.Item href="#action/3.3">Vagonai</NavDropdown.Item>
                                         <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>

@@ -38,7 +38,7 @@ function LoginScreen({ location, history }) {
     }
     return (
         <>
-            <div className="Login my-auto container-fluid vh-100 vw-100" he>
+            <div className="Login my-auto container-fluid vh-100 vw-100">
                 <Form onSubmit={submitHandler}>
                     <h1 className="h3 mb-3 fw-normal">Prašom prisijungti</h1>
                     <Form.Group size="lg" controlId="email">
