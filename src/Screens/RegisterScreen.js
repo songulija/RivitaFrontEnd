@@ -22,7 +22,7 @@ function RegisterScreen({ location, history }) {
     }
 
     useEffect(()=>{
-        console.log('Register screen')
+        console.log('Register screen ')
         if(usersReducer.currentUser !== null){
 
         }else{

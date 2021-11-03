@@ -18,14 +18,6 @@ export const usersReducer = (state = { currentUser: null }, action) => {
             return { ...state, loading: false, currentUser: action.payload.token };
         case 'USER_REGISTER_FAIL':
             return { loading: false, error: action.payload };
-        // case 'USER_DATA_REQUEST':
-        //     return { ...state,loading: true };
-        // case 'USER_DATA_SUCCESS':
-        //     const userData = action.payload;
-        //     console.log('Reducer got user:'+JSON.stringify(userData))
-        //     return { ...state, loading: false, user: userData};
-        // case 'USER_DATA_FAIL':
-        //     return { ...state,loading: false, error: action.payload };
         default:
             return state
     }
@@ -36,7 +28,6 @@ export const userInfoReducer = (state = { role: null, exp: null }, action) => {
         case 'USER_DATA_REQUEST':
             return { ...state,loading: true };
         case 'USER_DATA_SUCCESS':
-            console.log('Reducer got:'+JSON.stringify(action.payload))
             return { ...state, loading: false, 'role': action.payload.role, 'exp': action.payload.exp};
         case 'USER_DATA_REMOVE':
             return {...state,loading: false, 'role':null, 'exp':null}

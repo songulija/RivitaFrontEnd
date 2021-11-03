@@ -2,16 +2,19 @@ import axios from "axios";
 
 export const getCompanies = (num,callback) => async (dispatch,getState) => {
     try {
+        const number= num;
         dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
             type: 'COMPANIES_FETCH_REQUEST'
         });
 
         const token = getState().usersReducer.currentUser;
         const response = await axios.get('api/Companies', { headers: { Authorization: `Bearer ${token}` } });
+        console.log('Companies action:'+JSON.stringify(response.data))
         dispatch({
             type: 'COMPANIES_FETCH_SUCCESS',
             payload: response.data
         });
+        console.log('Companies:'+JSON.stringify(response.data))
         callback();
     } catch(error){
         if (error.response === undefined) {

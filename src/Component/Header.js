@@ -15,13 +15,11 @@ class Header extends React.Component {
     logoutHandler = () => {
         this.props.logout();
         this.props.removeUserData();
-        console.log('Logged out')
     }
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null) {
             this.props.getUserData(1, () => {
-                console.log('SSSS:' + JSON.stringify(this.props.usersReducer));
             });
 
         }
@@ -29,7 +27,6 @@ class Header extends React.Component {
     }
     render() {
         const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer));
-        console.log('FFFF:' + JSON.stringify(naudotojas));
         return (
             <div>
                 <Navbar bg="light" expand="lg">
