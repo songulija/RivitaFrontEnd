@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal } from 'antd';
+import UnsavedChangesHeader from '../Component/UnsavedChangesHeader.js'
 import { Button } from 'react-bootstrap'
 import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { getUserData } from '../redux/actions/userActions.js'
@@ -25,24 +26,6 @@ const textStyle = {
     marginRight: '40px',
 }
 
-
-const titleTextStyle = {
-    fontStyle: "normal",
-    fontWeight: "600",
-    fontSize: '20px',
-    lineHeight: "38px"
-}
-
-const titleButtonStyle = {
-    width: "40px",
-    height: "40px",
-    border: "1px solid #BFBFBF",
-    boxSizing: "border-box",
-    filter: "drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.05))",
-    borderRadius: "4px",
-    backgroundColor: "transparent",
-}
-
 const { Text } = Typography;
 
 class CompaniesScreen extends React.Component {
@@ -52,23 +35,22 @@ class CompaniesScreen extends React.Component {
             companies: [],
             user: null,
             addItemVisibility: false,
-            onAddName: ''
+            visibleHeader: 'hidden'
         }
     }
     showAddCompanyModel = () => {
         this.setState({
             addItemVisibility: true
-        }, () => console.log('Show add company model:' + this.state.addItemVisibility));
+        });
     }
     unShowAddModel = () => {
         this.setState({
             addItemVisibility: false
         });
-        console.log('Closed')
     }
 
-    addCompany = (postObj) =>{
-        this.props.createCompany(postObj, ()=>{
+    addCompany = (postObj) => {
+        this.props.createCompany(postObj, () => {
             const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
             this.setState({
                 companies: companiesClone
@@ -76,6 +58,48 @@ class CompaniesScreen extends React.Component {
         });
     }
 
+    arrayEqual = (array1, array2) => {
+        let a = JSON.parse(JSON.stringify(array1));
+        let b = JSON.parse(JSON.stringify(array2));
+
+        let original = array1;
+        let modified = array2;
+
+        if (a === b) return true;
+        if (a == null || b == null) return false;
+        if (a.length !== b.length) return false;
+
+        a = a.sort();
+        b = b.sort();
+
+        for (var i = 0; i < original.length; i++) {
+            if (original[i].name !== modified[i].name) {
+                console.log('They are not equal!!!')
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    //check if original companies state and modified are equal or not
+    getUpdateWindowState = () => {
+        // make clones first. i dont want to make any action to them directly
+        const originalCompanies = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
+        const modifiedCompanies = JSON.parse(JSON.stringify(this.state.companies));
+
+        if (originalCompanies === null) {
+            return 'hidden';
+        }
+        if (modifiedCompanies === null) {
+            return 'hidden';
+        }
+        if (this.arrayEqual(originalCompanies, modifiedCompanies) === false) {
+            return 'visible';
+        }
+        return 'hidden'
+
+    }
 
     onDataChange = (value, record) => {
         //clone of companies state. dont change directly
@@ -87,24 +111,35 @@ class CompaniesScreen extends React.Component {
         });
         this.setState({
             companies: companiesData
-        }, () => console.log('Companies state:' + JSON.stringify(this.state.companies)))
+        }, () => {
+            const visibilityString = this.getUpdateWindowState();
+            this.setState({
+                visibleHeader: visibilityString
+            });
+        });
+
     }
 
-    onDataAdd = () => {
-
-    }
-    userDataSet = () =>{
+    userDataSet = () => {
         const userClone = JSON.parse(JSON.stringify(this.props.userInfoReducer));
         this.setState({
             user: userClone
-        },()=> console.log('Setted user:'+JSON.stringify(this.state.user)));
+        }, () => console.log('Setted user:' + JSON.stringify(this.state.user)));
     }
-    companiesDataSet = () =>{
+    companiesDataSet = () => {
         //cloning companies redux state. not working directly
         const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
         this.setState({
             companies: companiesClone
-        },()=>console.log('Setted companies:'+JSON.stringify(this.state.companies)));
+        }, () => console.log('Setted companies:' + JSON.stringify(this.state.companies)));
+    }
+
+    discardChanges = () => {
+        console.log('Discard changes')
+    }
+
+    saveChanges = () => {
+        console.log('Update all')
     }
 
     componentDidMount() {
@@ -145,6 +180,11 @@ class CompaniesScreen extends React.Component {
         ]
         return (
             <>
+                <UnsavedChangesHeader
+                    visibility={this.state.visibleHeader}
+                    discardChanges={this.discardChanges}
+                    saveChanges={this.saveChanges}
+                />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={16} offset={4}>
                         <Row>
@@ -178,7 +218,7 @@ class CompaniesScreen extends React.Component {
 
                 {this.state.addItemVisibility !== false ?
                     <AddCompanyComponent visible={this.state.addItemVisibility} onClose={this.unShowAddModel}
-                    save={this.addCompany} />
+                        save={this.addCompany} />
                     : null}
 
 
