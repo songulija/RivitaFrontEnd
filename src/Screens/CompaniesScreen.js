@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Table, Space, Input, Col, Card, Row, Typography } from 'antd';
+import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal } from 'antd';
+import { Button } from 'react-bootstrap'
+import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { getUserData } from '../redux/actions/userActions.js'
 import { getCompanies } from '../redux/actions/companiesActions.js'
-import { tableCardStyle, tableCardBodyStyle } from '../styles/customStyles.js';
+import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import { withRouter } from 'react-router';
+import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -47,11 +50,40 @@ class CompaniesScreen extends React.Component {
         super(props);
         this.state = {
             companies: [],
-            user: null
+            user: null,
+            addItemVisibility: false,
+            onAddName: ''
         }
     }
-    // if history or dispatch is called it will trigger useEffect once more. If currentUser or companies is 
-    // changed it will trigger it too
+    showAddCompanyModel = () => {
+        this.setState({
+            addItemVisibility: true
+        }, () => console.log('Show add company model:' + this.state.addItemVisibility));
+    }
+    unShowAddModel = () => {
+        this.setState({
+            addItemVisibility: false
+        });
+        console.log('Closed')
+    }
+
+    onDataChange = (value, record) => {
+        //clone of companies state. dont change directly
+        const companiesData = JSON.parse(JSON.stringify(this.state.companies));
+        companiesData.map((element, index) => {
+            if (element.id === record.id) {
+                element.name = value;
+            }
+        });
+        this.setState({
+            companies: companiesData
+        }, () => console.log('Companies state:' + JSON.stringify(this.state.companies)))
+    }
+
+    onDataAdd = () => {
+
+    }
+
     componentDidMount() {
         console.log('Companies screeeeen')
         if (this.props.usersReducer.currentUser !== null) {
@@ -63,7 +95,7 @@ class CompaniesScreen extends React.Component {
                 // only admin can get Companies data. No other users
                 this.props.getCompanies(1, () => {
                     console.log('YEYEYEYEY')
-                    const companiesData = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
+                    const companiesData = this.props.companiesReducer.companies;
                     console.log('Companies' + JSON.stringify(this.props.companiesReducer))
                     this.setState({
                         companies: companiesData
@@ -75,22 +107,7 @@ class CompaniesScreen extends React.Component {
         }
 
     }
-
-
-    onDataChange = (value,record)=>{
-        //clone of companies state. dont change directly
-        const companiesData = JSON.parse(JSON.stringify(this.state.companies));
-        companiesData.map((element,index)=>{
-            if(element.id === record.id){
-                element.name = value;
-            }
-        });
-        this.setState({
-            companies: companiesData
-        }, ()=> console.log('Companies state:'+JSON.stringify(this.state.companies)))
-    }
     render() {
-        // const companies = this.state.companies;
         const columns = [
             {
                 title: 'Numeris',
@@ -115,7 +132,7 @@ class CompaniesScreen extends React.Component {
         ]
         return (
             <>
-                <div style={{ marginTop: 45 }}>
+                <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={16} offset={4}>
                         <Row>
                             <Col span={6}>
@@ -134,15 +151,23 @@ class CompaniesScreen extends React.Component {
                                     <Table
                                         rowKey="id"
                                         columns={columns}
-                                        dataSource={this.state.companies}
+                                        dataSource={this.props.companiesReducer.companies}
                                         pagination={false}
                                         title={() => 'Kompanijos'}
+                                    // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
+                                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>
                                 </Card>
                             </Col>
                         </Row>
                     </Col>
                 </div>
+
+                {this.state.addItemVisibility !== false ?
+                    <AddCompanyComponent visible={this.state.addItemVisibility} onClose={this.unShowAddModel} />
+                    : null}
+
+
             </>
         )
     }
@@ -151,9 +176,9 @@ class CompaniesScreen extends React.Component {
 //i select all redux states that i need
 function mapStateToProps(state) {
     return {
+        companiesReducer: state.companiesReducer,
         usersReducer: state.usersReducer,
-        userInfoReducer: state.userInfoReducer,
-        companiesReducer: state.companiesReducer
+        userInfoReducer: state.userInfoReducer
     }
 }
 
