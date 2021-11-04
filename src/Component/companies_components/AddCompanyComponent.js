@@ -29,9 +29,7 @@ class AddCompanyComponent extends React.Component {
         const postObj = {
             'name': name
         }
-        this.props.createCompany(postObj, ()=>{
-            console.log('Company created');
-        });
+        this.props.save(postObj);
         this.props.onClose();
     }
 

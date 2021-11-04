@@ -9,12 +9,10 @@ export const getCompanies = (num,callback) => async (dispatch,getState) => {
 
         const token = getState().usersReducer.currentUser;
         const response = await axios.get('api/Companies', { headers: { Authorization: `Bearer ${token}` } });
-        console.log('Companies action:'+JSON.stringify(response.data))
         dispatch({
             type: 'COMPANIES_FETCH_SUCCESS',
             payload: response.data
         });
-        console.log('Companies:'+JSON.stringify(response.data))
         callback();
     } catch(error){
         if (error.response === undefined) {

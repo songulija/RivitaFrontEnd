@@ -4,7 +4,7 @@ import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal } from 'an
 import { Button } from 'react-bootstrap'
 import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { getUserData } from '../redux/actions/userActions.js'
-import { getCompanies } from '../redux/actions/companiesActions.js'
+import { getCompanies, createCompany } from '../redux/actions/companiesActions.js'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import { withRouter } from 'react-router';
 import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
@@ -67,6 +67,16 @@ class CompaniesScreen extends React.Component {
         console.log('Closed')
     }
 
+    addCompany = (postObj) =>{
+        this.props.createCompany(postObj, ()=>{
+            const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
+            this.setState({
+                companies: companiesClone
+            });
+        });
+    }
+
+
     onDataChange = (value, record) => {
         //clone of companies state. dont change directly
         const companiesData = JSON.parse(JSON.stringify(this.state.companies));
@@ -83,24 +93,27 @@ class CompaniesScreen extends React.Component {
     onDataAdd = () => {
 
     }
+    userDataSet = () =>{
+        const userClone = JSON.parse(JSON.stringify(this.props.userInfoReducer));
+        this.setState({
+            user: userClone
+        },()=> console.log('Setted user:'+JSON.stringify(this.state.user)));
+    }
+    companiesDataSet = () =>{
+        //cloning companies redux state. not working directly
+        const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
+        this.setState({
+            companies: companiesClone
+        },()=>console.log('Setted companies:'+JSON.stringify(this.state.companies)));
+    }
 
     componentDidMount() {
-        console.log('Companies screeeeen')
         if (this.props.usersReducer.currentUser !== null) {
             this.props.getUserData(1, () => {
-                const userData = JSON.parse(JSON.stringify(this.props.userInfoReducer));
-                this.setState({
-                    user: userData
-                });
-                // only admin can get Companies data. No other users
-                this.props.getCompanies(1, () => {
-                    console.log('YEYEYEYEY')
-                    const companiesData = this.props.companiesReducer.companies;
-                    console.log('Companies' + JSON.stringify(this.props.companiesReducer))
-                    this.setState({
-                        companies: companiesData
-                    });
-                });
+                this.userDataSet();
+            });
+            this.props.getCompanies(1, () => {
+                this.companiesDataSet();
             });
         } else {
             this.props.history.push('/');
@@ -151,7 +164,7 @@ class CompaniesScreen extends React.Component {
                                     <Table
                                         rowKey="id"
                                         columns={columns}
-                                        dataSource={this.props.companiesReducer.companies}
+                                        dataSource={this.state.companies}
                                         pagination={false}
                                         title={() => 'Kompanijos'}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
@@ -164,7 +177,8 @@ class CompaniesScreen extends React.Component {
                 </div>
 
                 {this.state.addItemVisibility !== false ?
-                    <AddCompanyComponent visible={this.state.addItemVisibility} onClose={this.unShowAddModel} />
+                    <AddCompanyComponent visible={this.state.addItemVisibility} onClose={this.unShowAddModel}
+                    save={this.addCompany} />
                     : null}
 
 
@@ -182,4 +196,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getUserData, getCompanies })(withRouter(CompaniesScreen));
+export default connect(mapStateToProps, { getUserData, getCompanies, createCompany })(withRouter(CompaniesScreen));
