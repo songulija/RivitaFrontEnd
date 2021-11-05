@@ -186,9 +186,9 @@ class CompaniesScreen extends React.Component {
                     saveChanges={this.saveChanges}
                 />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
-                    <Col span={16} offset={4}>
-                        <Row>
-                            <Col span={6}>
+                    <Col span={24} offset={3}>
+                    <Row gutter={16}>
+                            <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Kompanijos</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
@@ -197,16 +197,17 @@ class CompaniesScreen extends React.Component {
                                     </Typography.Text>
                                 </div>
                             </Col>
-                            {/* returns second column with table */}
-                            {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
-                            <Col span={10}>
+                        </Row>
+                        {/* returns second column with table */}
+                        {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
+                        <Row gutter={16}>
+                            <Col span={18}>
                                 <Card size={'small'} style={{ ...tableCardStyle }} bodyStyle={{ ...tableCardBodyStyle }}>
                                     <Table
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.state.companies}
-                                        pagination={false}
-                                        title={() => 'Kompanijos'}
+                                        pagination={true}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
                                     <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>
