@@ -6,15 +6,16 @@ import HomeScreen from './Screens/HomeScreen';
 import RegisterScreen from './Screens/RegisterScreen.js'
 import CompaniesScreen from './Screens/CompaniesScreen.js';
 import LoginScreen from './Screens/LoginScreen.js';
+import AdminTransportationsScreen from './Screens/AdminTransportationsScreen'
 
 function App() {
   return (
     <Router>
       <Header />
-   
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/companies' component={CompaniesScreen} />
+          <Route path='/transportations' component={AdminTransportationsScreen}/>
           <Route path='/' component={HomeScreen} exact />
 
     </Router>

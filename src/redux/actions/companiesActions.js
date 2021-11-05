@@ -6,7 +6,6 @@ export const getCompanies = (num,callback) => async (dispatch,getState) => {
         dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
             type: 'COMPANIES_FETCH_REQUEST'
         });
-
         const token = getState().usersReducer.currentUser;
         const response = await axios.get('api/Companies', { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
