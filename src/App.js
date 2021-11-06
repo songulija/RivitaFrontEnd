@@ -7,6 +7,7 @@ import RegisterScreen from './Screens/RegisterScreen.js'
 import CompaniesScreen from './Screens/CompaniesScreen.js';
 import LoginScreen from './Screens/LoginScreen.js';
 import AdminTransportationsScreen from './Screens/AdminTransportationsScreen'
+import AdminWagonsByTransportationAdd from './Screens/AdminWagonsByTransportationAdd.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/companies' component={CompaniesScreen} />
           <Route path='/transportations' component={AdminTransportationsScreen}/>
+          <Route path='/wagons/:id' component={AdminWagonsByTransportationAdd}/>
           <Route path='/' component={HomeScreen} exact />
 
     </Router>

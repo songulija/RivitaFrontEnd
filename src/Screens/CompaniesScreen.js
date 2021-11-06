@@ -7,7 +7,7 @@ import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { getUserData } from '../redux/actions/userActions.js'
 import { getCompanies, createCompany } from '../redux/actions/companiesActions.js'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
 
 const aboutTitleTextStyle = {

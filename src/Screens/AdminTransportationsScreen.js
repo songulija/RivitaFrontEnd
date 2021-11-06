@@ -4,14 +4,16 @@ import axios from 'axios'
 import { getUserData } from '../redux/actions/userActions';
 import { getTransportations, createTransportation } from '../redux/actions/transportationsActions.js';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
-import { Col, Table, Row, Space, Typography, Input } from 'antd';
+import { getWagons } from '../redux/actions/wagonsActions';
+import { Col, Table, Row, Space, Typography, Input,Button } from 'antd';
 import { Card } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+// import { Button } from 'react-bootstrap'
 import { PlusOutlined } from '@ant-design/icons';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
 import AddTransportationComponent from '../Component/transportations_components/AddTransportationComponent';
 import moment from 'moment'
+
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -39,7 +41,7 @@ class AdminTransportationScreen extends React.Component {
             transportations: [],
             originalTransportations: [],
             visibleHeader: 'hidden',
-            addPanelVisibility: false
+            addPanelVisibility: false,
         }
     }
     discardChanges = () => {
@@ -62,13 +64,16 @@ class AdminTransportationScreen extends React.Component {
         });
     }
 
+    wagonsAddScreen = (id) => {
+        this.props.history.push('wagons/'+id)
+    }
+
     addTransportation = (postObj) => {
         //dispatching addTransporation action action
-        console.log('Saving:'+JSON.stringify(postObj));
+        console.log('Saving:' + JSON.stringify(postObj));
         this.props.createTransportation(postObj, () => {
             this.transportationsDataSet(this.props.transportationsReducer.transportations);
         });
-
     }
 
     userDataSet = () => {
@@ -81,23 +86,23 @@ class AdminTransportationScreen extends React.Component {
     }
 
     transportationsDataSet = (transportationsArray) => {
-        
-            // console.log('Component Did mount Transportations data:' + JSON.stringify(this.props.transportationsReducer.transportations))
-            const transportationsClone = JSON.parse(JSON.stringify(transportationsArray));
-            //removing time from data that we get
-            transportationsClone.map((element, index) => {
-                //for each element in array change dates
-                let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
-                let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
-                let date3 = moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
-                element.cargoAcceptanceDate = date1;
-                element.movementStartDateInBelarus = date2;
-                element.movementEndDateInBelarus = date3;
-            });
-            this.setState({
-                transportations: transportationsClone,
-                originalTransportations: transportationsClone
-            }, () => console.log('Transportations array is equal to:'+this.state.transportations));
+
+        // console.log('Component Did mount Transportations data:' + JSON.stringify(this.props.transportationsReducer.transportations))
+        const transportationsClone = JSON.parse(JSON.stringify(transportationsArray));
+        //removing time from data that we get
+        transportationsClone.map((element, index) => {
+            //for each element in array change dates
+            let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
+            let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
+            let date3 = moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+            element.cargoAcceptanceDate = date1;
+            element.movementStartDateInBelarus = date2;
+            element.movementEndDateInBelarus = date3;
+        });
+        this.setState({
+            transportations: transportationsClone,
+            originalTransportations: transportationsClone
+        }, () => console.log('Transportations array is equal to:' + this.state.transportations));
     }
 
     arrayEqual = (array1, array2) => {
@@ -247,12 +252,22 @@ class AdminTransportationScreen extends React.Component {
                 this.props.getTransportations(1, () => {
                     this.transportationsDataSet(this.props.transportationsReducer.transportations);
                 });
-                
+
             });
+            // this.props.getWagons(1, ()=>{
+            //     console.log(JSON.stringify(this.props.wagonsReducer))
+            // })
         }
     }
     render() {
         const columns = [
+            {
+                title: 'Pridėti vagonų',
+                width: '5%',
+                render: (text, record, index) => (
+                    <Button onClick={(e)=> this.wagonsAddScreen(record.id)}>Pridėti</Button>
+                )
+            },
             {
                 title: 'Transportacijos numeris',
                 dataIndex: 'transportationNumber',
@@ -631,8 +646,9 @@ const mapStateToProps = (state) => {
     return {
         usersReducer: state.usersReducer,
         userInfoReducer: state.userInfoReducer,
-        transportationsReducer: state.transportationsReducer
+        transportationsReducer: state.transportationsReducer,
+        wagonsReducer: state.wagonsReducer
     }
 }
 
-export default connect(mapStateToProps, { getUserData, getTransportations,createTransportation })(withRouter(AdminTransportationScreen))
+export default connect(mapStateToProps, { getUserData, getTransportations,getWagons, createTransportation })(withRouter(AdminTransportationScreen))

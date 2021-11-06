@@ -4,12 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {usersReducer,userInfoReducer} from './reducers/usersReducer';
 import {companiesReducer} from './reducers/companiesReducers'
 import {transportationsReducer} from './reducers/transportationsReducer.js'
+import { wagonsReducer } from './reducers/wagonsReducer';
 
 const allReducers = combineReducers({
     companiesReducer,
     usersReducer,
     userInfoReducer,
-    transportationsReducer
+    transportationsReducer,
+    wagonsReducer
 });
 //we want to get userInfo from localStorage if its there. if its  there we need to convert JSON string into object
 const userInfoFromStorage = localStorage.getItem('currentUser')?localStorage.getItem('currentUser'):null;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { createTransportation } from '../../redux/actions/transportationsActions.js';
 import {Form, Button, Input, Modal,Space} from 'antd';
 import {ArrowLeftOutlined} from '@ant-design/icons'

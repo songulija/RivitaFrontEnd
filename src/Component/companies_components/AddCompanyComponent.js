@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { Modal, Button, Form, Space, Select, Input } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import {createCompany} from '../../redux/actions/companiesActions'
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 class AddCompanyComponent extends React.Component {
     constructor(props) {

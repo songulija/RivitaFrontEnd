@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
+import { withRouter } from "react-router-dom";
 import { getUserData, logout, removeUserData } from '../redux/actions/userActions'
-import { withRouter } from 'react-router';
 
 class Header extends React.Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class Header extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link href="#home">Transportacijos</Nav.Link>
+                                <Nav.Link href="/transportations">Transportacijos</Nav.Link>
                                 <Nav.Link href="#link"></Nav.Link>
                                 {naudotojas.role ?
                                     <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
