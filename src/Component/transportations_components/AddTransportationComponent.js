@@ -45,7 +45,9 @@ class AddTransportationComponent extends React.Component {
     }
 
     saveChanges = () =>{
-        console.log('Save changes')
+        const postObj = JSON.parse(JSON.stringify(this.state.transportation));
+        this.props.save(postObj);
+        this.props.onClose();
     }
 
     onDataChange = (value,inputName) => {

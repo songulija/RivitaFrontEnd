@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios'
 import { getUserData } from '../redux/actions/userActions';
-import { getTransportations } from '../redux/actions/transportationsActions.js';
+import { getTransportations, createTransportation } from '../redux/actions/transportationsActions.js';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { Col, Table, Row, Space, Typography, Input } from 'antd';
 import { Card } from 'react-bootstrap'
@@ -11,6 +11,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router';
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
 import AddTransportationComponent from '../Component/transportations_components/AddTransportationComponent';
+import moment from 'moment'
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -30,13 +31,13 @@ const textStyle = {
 
 const { Text } = Typography;
 
-
 class AdminTransportationScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             user: null,
             transportations: [],
+            originalTransportations: [],
             visibleHeader: 'hidden',
             addPanelVisibility: false
         }
@@ -49,20 +50,25 @@ class AdminTransportationScreen extends React.Component {
         console.log('Save')
     }
 
-    showTransportationAddPanel = () =>{
+    showTransportationAddPanel = () => {
         this.setState({
             addPanelVisibility: true
         });
     }
 
-    unshowTransportationAddPanel = () =>{
+    unshowTransportationAddPanel = () => {
         this.setState({
             addPanelVisibility: false
         });
     }
 
-    addTransportation = () =>{
+    addTransportation = (postObj) => {
         //dispatching addTransporation action action
+        console.log('Saving:'+JSON.stringify(postObj));
+        this.props.createTransportation(postObj, () => {
+            this.transportationsDataSet(this.props.transportationsReducer.transportations);
+        });
+
     }
 
     userDataSet = () => {
@@ -74,15 +80,24 @@ class AdminTransportationScreen extends React.Component {
         })
     }
 
-    transportationsDataSet = () => {
-        this.props.getTransportations(1, () => {
-            console.log('Component Did mount Transportations data:'+JSON.stringify(this.props.transportationsReducer.transportations))
-            const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
-            this.setState({
-                transportations: transportationsClone
+    transportationsDataSet = (transportationsArray) => {
+        
+            // console.log('Component Did mount Transportations data:' + JSON.stringify(this.props.transportationsReducer.transportations))
+            const transportationsClone = JSON.parse(JSON.stringify(transportationsArray));
+            //removing time from data that we get
+            transportationsClone.map((element, index) => {
+                //for each element in array change dates
+                let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
+                let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
+                let date3 = moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+                element.cargoAcceptanceDate = date1;
+                element.movementStartDateInBelarus = date2;
+                element.movementEndDateInBelarus = date3;
             });
-
-        });
+            this.setState({
+                transportations: transportationsClone,
+                originalTransportations: transportationsClone
+            }, () => console.log('Transportations array is equal to:'+this.state.transportations));
     }
 
     arrayEqual = (array1, array2) => {
@@ -137,7 +152,7 @@ class AdminTransportationScreen extends React.Component {
     //check if original companies state and modified are equal or not
     getUpdateWindowState = () => {
         // make clones first. i dont want to make any action to them directly
-        const originalTransportations = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
+        const originalTransportations = JSON.parse(JSON.stringify(this.state.originalTransportations));
         const modifiedTransportations = JSON.parse(JSON.stringify(this.state.transportations));
 
         if (originalTransportations === null) {
@@ -229,7 +244,10 @@ class AdminTransportationScreen extends React.Component {
         if (this.props.usersReducer.currentUser !== null) {
             this.props.getUserData(1, () => {
                 this.userDataSet();
-                this.transportationsDataSet();
+                this.props.getTransportations(1, () => {
+                    this.transportationsDataSet(this.props.transportationsReducer.transportations);
+                });
+                
             });
         }
     }
@@ -600,9 +618,9 @@ class AdminTransportationScreen extends React.Component {
                         </Row>
                     </Col>
                     {this.state.addPanelVisibility !== false ?
-                    <AddTransportationComponent visible={this.state.addPanelVisibility} onClose={this.unshowTransportationAddPanel}
-                        save={this.addTransportation} />
-                    : null}
+                        <AddTransportationComponent visible={this.state.addPanelVisibility} onClose={this.unshowTransportationAddPanel}
+                            save={this.addTransportation} />
+                        : null}
                 </div>
             </>
         );
@@ -617,4 +635,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getUserData, getTransportations })(withRouter(AdminTransportationScreen))
+export default connect(mapStateToProps, { getUserData, getTransportations,createTransportation })(withRouter(AdminTransportationScreen))
