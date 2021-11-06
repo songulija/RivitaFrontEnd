@@ -63,7 +63,8 @@ function AdminWagonsByTransportationAdd(props) {
                 if (userInfoReducer.role === 'Administrator') {
                     console.log('Admin is logged')
                     dispatch(getWagonsByTransportation(props.match.params.id,()=>{
-                        setWagons(wagonsReducer.wagons)
+                        const wagonsClone = JSON.parse(JSON.stringify(wagonsReducer.wagons))
+                        setWagons(wagonsClone);
                     }));
                 } else {
                     history.push('/')
@@ -73,7 +74,7 @@ function AdminWagonsByTransportationAdd(props) {
         } else {
             history.push('/')
         }
-    }, [history, dispatch, props.match.params.id, userInfoReducer.role]);
+    }, [history, dispatch, props.match.params.id,usersReducer.currentUser, userInfoReducer.role]);
     const columns = [
         {
             title: 'Vagono numeris',
@@ -130,10 +131,10 @@ function AdminWagonsByTransportationAdd(props) {
                     <Row gutter={16}>
                             <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>
-                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Kompanijos</Typography.Title>
+                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportacijos vagonai</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Įveskite kompanijas, kurios darbuotojai galės naudotis sveitaine. Tik tada
-                                        galėsite registruoti vartotojus ir priskirti juos prie pridėtos kompanijos.
+                                        Atvaizduojami pasirinktos transportacijos vagonai. Galima pridėti naujus vagonus,
+                                        tačiau yra galimybė ir atnaujinti esamus duomenis.
                                     </Typography.Text>
                                 </div>
                             </Col>
