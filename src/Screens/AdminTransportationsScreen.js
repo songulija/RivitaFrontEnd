@@ -10,6 +10,7 @@ import { Button } from 'react-bootstrap'
 import { PlusOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router';
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
+import AddTransportationComponent from '../Component/transportations_components/AddTransportationComponent';
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -36,7 +37,8 @@ class AdminTransportationScreen extends React.Component {
         this.state = {
             user: null,
             transportations: [],
-            visibleHeader: 'hidden'
+            visibleHeader: 'hidden',
+            addPanelVisibility: false
         }
     }
     discardChanges = () => {
@@ -45,6 +47,22 @@ class AdminTransportationScreen extends React.Component {
 
     saveChanges = () => {
         console.log('Save')
+    }
+
+    showTransportationAddPanel = () =>{
+        this.setState({
+            addPanelVisibility: true
+        });
+    }
+
+    unshowTransportationAddPanel = () =>{
+        this.setState({
+            addPanelVisibility: false
+        });
+    }
+
+    addTransportation = () =>{
+        //dispatching addTransporation action action
     }
 
     userDataSet = () => {
@@ -58,7 +76,7 @@ class AdminTransportationScreen extends React.Component {
 
     transportationsDataSet = () => {
         this.props.getTransportations(1, () => {
-            // console.log('Component Did mount Transportations data:'+JSON.stringify(this.props.transportationsReducer.transportations))
+            console.log('Component Did mount Transportations data:'+JSON.stringify(this.props.transportationsReducer.transportations))
             const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
             this.setState({
                 transportations: transportationsClone
@@ -576,17 +594,15 @@ class AdminTransportationScreen extends React.Component {
                                     scroll={{ x: 'calc(700px + 50%)' }}
                                 // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                 />
-                                <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti transportaciją</Button></Space>
+                                <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showTransportationAddPanel}><PlusOutlined />Pridėti transportaciją</Button></Space>
 
                             </Col>
                         </Row>
                     </Col>
-                    {/* <Col span={5}>
-                                
-                            </Col> */}
-                    {/* returns second column with table */}
-                    {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
-
+                    {this.state.addPanelVisibility !== false ?
+                    <AddTransportationComponent visible={this.state.addPanelVisibility} onClose={this.unshowTransportationAddPanel}
+                        save={this.addTransportation} />
+                    : null}
                 </div>
             </>
         );
