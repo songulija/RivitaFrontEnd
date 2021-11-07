@@ -41,7 +41,7 @@ class Header extends React.Component {
                                     <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
                                         <NavDropdown.Item href="/transportations">Transportacijos</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action/3.3">Vagonai</NavDropdown.Item>
+                                        <NavDropdown.Item href="/wagons">Vagonai</NavDropdown.Item>
                                         <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>
                                     </NavDropdown> : null}
                                 {this.props.usersReducer.currentUser ?

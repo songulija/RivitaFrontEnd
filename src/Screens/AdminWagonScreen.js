@@ -205,51 +205,31 @@ class AdminWagonScreen extends React.Component {
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null) {
-            if (this.props.match.params.id === null || this.props.match.params.id === undefined) {
-
-                this.props.getUserData(1, () => {
-                    console.log('There wasnt passed userId')
-                    // get all transportations. set TranportationId state to first element of transportation array id
-                    this.props.getTransportations(1, () => {
-                        const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
-                        let id = transportationsClone[0].id;
+            this.props.getUserData(1, () => {
+                console.log('TransportationId:'+this.props.match.params.id)
+                this.props.getTransportations(1, () => {
+                    const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
+                    this.setState({
+                        transportations: transportationsClone
+                    }, () => console.log('Setted transportations:' + JSON.stringify(this.state.transportations)));
+                    if (this.props.match.params.id === null || this.props.match.params.id === undefined) {
                         this.setState({
-                            transportationId: id
-                        }, () => console.log('Setted transportationId, there wasnt:' + this.state.transportationId));
-                        this.props.getWagonsByTransportation(this.state.transportationId, () => {
-                            const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-                            this.setState({ wagons: wagonsClone }, () => {
+                            transportationId: transportationsClone[0].id
+                        }, () => {
+                            this.props.getWagonsByTransportation(this.state.transportationId, () => {
+                                const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+                                this.setState({ wagons: wagonsClone });
                             })
-                        });
-                    });
-                });
-            } else {
-                this.props.getUserData(1, () => {
-                    if (this.props.userInfoReducer.role === 'Administrator') {
-                        this.props.getWagonsByTransportation(this.props.match.params.id, () => {
-                            const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-                            this.setState({
-                                wagons: wagonsClone,
-                                transportationId: this.props.match.params.id
-                            }, () => {
-                                console.log('Setted wagons by provided transportation id:' + this.state.transportationId + ', wagons:' + this.state.wagons)
-                            })
-                        });
-                        //get all transportations, becouse user admin will be able to choose transportation of list
-                        //and it will show wagons based on that
-                        this.props.getTransportations(1, () => {
-                            const transportatiosnClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
-                            this.setState({
-                                transportations: transportatiosnClone
-                            }, () => console.log('Setted transportations where transportationId provided'))
                         });
                     } else {
-                        // this.props.history.push('/')
+                        this.props.getWagonsByTransportation(this.props.match.params.id, () => {
+                            const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+                            this.setState({ wagons: wagonsClone, transportationId: this.props.match.params.id });
+                        })
+
                     }
                 });
-            }
-
-
+            });
         } else {
             this.props.history.push('/')
         }

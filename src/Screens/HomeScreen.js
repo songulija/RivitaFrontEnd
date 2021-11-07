@@ -24,7 +24,7 @@ function HomeScreen({ location, history }) {
         }else{
             history.push(redirect);
         }
-    },[history,redirect]);
+    },[history,redirect,currentUser]);
 
 
 
