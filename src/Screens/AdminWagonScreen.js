@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Modal, Button, Form, Space, Select, Table, Row, Col, Card, Typography, InputNumber,Input } from 'antd';
+import { Modal, Button, Form, Space, Select, Table, Row, Col, Card, Typography, InputNumber, Input } from 'antd';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
 import { getUserData } from '../redux/actions/userActions';
-import { getWagonsByTransportation, getWagons,insertWagon} from '../redux/actions/wagonsActions';
+import { getWagonsByTransportation, getWagons, insertWagon } from '../redux/actions/wagonsActions';
+import { getTransportations } from '../redux/actions/transportationsActions'
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
@@ -28,17 +29,20 @@ const textStyle = {
 }
 
 const { Text } = Typography;
+const { Option } = Select;
 
 class AdminWagonScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             wagons: [],
+            transportations: [],
             visibleHeader: 'hidden',
             addWagonVisible: {
                 visible: false,
                 transportationId: null
-            }
+            },
+            transportationId: null,
         }
     }
     onBack = () => {
@@ -46,7 +50,7 @@ class AdminWagonScreen extends React.Component {
         this.props.history.push('/transportations')
     }
     //Functions For AddWagonComponent
-    unshowWagonAdd = () =>{
+    unshowWagonAdd = () => {
         const obj = {
             visible: false,
             transportationId: null
@@ -66,8 +70,8 @@ class AdminWagonScreen extends React.Component {
     }
 
     addWagon = (postObj) => {
-        console.log('Post object to save:'+JSON.stringify(postObj))
-        this.props.insertWagon(postObj,() =>{
+        console.log('Post object to save:' + JSON.stringify(postObj))
+        this.props.insertWagon(postObj, () => {
             console.log('Wagon inserted')
             const newWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
             this.setState({
@@ -75,7 +79,7 @@ class AdminWagonScreen extends React.Component {
             });
             this.unshowWagonAdd();
         });
-        
+
     }
 
 
@@ -91,7 +95,7 @@ class AdminWagonScreen extends React.Component {
         });
     }
     saveChanges = () => {
-        
+
         const originalWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
         const modifiedWagons = JSON.parse(JSON.stringify(this.state.wagons));
         //postObj array of wagon objects inside. Push those wagons that have been changed to postObj array
@@ -106,9 +110,9 @@ class AdminWagonScreen extends React.Component {
                 postObj.push(modifiedWagons[i])
             }
         }
-        console.log('Wagons to update:'+JSON.stringify(postObj))
+        console.log('Wagons to update:' + JSON.stringify(postObj))
         this.props.updateWagons(postObj, () => {
-            console.log('Wagons were updated:'+this.props.wagonsReducer.wagons);
+            console.log('Wagons were updated:' + this.props.wagonsReducer.wagons);
             this.setState({
                 visibleHeader: 'hidden'
             });
@@ -165,7 +169,7 @@ class AdminWagonScreen extends React.Component {
 
     }
     onDataChange = (value, record, inputName) => {
-        console.log('Value that want to change:'+value)
+        console.log('Value that want to change:' + value)
         //cloning wagons state to not work directly with it
         const wagonsClone = JSON.parse(JSON.stringify(this.state.wagons));
         wagonsClone.map((element, index) => {
@@ -184,8 +188,8 @@ class AdminWagonScreen extends React.Component {
         // console.log('Modified array is:' + JSON.stringify(wagonsClone));
         this.setState({
             wagons: wagonsClone
-        },() => {
-            console.log('Modified array is:'+JSON.stringify(this.state.wagons))
+        }, () => {
+            console.log('Modified array is:' + JSON.stringify(this.state.wagons))
             const visibilityString = this.getUpdateWindowState();
             this.setState({
                 visibleHeader: visibilityString
@@ -193,20 +197,58 @@ class AdminWagonScreen extends React.Component {
         });
     }
 
+    //provide transportation id.
+    transportationSelect = (id) => {
+        console.log('Select transportationId:' + id)
+    }
+
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null) {
-            this.props.getUserData(1, () => {
-                if (this.props.userInfoReducer.role === 'Administrator') {
-                    this.props.getWagonsByTransportation(this.props.match.params.id, () => {
-                        const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-                        this.setState({ wagons: wagonsClone }, () => {
-                        })
+            if (this.props.match.params.id === null || this.props.match.params.id === undefined) {
+
+                this.props.getUserData(1, () => {
+                    console.log('There wasnt passed userId')
+                    // get all transportations. set TranportationId state to first element of transportation array id
+                    this.props.getTransportations(1, () => {
+                        const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
+                        let id = transportationsClone[0].id;
+                        this.setState({
+                            transportationId: id
+                        }, () => console.log('Setted transportationId, there wasnt:' + this.state.transportationId));
+                        this.props.getWagonsByTransportation(this.state.transportationId, () => {
+                            const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+                            this.setState({ wagons: wagonsClone }, () => {
+                            })
+                        });
                     });
-                } else {
-                    this.props.history.push('/')
-                }
-            });
+                });
+            } else {
+                this.props.getUserData(1, () => {
+                    if (this.props.userInfoReducer.role === 'Administrator') {
+                        this.props.getWagonsByTransportation(this.props.match.params.id, () => {
+                            const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+                            this.setState({
+                                wagons: wagonsClone,
+                                transportationId: this.props.match.params.id
+                            }, () => {
+                                console.log('Setted wagons by provided transportation id:' + this.state.transportationId + ', wagons:' + this.state.wagons)
+                            })
+                        });
+                        //get all transportations, becouse user admin will be able to choose transportation of list
+                        //and it will show wagons based on that
+                        this.props.getTransportations(1, () => {
+                            const transportatiosnClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
+                            this.setState({
+                                transportations: transportatiosnClone
+                            }, () => console.log('Setted transportations where transportationId provided'))
+                        });
+                    } else {
+                        // this.props.history.push('/')
+                    }
+                });
+            }
+
 
         } else {
             this.props.history.push('/')
@@ -237,8 +279,8 @@ class AdminWagonScreen extends React.Component {
                         type={'text'}
                         defaultValue={text}
                         value={text}
-                        onChange={(e) => this.onDataChange(e.target.value,record,"typeOfWagon")}
-                        />
+                        onChange={(e) => this.onDataChange(e.target.value, record, "typeOfWagon")}
+                    />
                 )
             },
             {
@@ -288,6 +330,25 @@ class AdminWagonScreen extends React.Component {
                                 </div>
                             </Col>
                         </Row>
+                        <Row gutter={16}>
+                            <Col span={16}>
+                                <Select
+                                    showSearch
+                                    style={{ width: 200 }}
+                                    placeholder="Pasirinkite transportacijos numerį"
+                                    optionFilterProp="children"
+                                    onChange={(e) => this.transportationSelect(e)}
+                                >
+                                    {this.state.transportations.map((element, index) => {
+                                        return (<Option name={element.id} value={element.transportationNumber}>{element.transportationNumber}</Option>)
+                                    })}
+                                    {/* <Option value="jack">Jack</Option>
+                                        <Option value="lucy">Lucy</Option>
+                                        <Option value="tom">Tom</Option> */}
+                                </Select>
+                            </Col>
+
+                        </Row>
                         {/* returns second column with table */}
                         {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
                         <Row gutter={16}>
@@ -319,7 +380,8 @@ const mapStateToProps = (state) => {
     return {
         usersReducer: state.usersReducer,
         userInfoReducer: state.userInfoReducer,
-        wagonsReducer: state.wagonsReducer
+        wagonsReducer: state.wagonsReducer,
+        transportationsReducer: state.transportationsReducer
     }
 }
-export default connect(mapStateToProps, { getUserData, getWagonsByTransportation,insertWagon })(withRouter(AdminWagonScreen));
+export default connect(mapStateToProps, { getUserData, getTransportations, getWagonsByTransportation, insertWagon })(withRouter(AdminWagonScreen));

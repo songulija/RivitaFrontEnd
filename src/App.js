@@ -17,7 +17,7 @@ function App() {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/companies' component={CompaniesScreen} />
           <Route path='/transportations' component={AdminTransportationsScreen}/>
-          <Route path='/wagons/:id' component={AdminWagonScreen}/>
+          <Route path='/wagons/:id?' component={AdminWagonScreen}/>
           <Route path='/' component={HomeScreen} exact />
 
     </Router>
