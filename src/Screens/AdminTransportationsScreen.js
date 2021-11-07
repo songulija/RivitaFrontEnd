@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios'
-import { getUserData } from '../redux/actions/userActions';
 import { getTransportations, createTransportation } from '../redux/actions/transportationsActions.js';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { getWagons } from '../redux/actions/wagonsActions';
@@ -37,7 +36,6 @@ class AdminTransportationScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null,
             transportations: [],
             originalTransportations: [],
             visibleHeader: 'hidden',
@@ -76,14 +74,14 @@ class AdminTransportationScreen extends React.Component {
         });
     }
 
-    userDataSet = () => {
-        this.props.getUserData(1, () => {
-            const userClone = JSON.stringify(this.props.userInfoReducer);
-            this.setState({
-                user: userClone
-            });
-        })
-    }
+    // userDataSet = () => {
+    //     this.props.getUserData(1, () => {
+    //         const userClone = JSON.stringify(this.props.userInfoReducer);
+    //         this.setState({
+    //             user: userClone
+    //         });
+    //     })
+    // }
 
     transportationsDataSet = (transportationsArray) => {
 
@@ -246,13 +244,9 @@ class AdminTransportationScreen extends React.Component {
 
     }
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null) {
-            this.props.getUserData(1, () => {
-                this.userDataSet();
-                this.props.getTransportations(1, () => {
-                    this.transportationsDataSet(this.props.transportationsReducer.transportations);
-                });
-
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
+            this.props.getTransportations(1, () => {
+                this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });
             // this.props.getWagons(1, ()=>{
             //     console.log(JSON.stringify(this.props.wagonsReducer))
@@ -651,4 +645,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getUserData, getTransportations,getWagons, createTransportation })(withRouter(AdminTransportationScreen))
+export default connect(mapStateToProps, { getTransportations,getWagons, createTransportation })(withRouter(AdminTransportationScreen))

@@ -28,7 +28,7 @@ export const userInfoReducer = (state = { role: null, exp: null }, action) => {
         case 'USER_DATA_REQUEST':
             return { ...state,loading: true };
         case 'USER_DATA_SUCCESS':
-            return { ...state, loading: false, 'role': action.payload.role, 'exp': action.payload.exp};
+            return { ...state, loading: false, 'role': action.payload};
         case 'USER_DATA_REMOVE':
             return {...state,loading: false, 'role':null, 'exp':null}
         case 'USER_DATA_FAIL':

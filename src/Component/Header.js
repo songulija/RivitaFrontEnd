@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
-import { getUserData, logout, removeUserData } from '../redux/actions/userActions'
+import { getUserData, logout } from '../redux/actions/userActions'
 
 class Header extends React.Component {
     constructor(props) {
@@ -14,19 +14,15 @@ class Header extends React.Component {
 
     logoutHandler = () => {
         this.props.logout();
-        this.props.removeUserData();
     }
 
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null) {
-            this.props.getUserData(1, () => {
-            });
-
+        if (this.props.usersReducer.currentUser === null) {
+            this.props.history.push('/login');
         }
-
     }
     render() {
-        const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer));
+        // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
         return (
             <div>
                 <Navbar bg="light" expand="lg">
@@ -37,7 +33,7 @@ class Header extends React.Component {
                             <Nav className="me-auto">
                                 <Nav.Link href="/transportations">Transportacijos</Nav.Link>
                                 <Nav.Link href="#link"></Nav.Link>
-                                {naudotojas.role ?
+                                {this.props.userInfoReducer.role === 'Administrator'?
                                     <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
                                         <NavDropdown.Item href="/transportations">Transportacijos</NavDropdown.Item>
@@ -66,4 +62,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getUserData, logout,removeUserData })(withRouter(Header));
+export default connect(mapStateToProps, { getUserData, logout })(withRouter(Header));

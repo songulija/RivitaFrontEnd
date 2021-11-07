@@ -5,7 +5,6 @@ import { Modal, Button, Form, Space, Select, Table, Row, Col, Card, Typography, 
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
-import { getUserData } from '../redux/actions/userActions';
 import { getWagonsByTransportation, getWagons, insertWagon } from '../redux/actions/wagonsActions';
 import { getTransportations } from '../redux/actions/transportationsActions'
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
@@ -204,8 +203,7 @@ class AdminWagonScreen extends React.Component {
 
 
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null) {
-            this.props.getUserData(1, () => {
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
                 console.log('TransportationId:'+this.props.match.params.id)
                 this.props.getTransportations(1, () => {
                     const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
@@ -229,7 +227,6 @@ class AdminWagonScreen extends React.Component {
 
                     }
                 });
-            });
         } else {
             this.props.history.push('/')
         }
@@ -364,4 +361,4 @@ const mapStateToProps = (state) => {
         transportationsReducer: state.transportationsReducer
     }
 }
-export default connect(mapStateToProps, { getUserData, getTransportations, getWagonsByTransportation, insertWagon })(withRouter(AdminWagonScreen));
+export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon })(withRouter(AdminWagonScreen));

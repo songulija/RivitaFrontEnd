@@ -41,31 +41,30 @@ export const login = (email, password,callback) => async (dispatch) => {
 
 export const getUserData = (num,callback) => async(dispatch, getState)=>{
     try{
-        let numb = num;
+        // let numb = num;
         dispatch({
             type: 'USER_DATA_REQUEST'
         });
-        const { usersReducer: { currentUser } } = getState();//get user info
+
+        const { usersReducer: { currentUser } } = getState();
+        // const { usersReducer: { currentUser } } = getState();//get user info
         
         const token = currentUser;
         let userRole = '';
         const userData = jwt_decode(token); // decode your token here
+        // if userRole is admin save userRole in localStorage to access at all times
         if (userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Administrator') {
             userRole = 'Administrator';
-        }else if(userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'User'){
-            userRole = 'User'
+        }else{
+            userRole = 'User';
         }
-        // const user = {
-        //     role: userRole,
-        //     exp:userData.exp
-        // }
-        //{role: userRole, exp: userData.exp}
-        // console.log('Action got:'+JSON.stringify(user))
-        //
         dispatch({
             type: 'USER_DATA_SUCCESS',
-            payload: {role:userRole,exp:userData.exp}
+            payload: userRole
         });
+        if(userRole === 'Administrator'){
+            localStorage.setItem('userRole',userRole)
+        }
         callback()
     }catch(error){
         dispatch({
@@ -78,14 +77,16 @@ export const getUserData = (num,callback) => async(dispatch, getState)=>{
     }
 }
 
-export const removeUserData = () => (dispatch)=>{
-    dispatch({type: 'USER_DATA_REMOVE'})
+// export const removeUserData = () => (dispatch)=>{
+//     dispatch({type: 'USER_DATA_REMOVE'})
 
-}
+// }
 
 export const logout = () => (dispatch) => {
-    localStorage.removeItem('currentUser')
-    dispatch({ type: 'USER_LOGOUT' })
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userRole');
+    dispatch({ type: 'USER_LOGOUT' });
+    dispatch({type: 'USER_DATA_REMOVE'});
 }
 
 
@@ -113,12 +114,12 @@ export const register = (postObject) => async (dispatch) => {
             payload: response.data,
         })
 
-        dispatch({
-            type: 'USER_LOGIN_SUCCESS',
-            payload: response.data,
-        })
+        // dispatch({
+        //     type: 'USER_LOGIN_SUCCESS',
+        //     payload: response.data,
+        // })
 
-        localStorage.setItem('currentUser', response.data.token);
+        // localStorage.setItem('currentUser', response.data.token);
 
     } catch (error) {
         dispatch({

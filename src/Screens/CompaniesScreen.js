@@ -4,7 +4,6 @@ import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal } from 'an
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader.js'
 import { Button } from 'react-bootstrap'
 import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import { getUserData } from '../redux/actions/userActions.js'
 import { getCompanies, createCompany } from '../redux/actions/companiesActions.js'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import { withRouter } from 'react-router-dom';
@@ -33,7 +32,6 @@ class CompaniesScreen extends React.Component {
         super(props);
         this.state = {
             companies: [],
-            user: null,
             addItemVisibility: false,
             visibleHeader: 'hidden'
         }
@@ -120,12 +118,6 @@ class CompaniesScreen extends React.Component {
 
     }
 
-    userDataSet = () => {
-        const userClone = JSON.parse(JSON.stringify(this.props.userInfoReducer));
-        this.setState({
-            user: userClone
-        }, () => console.log('Setted user:' + JSON.stringify(this.state.user)));
-    }
     companiesDataSet = () => {
         //cloning companies redux state. not working directly
         const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
@@ -143,10 +135,7 @@ class CompaniesScreen extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null) {
-            this.props.getUserData(1, () => {
-                this.userDataSet();
-            });
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
             this.props.getCompanies(1, () => {
                 this.companiesDataSet();
             });
@@ -237,4 +226,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getUserData, getCompanies, createCompany })(withRouter(CompaniesScreen));
+export default connect(mapStateToProps, { getCompanies, createCompany })(withRouter(CompaniesScreen));
