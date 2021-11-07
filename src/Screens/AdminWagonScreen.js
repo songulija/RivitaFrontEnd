@@ -6,9 +6,10 @@ import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/custo
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
 import { getUserData } from '../redux/actions/userActions';
-import { getWagonsByTransportation, getlWagons, getWagons } from '../redux/actions/wagonsActions';
+import { getWagonsByTransportation, getWagons,insertWagon} from '../redux/actions/wagonsActions';
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
+import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -28,24 +29,57 @@ const textStyle = {
 
 const { Text } = Typography;
 
-class AdminWagonsByTransportationAdd extends React.Component {
+class AdminWagonScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             wagons: [],
-            visibleHeader: 'hidden'
+            visibleHeader: 'hidden',
+            addWagonVisible: {
+                visible: false,
+                transportationId: null
+            }
         }
     }
     onBack = () => {
         // props.onClose();\
-        this.props.onClose();
+        this.props.history.push('/transportations')
     }
-    onCancel = () => {
-        this.props.onClose();
+    //Functions For AddWagonComponent
+    unshowWagonAdd = () =>{
+        const obj = {
+            visible: false,
+            transportationId: null
+        }
+        this.setState({
+            addWagonVisible: obj
+        })
     }
-    showAddVagonModel = () => {
-        console.log('Wagons state is:' + JSON.stringify(this.state.wagons))
+    showAddWagonModel = () => {
+        const obj = {
+            visible: true,
+            transportationId: this.props.match.params.id
+        }
+        this.setState({
+            addWagonVisible: obj
+        });
     }
+
+    addWagon = (postObj) => {
+        console.log('Post object to save:'+JSON.stringify(postObj))
+        this.props.insertWagon(postObj,() =>{
+            console.log('Wagon inserted')
+            const newWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
+            this.setState({
+                wagons: newWagons
+            });
+            this.unshowWagonAdd();
+        });
+        
+    }
+
+
+
     discardChanges = () => {
         const originalWagons = this.props.wagonsReducer.wagons
         this.setState({
@@ -57,6 +91,29 @@ class AdminWagonsByTransportationAdd extends React.Component {
         });
     }
     saveChanges = () => {
+        
+        const originalWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+        const modifiedWagons = JSON.parse(JSON.stringify(this.state.wagons));
+        //postObj array of wagon objects inside. Push those wagons that have been changed to postObj array
+        const postObj = [];
+        for (var i = 0; i < originalWagons.length; i++) {
+            if (originalWagons[i].numberOfWagon !== modifiedWagons[i].numberOfWagon ||
+                originalWagons[i].typeOfWagon !== modifiedWagons[i].typeOfWagon ||
+                originalWagons[i].wagonsCount !== modifiedWagons[i].wagonsCount ||
+                originalWagons[i].liftingCapacityTons !== modifiedWagons[i].liftingCapacityTons ||
+                originalWagons[i].weight !== modifiedWagons[i].weight
+            ) {
+                postObj.push(modifiedWagons[i])
+            }
+        }
+        console.log('Wagons to update:'+JSON.stringify(postObj))
+        this.props.updateWagons(postObj, () => {
+            console.log('Wagons were updated:'+this.props.wagonsReducer.wagons);
+            this.setState({
+                visibleHeader: 'hidden'
+            });
+        })
+
     }
 
 
@@ -133,17 +190,7 @@ class AdminWagonsByTransportationAdd extends React.Component {
             this.setState({
                 visibleHeader: visibilityString
             });
-        })
-        // this.setState({
-        //     wagons: wagonsClone
-        // }, () => {
-        //     console.log('Original array: ' + JSON.stringify(this.props.wagonsReducer.wagons));
-        //     console.log('Modified array:' + JSON.stringify(this.state.wagons));
-        //     // const visibilityString = this.getUpdateWindowState();
-        //     // this.setState({
-        //     //     visibleHeader: visibilityString
-        //     // });
-        // })
+        });
     }
 
 
@@ -151,11 +198,9 @@ class AdminWagonsByTransportationAdd extends React.Component {
         if (this.props.usersReducer.currentUser !== null) {
             this.props.getUserData(1, () => {
                 if (this.props.userInfoReducer.role === 'Administrator') {
-                    console.log('Admin is logged')
                     this.props.getWagonsByTransportation(this.props.match.params.id, () => {
                         const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
                         this.setState({ wagons: wagonsClone }, () => {
-                            console.log('Wagons setted to:' + this.state.wagons)
                         })
                     });
                 } else {
@@ -255,11 +300,15 @@ class AdminWagonsByTransportationAdd extends React.Component {
                                         pagination={true}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
-                                    {/* <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={showAddVagonModel}><PlusOutlined />Pridėti kompaniją</Button></Space> */}
+                                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddWagonModel}><PlusOutlined />Vagona</Button></Space>
                                 </Card>
                             </Col>
                         </Row>
                     </Col>
+                    {this.state.addWagonVisible.visible !== false ?
+                        <AddWagonComponent visible={this.state.addWagonVisible.visible} transportationId={this.state.addWagonVisible.transportationId} onClose={this.unshowWagonAdd}
+                            save={this.addWagon} />
+                        : null}
                 </div>
             </>
         )
@@ -273,4 +322,4 @@ const mapStateToProps = (state) => {
         wagonsReducer: state.wagonsReducer
     }
 }
-export default connect(mapStateToProps, { getUserData, getWagonsByTransportation })(withRouter(AdminWagonsByTransportationAdd));
+export default connect(mapStateToProps, { getUserData, getWagonsByTransportation,insertWagon })(withRouter(AdminWagonScreen));
