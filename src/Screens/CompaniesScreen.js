@@ -196,7 +196,8 @@ class CompaniesScreen extends React.Component {
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.state.companies}
-                                        pagination={true}
+                                        pagination={{ pageSize: 15 }}
+                                        
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
                                     <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>

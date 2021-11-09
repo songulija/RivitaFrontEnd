@@ -616,7 +616,7 @@ class AdminTransportationScreen extends React.Component {
                                     rowKey="id"
                                     columns={columns}
                                     dataSource={this.state.transportations}
-                                    pagination={true}
+                                    pagination={{ pageSize: 15 }}
                                     bordered
                                     scroll={{ x: 'calc(700px + 50%)' }}
                                 // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}

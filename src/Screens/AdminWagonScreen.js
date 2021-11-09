@@ -199,6 +199,20 @@ class AdminWagonScreen extends React.Component {
     //provide transportation id.
     transportationSelect = (id) => {
         console.log('Select transportationId:' + id)
+        //set transportation id then get all data
+        // dispatching action to get wagons by selected transportation
+        this.setState({
+            transportationId: id
+        }, () =>{
+            this.props.getWagonsByTransportation(id, () =>{
+                const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+                this.setState({
+                    wagons: wagonsClone,
+                    visibleHeader: 'hidden'
+                }, () => console.log('Wagons set by transportation are: '+JSON.stringify(this.state.wagons)));
+            });
+        });
+        
     }
 
 
@@ -317,11 +331,8 @@ class AdminWagonScreen extends React.Component {
                                     onChange={(e) => this.transportationSelect(e)}
                                 >
                                     {this.state.transportations.map((element, index) => {
-                                        return (<Option name={element.id} value={element.transportationNumber}>{element.transportationNumber}</Option>)
+                                        return (<Option name={element.id} value={element.id}>{element.transportationNumber}</Option>)
                                     })}
-                                    {/* <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="tom">Tom</Option> */}
                                 </Select>
                             </Col>
 
@@ -335,7 +346,7 @@ class AdminWagonScreen extends React.Component {
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.state.wagons}
-                                        pagination={true}
+                                        pagination={{ pageSize: 15 }}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
                                     <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddWagonModel}><PlusOutlined />Vagona</Button></Space>
