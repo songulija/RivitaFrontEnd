@@ -37,17 +37,3 @@ export const userInfoReducer = (state = { role: null, exp: null }, action) => {
             return state
     }
 }
-
-export const usersListReducer = (state = {users: []}, action) => {
-    switch(action.payload){
-        case 'FETCH_USERS_REQUEST':
-            return {...state, loading: true}
-        case 'FETCH_USERS_SUCCESS':
-            return {...state, loading: false, users: action.payload}
-        case 'FETCH_USERS_FAIL':
-            return {...state, loading: false, error: action.payload}
-        default: 
-            return state;
-    }
-}
-

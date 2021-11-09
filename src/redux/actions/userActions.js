@@ -116,29 +116,3 @@ export const register = (postObject,callback) => async (dispatch,getState) => {
         })
     }
 }
-
-export const getUsers = (num,callback) => async(dispatch,getState) =>{
-    try {
-        dispatch({
-            type: 'FETCH_USERS_REQUEST'
-        });
-
-        const token = getState().usersReducer.currentUser;
-        const response = await axios.get('/api/Accounts',{ headers: { Authorization: `Bearer ${token}` } })
-
-        dispatch({
-            type: 'FETCH_USERS_SUCCESS',
-            payload: response.data,
-        });
-        console.log('Action got data:'+JSON.stringify(response.data))
-        callback();
-    } catch (error) {
-        dispatch({
-            type: 'FETCH_USERS_FAIL',
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        })
-    }
-}

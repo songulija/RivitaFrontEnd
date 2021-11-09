@@ -1,140 +1,146 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { Select } from 'antd'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Table, Space, Select, Card, Typography, Col, Row, Input, Modal } from 'antd'
+import { Container, Image, Text } from 'react-bootstrap'
+import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
-import {register, getUsers} from '../redux/actions/userActions'
+import { register } from '../redux/actions/userActions'
 import { getCompanies } from '../redux/actions/companiesActions.js'
+import { getUsers } from '../redux/actions/userListActions'
 import { Link, withRouter } from 'react-router-dom'
+import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
+import AddUserComponent from '../Component/register_components/AddUserComponent'
 
 const { Option } = Select;
+// const { Text } = Typography;
 
+const aboutTitleTextStyle = {
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: '20px',
+    marginBottom: '16px',
+}
+
+const textStyle = {
+    fontSize: '14px',
+    color: '#8C8C8C',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    lineHeight: '22px',
+    marginRight: '40px',
+}
 class RegisterScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {
-                phoneNumber: '',
-                companyId: '',
-                email: '',
-                password: ''
-            },
+            users: [],
             companies: [],
-            users: []
+            addUserVisibility: false
         }
     }
 
-    submitHandler = () => {
-        const userClone = JSON.parse(JSON.stringify(this.state.user));
-        const postObj = {
-            "email": userClone.email,
-            "password": userClone.password,
-            "phoneNumber": userClone.phoneNumber,
-            "companyId": userClone.companyId,
-            "roles": [
-                "USER"
-            ]
-        }
-        console.log('Post object sent to action:'+JSON.stringify(postObj))
-        this.props.register(postObj, () => {
-            console.log('Registered usser succesfully')
-        });
-    }
-
-    onDataChange = (value, inputName) => {
-        const userClone = JSON.parse(JSON.stringify(this.state.user));
-        if (inputName === "phoneNumber") {
-            userClone.phoneNumber = value;
-        } else if (inputName === "companyId") {
-            userClone.companyId = value;
-        } else if (inputName === "email") {
-            userClone.email = value;
-        } else if (inputName === "password") {
-            userClone.password = value;
-        }
-
+    showAddUser = () => {
         this.setState({
-            user: userClone
-        }, () => console.log('User changed:' + JSON.stringify(this.state.user)));
+            addUserVisibility: true
+        }, () => console.log('visibility is:'+this.state.addUserVisibility))
+    }
+    unshowAddUser = () => {
+        this.setState({
+            addUserVisibility: false
+        })
+    }
+
+    saveChanges = (postObj) => {
+        this.props.register(postObj, () => {
+            this.props.getUsers(1 , () =>{
+                const usersClone = JSON.parse(JSON.stringify(this.props.usersListReducer.users))
+                this.setState({
+                    users: usersClone,
+                    addUserVisibility: false
+                });
+            });
+        });
     }
 
     //get companies. becouse when register we asign companies
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
-            this.props.getUsers(1, () =>{
+            this.props.getUsers(1, () => {
                 const usersClone = JSON.parse(JSON.stringify(this.props.usersListReducer.users));
                 this.setState({
                     users: usersClone
-                }, () => console.log('Got all users:'+JSON.stringify(this.state.users)))
+                }, () => console.log('Got all users:' + JSON.stringify(this.state.users)))
             });
             this.props.getCompanies(1, () => {
                 const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
                 this.setState({
                     companies: companiesClone
-                });
+                }, () => console.log('Companies:'+JSON.stringify(this.state.companies)));
             });
         } else {
             // this.props.history.push('/login')
         }
     }
     render() {
+        const columns = [
+            {
+                title: 'El. pašas',
+                dataIndex: 'email',
+                width: '40%'
+            },
+            {
+                title: 'Telefono numeris',
+                dataIndex: 'phoneNumber',
+                width: '40%'
+            },
+            {
+                title: 'Kompanijos numeris',
+                dataIndex: 'companyId',
+                width: '20%'
+            }
+        ]
         return (
-            <div className="Login my-auto container-fluid vh-100 vw-100">
-                <Form onSubmit={this.submitHandler}>
-                    <h1 className="h3 mb-3 fw-normal">Naudotojų registracija</h1>
-                    <Form.Group controlId='text'>
-                        <Form.Label>Telefono numeris</Form.Label>
-                        <Form.Control
-                            type='phone'
-                            placeholder='Įveskite telefono numerį'
-                            value={this.state.phoneNumber}
-                            onChange={(e) => this.onDataChange(e.target.value, "phoneNumber")}
-                        >
+            <>
+                <div style={{ marginTop: 45, marginBottom: 45 }}>
+                    <Col span={24} offset={3}>
+                        <Row gutter={16}>
+                            <Col span={16}>
+                                <div style={{ marginRight: '40px' }}>
+                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Naudotojai</Typography.Title>
+                                    <Typography.Text style={{ ...textStyle }}>
+                                        Pridėkite naudotojus, kurie galės naudotis sveitaine. Kuriant naudotoją
+                                        jį reikia priskirti prie vienos iš kompanijų su kuriomis jus dirbate. Jei
+                                        kompajios saraše nematote pirma sukurkite kompaniją.                                    </Typography.Text>
+                                </div>
+                            </Col>
+                        </Row>
+                        {/* returns second column with table */}
+                        {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
+                        <Row gutter={16}>
+                            <Col span={18}>
+                                <Card size={'small'} style={{ ...tableCardStyle }} bodyStyle={{ ...tableCardBodyStyle }}>
+                                    <Table
+                                        rowKey="id"
+                                        columns={columns}
+                                        dataSource={this.props.usersListReducer.users}
+                                        pagination={{ pageSize: 10 }}
+                                    // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
+                                    />
+                                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddUser}><PlusOutlined />Pridėti naudotoją</Button></Space>
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Col>
+                </div>
+                {this.state.addUserVisibility !== false ?
+                    <AddUserComponent visible={this.state.addUserVisibility} onClose={this.unshowAddUser}
+                        save={this.saveChanges} companies={this.state.companies}/>
+                    : null}
+            </>
 
-                        </Form.Control>
-                    </Form.Group>
-                    <p style={{ marginBottom: '5px' }}>Kompanija</p>
-                    <Select
-                        showSearch
-                        style={{ width: '320px' }}
-                        placeholder="Priskirkite kompaniją"
-                        optionFilterProp="children"
-                        onChange={(e) => this.onDataChange(e, "companyId")}
-                    >
-                        {this.state.companies.map((element, index) => {
-                            return (<Option name={element.id} value={element.id}>{element.name}</Option>)
-                        })}
-                    </Select>
-
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control
-                            type='email'
-                            placeholder='Įveskite el. paštą'
-                            value={this.state.email}
-                            onChange={(e) => this.onDataChange(e.target.value, "email")}
-                        >
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type='password'
-                            placeholder='Įveskite slaptažodį'
-                            value={this.state.password}
-                            onChange={(e) => this.onDataChange(e.target.value, "password")}
-                        >
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Button type='Submit' variant='primary'> Registruoti</Button>
-
-                </Form>
-            </div>
         )
     }
 }
@@ -149,4 +155,4 @@ const mapStateToProps = (state) => {
     }
 }
 //connect to redux states, defining all action that we will use
-export default connect(mapStateToProps, { getUsers,getCompanies, register })(withRouter(RegisterScreen));
+export default connect(mapStateToProps, { getUsers, getCompanies, register })(withRouter(RegisterScreen));
