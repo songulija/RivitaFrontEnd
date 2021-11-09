@@ -257,7 +257,7 @@ class AdminTransportationScreen extends React.Component {
         const columns = [
             {
                 title: 'Pridėti vagonų',
-                width: '5%',
+                width: '3%',
                 render: (text, record, index) => (
                     <Button onClick={(e)=> this.wagonsAddScreen(record.id)}>Pridėti</Button>
                 )
@@ -284,6 +284,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "weight")}
                     />
                 )
@@ -297,6 +298,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "wagonsCount")}
                     />
                 )
@@ -310,12 +312,13 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "transportationStatus")}
                     />
                 )
             },
             {
-                title: 'Tipas',
+                title: 'Transportacijos tipas',
                 dataIndex: 'transportationType',
                 width: '5%',
                 render: (text, record, index) => (
@@ -343,26 +346,44 @@ class AdminTransportationScreen extends React.Component {
             {
                 title: 'Krovinio priėmimo vežti data',
                 dataIndex: 'cargoAcceptanceDate',
-                width: '5%',
+                width: '30%',
+                sorter: (a, b) => {
+                    if (moment(a.Created).isBefore(moment(b.Created))) {
+                       return -1;
+                    }
+                    return 1;
+                 },
                 render: (text, record, index) => (
                     <Input
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '100px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "cargoAcceptanceDate")}
+                        
                     />
                 )
+                
             },
             {
                 title: 'Judėjimo pradžios data per belarus',
                 dataIndex: 'movementStartDateInBelarus',
                 width: '5%',
+                sorter: (a, b) => {
+                    if (moment(a.Created).isBefore(moment(b.Created))) {
+                       return -1;
+                    }
+                    return 1;
+                 },
                 render: (text, record, index) => (
                     <Input
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '100px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "movementStartDateInBelarus")}
+                        
+
                     />
                 )
             },
@@ -370,11 +391,18 @@ class AdminTransportationScreen extends React.Component {
                 title: 'Judėjimo pabaigos data per belarus',
                 dataIndex: 'movementEndDateInBelarus',
                 width: '5%',
+                sorter: (a, b) => {
+                    if (moment(a.Created).isBefore(moment(b.Created))) {
+                       return -1;
+                    }
+                    return 1;
+                 },
                 render: (text, record, index) => (
                     <Input
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '100px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "movementEndDateInBelarus")}
                     />
                 )
@@ -388,6 +416,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "etsngCargoCode")}
                     />
                 )
@@ -414,6 +443,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "gngCargoCode")}
                     />
                 )
@@ -440,6 +470,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "departureStationCode")}
                     />
                 )
@@ -466,6 +497,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "departureCountryCode")}
                     />
                 )
@@ -492,6 +524,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "destinationStationCode")}
                     />
                 )
@@ -518,6 +551,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "destinationCountryCode")}
                     />
                 )
@@ -544,6 +578,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "stationMovementBeginingBelarusCode")}
                     />
                 )
@@ -570,6 +605,7 @@ class AdminTransportationScreen extends React.Component {
                         type={"text"}
                         defaultValue={text}
                         value={text}
+                        style={{width: '90px'}}
                         onChange={(e) => this.onDataChange(e.target.value, record, "stationMovementEndBelarusCode")}
                     />
                 )
@@ -597,7 +633,7 @@ class AdminTransportationScreen extends React.Component {
                 />
                 {/* column has 100 percent if span 24 */}
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
-                    <Col span={24} offset={2}>
+                    <Col span={24} offset={1}>
                         <Row gutter={16}>
                             <Col span={18}>
                                 <div style={{ marginRight: '40px', marginBottom: 25 }}>
@@ -610,7 +646,7 @@ class AdminTransportationScreen extends React.Component {
                             </Col>
                         </Row>
                         <Row gutter={16}>
-                            <Col span={20}>
+                            <Col span={23}>
 
                                 <Table
                                     rowKey="id"
