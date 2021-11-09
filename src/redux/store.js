@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {usersReducer,userInfoReducer} from './reducers/usersReducer';
+import {usersReducer,userInfoReducer,usersListReducer} from './reducers/usersReducer';
 import {companiesReducer} from './reducers/companiesReducers'
 import {transportationsReducer} from './reducers/transportationsReducer.js'
 import { wagonsReducer } from './reducers/wagonsReducer';
@@ -11,7 +11,8 @@ const allReducers = combineReducers({
     usersReducer,
     userInfoReducer,
     transportationsReducer,
-    wagonsReducer
+    wagonsReducer,
+    usersListReducer
 });
 //we want to get userInfo from localStorage if its there. if its  there we need to convert JSON string into object
 const userInfoFromStorage = localStorage.getItem('currentUser')?localStorage.getItem('currentUser'):null;

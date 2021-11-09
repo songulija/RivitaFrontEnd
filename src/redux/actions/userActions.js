@@ -90,37 +90,22 @@ export const logout = () => (dispatch) => {
 }
 
 
-export const register = (postObject) => async (dispatch) => {
-
+export const register = (postObject,callback) => async (dispatch,getState) => {
     try {
 
         dispatch({
             type: 'USER_REGISTER_REQUEST'
         })
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-
-        const response = await axios.post('/api/Accounts/register',
-            postObject,
-            config
-        )
+        const token = getState().usersReducer.currentUser;
+        console.log('Action postObj:'+JSON.stringify(postObject))
+        const response = await axios.post('/api/Accounts/register',postObject,{ headers: { Authorization: `Bearer ${token}` } })
 
         dispatch({
             type: 'USER_REGISTER_SUCCESS',
             payload: response.data,
-        })
-
-        // dispatch({
-        //     type: 'USER_LOGIN_SUCCESS',
-        //     payload: response.data,
-        // })
-
-        // localStorage.setItem('currentUser', response.data.token);
-
+        });
+        callback();
     } catch (error) {
         dispatch({
             type: 'USER_REGISTER_FAIL',
@@ -130,5 +115,30 @@ export const register = (postObject) => async (dispatch) => {
                     : error.message,
         })
     }
+}
 
+export const getUsers = (num,callback) => async(dispatch,getState) =>{
+    try {
+        dispatch({
+            type: 'FETCH_USERS_REQUEST'
+        });
+
+        const token = getState().usersReducer.currentUser;
+        const response = await axios.get('/api/Accounts',{ headers: { Authorization: `Bearer ${token}` } })
+
+        dispatch({
+            type: 'FETCH_USERS_SUCCESS',
+            payload: response.data,
+        });
+        console.log('Action got data:'+JSON.stringify(response.data))
+        callback();
+    } catch (error) {
+        dispatch({
+            type: 'FETCH_USERS_FAIL',
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
 }
