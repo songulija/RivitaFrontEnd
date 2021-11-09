@@ -140,7 +140,7 @@ class CompaniesScreen extends React.Component {
                 this.companiesDataSet();
             });
         } else {
-            this.props.history.push('/');
+            this.props.history.push('/login');
         }
 
     }
@@ -197,7 +197,6 @@ class CompaniesScreen extends React.Component {
                                         columns={columns}
                                         dataSource={this.state.companies}
                                         pagination={{ pageSize: 15 }}
-                                        
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
                                     <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>

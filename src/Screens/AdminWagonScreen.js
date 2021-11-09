@@ -242,7 +242,7 @@ class AdminWagonScreen extends React.Component {
                     }
                 });
         } else {
-            this.props.history.push('/')
+            this.props.history.push('/login')
         }
     }
     render() {

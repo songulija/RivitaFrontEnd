@@ -248,9 +248,8 @@ class AdminTransportationScreen extends React.Component {
             this.props.getTransportations(1, () => {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });
-            // this.props.getWagons(1, ()=>{
-            //     console.log(JSON.stringify(this.props.wagonsReducer))
-            // })
+        }else {
+            this.props.history.push('/login');
         }
     }
     render() {
