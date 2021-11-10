@@ -365,7 +365,7 @@ class AdminTransportationScreen extends React.Component {
                 
             },
             {
-                title: 'Judėjimo pradžios data per belarus',
+                title: 'Judėjimo pradžios data per baltarusija',
                 dataIndex: 'movementStartDateInBelarus',
                 width: '5%',
                 sorter: (a, b) => {
@@ -387,7 +387,7 @@ class AdminTransportationScreen extends React.Component {
                 )
             },
             {
-                title: 'Judėjimo pabaigos data per belarus',
+                title: 'Judėjimo pabaigos data per baltarusija',
                 dataIndex: 'movementEndDateInBelarus',
                 width: '5%',
                 sorter: (a, b) => {
