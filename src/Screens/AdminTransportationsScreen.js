@@ -63,7 +63,7 @@ class AdminTransportationScreen extends React.Component {
     }
 
     wagonsAddScreen = (id) => {
-        this.props.history.push('wagons/'+id)
+        this.props.history.push(`/wagons/${id}`)
     }
 
     addTransportation = (postObj) => {
@@ -73,7 +73,6 @@ class AdminTransportationScreen extends React.Component {
             this.transportationsDataSet(this.props.transportationsReducer.transportations);
         });
     }
-
     // userDataSet = () => {
     //     this.props.getUserData(1, () => {
     //         const userClone = JSON.stringify(this.props.userInfoReducer);

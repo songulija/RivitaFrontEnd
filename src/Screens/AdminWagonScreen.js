@@ -46,7 +46,7 @@ class AdminWagonScreen extends React.Component {
     }
     onBack = () => {
         // props.onClose();\
-        this.props.history.push('/transportations')
+        this.props.history.push('/transportations/admin')
     }
     //Functions For AddWagonComponent
     unshowWagonAdd = () => {

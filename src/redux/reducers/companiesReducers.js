@@ -12,9 +12,17 @@ export const companiesReducer = (state = { companies: []}, action) => {
         case 'COMPANIES_CREATE_SUCCESS':
             // add new item(action payload) to array of companies
             const newCompanies = [ ...state.companies, { ...action.payload } ];
-            console.log('Old companies in reducer are :'+JSON.stringify(state.companies))
-            console.log('New companies in reducera are:'+JSON.stringify(newCompanies))
             return {...state,'loading':false, 'companies':newCompanies}
+        case 'COMPANIES_UPDATE_REQUEST':
+            return {...state, loading: true}
+        case 'COMPANIES_UPDATE_SUCCESS':
+            const companiesClone = JSON.parse(JSON.stringify(state.companies));
+            companies.map((element,index)=>{
+                if(element.id === action.payload.id){
+                    element.name = action.payload.name
+                }
+            });
+            return {...state,loading:false, companies: companiesClone}
         case 'ERROR':
             return {loading:false, 'error':action.payload}
         default:

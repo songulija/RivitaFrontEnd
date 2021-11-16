@@ -33,11 +33,10 @@ class Header extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="/transportations">Transportacijos</Nav.Link>
-                                <Nav.Link href="#link"></Nav.Link>
                                 {this.props.userInfoReducer.role === 'Administrator'?
                                     <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
-                                        <NavDropdown.Item href="/transportations">Transportacijos</NavDropdown.Item>
+                                        <NavDropdown.Item href="/transportations/admin">Transportacijos</NavDropdown.Item>
                                         <NavDropdown.Item href="/wagons">Vagonai</NavDropdown.Item>
                                         <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>
                                     </NavDropdown> : null}

@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Button, Row, Col, Card, Space, Typography, Input } from 'antd'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import moment from 'moment'
-
-
-// import { login } from '../redux/actions/userActions.js'
 import { Link } from 'react-router-dom'
 import LoginScreen from './LoginScreen'
 import { getUserData } from '../redux/actions/userActions'
@@ -37,7 +33,7 @@ const cardTextStyle = {
 function HomeScreen({ location, history }) {
     const dispatch = useDispatch();
     const [search, setSearch] = useState({
-        "transportationNumber": null,
+        "transportationNumber": "",
         "transportationStatus": "",
         "transportationType": "",
         "transportationSubCode": 0,
@@ -63,6 +59,26 @@ function HomeScreen({ location, history }) {
     //check the query string. if there is then take left size of query which is number
     const redirect = location.search ? location.search.split('=')[1] : '/login';
 
+    // const searchTransportations = () =>{
+    //     history.push(`/transportations?transportationNumber=${search.transportationNumber}&cargoAcceptanceDate=${search.cargoAcceptanceDate}&movementStartDateInBelarusFrom=${search.movementStartDateInBelarusFrom}&movementStartDateInBelarusTo=${search.movementStartDateInBelarusTo}`)
+    // }
+    const newTo = {
+        pathname: "/transportations",
+        transportationNumber: search.transportationNumber,
+        cargoAcceptanceDate: search.cargoAcceptanceDate,
+        movementStartDateInBelarusFrom: search.movementStartDateInBelarusFrom,
+        movementStartDateInBelarusTo: search.movementStartDateInBelarusTo,
+        movementEndDateInBelarusFrom: search.movementEndDateInBelarusFrom,
+        movementEndDateInBelarusTo: search.movementEndDateInBelarusTo,
+        etsngCargoCode: search.etsngCargoCode,
+        gngCargoCode: search.gngCargoCode,
+        departureStationCode: search.departureStationCode,
+        departureCountryCode: search.departureStationCode,
+        destinationStationCode: search.destinationStationCode,
+        destinationCountryCode: search.destinationCountryCode,
+        stationMovementBeginingBelarusCode: search.stationMovementBeginingBelarusCode,
+        stationMovementEndBelarusCode: search.stationMovementEndBelarusCode
+    };
     useEffect(() => {
         if (currentUser) {
             // dispatch(getUserData(()=>{
@@ -169,7 +185,8 @@ function HomeScreen({ location, history }) {
                         marginTop: '10px',
                         width: '220px',
                         height: '60px'
-                    }}>Ieškoti</Button>
+                    }}><Link to={newTo}>Ieškoti</Link></Button>
+
                 </Col>
             </div>
         </>
