@@ -5,11 +5,13 @@ import { Modal, Button, Form, Space, Select, Table, Row, Col, Card, Typography, 
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
-import { getWagonsByTransportation, getWagons, insertWagon } from '../redux/actions/wagonsActions';
+import { getWagonsByTransportation, getWagons, insertWagon, updateWagon} from '../redux/actions/wagonsActions';
 import { getTransportations } from '../redux/actions/transportationsActions'
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
 import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
+import UpdateWagonComponent from '../Component/wagons_components/UpdateWagonComponent'
+
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -42,6 +44,10 @@ class AdminWagonScreen extends React.Component {
                 transportationId: null
             },
             transportationId: null,
+            updateWagon: {
+                visibility: false,
+                record: null
+            }
         }
     }
     onBack = () => {
@@ -81,166 +87,80 @@ class AdminWagonScreen extends React.Component {
 
     }
 
-
-
-    discardChanges = () => {
-        const originalWagons = this.props.wagonsReducer.wagons
+    // For UpdateTransportationScreen
+    showUpdateWagonModal = (record) => {
+        const obj = {
+            visibility: true,
+            record: record
+        }
         this.setState({
-            wagons: originalWagons
-        }, () => {
-            this.setState({
-                visibleHeader: 'hidden'
-            })
-        });
+            updateWagon: obj
+        }, () => console.log('UpdateWagon state:'+JSON.stringify(this.state.updateWagon)));
     }
-    saveChanges = () => {
-
-        const originalWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-        const modifiedWagons = JSON.parse(JSON.stringify(this.state.wagons));
-        //postObj array of wagon objects inside. Push those wagons that have been changed to postObj array
-        const postObj = [];
-        for (var i = 0; i < originalWagons.length; i++) {
-            if (originalWagons[i].numberOfWagon !== modifiedWagons[i].numberOfWagon ||
-                originalWagons[i].typeOfWagon !== modifiedWagons[i].typeOfWagon ||
-                originalWagons[i].wagonsCount !== modifiedWagons[i].wagonsCount ||
-                originalWagons[i].liftingCapacityTons !== modifiedWagons[i].liftingCapacityTons ||
-                originalWagons[i].weight !== modifiedWagons[i].weight
-            ) {
-                postObj.push(modifiedWagons[i])
-            }
+    unshowUpdateWagonModal = () => {
+        const obj = {
+            visibility: false,
+            record: null
         }
-        console.log('Wagons to update:' + JSON.stringify(postObj))
-        this.props.updateWagons(postObj, () => {
-            console.log('Wagons were updated:' + this.props.wagonsReducer.wagons);
-            this.setState({
-                visibleHeader: 'hidden'
-            });
-        })
-
-    }
-
-
-    arrayEqual = (array1, array2) => {
-        let a = JSON.parse(JSON.stringify(array1));
-        let b = JSON.parse(JSON.stringify(array2));
-
-        let original = array1;
-        let modified = array2;
-
-        if (a === b) return true;
-        if (a == null || b == null) return false;
-        if (a.length !== b.length) return false;
-
-        a = a.sort();
-        b = b.sort();
-
-        for (var i = 0; i < original.length; i++) {
-            if (original[i].numberOfWagon !== modified[i].numberOfWagon ||
-                original[i].typeOfWagon !== modified[i].typeOfWagon ||
-                original[i].wagonsCount !== modified[i].wagonsCount ||
-                original[i].liftingCapacityTons !== modified[i].liftingCapacityTons ||
-                original[i].weight !== modified[i].weight
-            ) {
-                console.log('They are not equal!!!')
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    //check if original companies state and modified are equal or not
-    getUpdateWindowState = () => {
-        // make clones first. i dont want to make any action to them directly
-        const originalWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-        const modifiedWagons = JSON.parse(JSON.stringify(this.state.wagons));
-
-        if (originalWagons === null) {
-            return 'hidden';
-        }
-        if (modifiedWagons === null) {
-            return 'hidden';
-        }
-        if (this.arrayEqual(originalWagons, modifiedWagons) === false) {
-            return 'visible';
-        }
-        return 'hidden'
-
-    }
-    onDataChange = (value, record, inputName) => {
-        console.log('Value that want to change:' + value)
-        //cloning wagons state to not work directly with it
-        const wagonsClone = JSON.parse(JSON.stringify(this.state.wagons));
-        wagonsClone.map((element, index) => {
-            if (element.id === record.id) {
-                if (inputName === "numberOfWagon") {
-                    element.numberOfWagon = Number(value);
-                } else if (inputName === "typeOfWagon") {
-                    element.typeOfWagon = value;
-                } else if (inputName === "liftingCapacityTons") {
-                    element.liftingCapacityTons = Number(value);
-                } else if (inputName === 'weight') {
-                    element.weight = Number(value);
-                }
-            }
-        });
-        // console.log('Modified array is:' + JSON.stringify(wagonsClone));
         this.setState({
-            wagons: wagonsClone
-        }, () => {
-            console.log('Modified array is:' + JSON.stringify(this.state.wagons))
-            const visibilityString = this.getUpdateWindowState();
-            this.setState({
-                visibleHeader: visibilityString
-            });
+            updateWagon: obj
         });
     }
+    saveUpdateWagon = (postObj, reducerObj) => {
+        this.props.updateWagon(postObj,reducerObj, () =>{
+            //clone updated wagons redux state
+            const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+            this.setState({
+                wagons: wagonsClone
+            });
+            this.unshowUpdateWagonModal();
+        });
+    }
+
 
     //provide transportation id.
     transportationSelect = (id) => {
-        console.log('Select transportationId:' + id)
         //set transportation id then get all data
         // dispatching action to get wagons by selected transportation
         this.setState({
             transportationId: id
-        }, () =>{
-            this.props.getWagonsByTransportation(id, () =>{
+        }, () => {
+            this.props.getWagonsByTransportation(id, () => {
                 const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
                 this.setState({
                     wagons: wagonsClone,
-                    visibleHeader: 'hidden'
-                }, () => console.log('Wagons set by transportation are: '+JSON.stringify(this.state.wagons)));
+                });
             });
         });
-        
+
     }
 
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
-                console.log('TransportationId:'+this.props.match.params.id)
-                this.props.getTransportations(1, () => {
-                    const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
+            console.log('TransportationId:' + this.props.match.params.id)
+            this.props.getTransportations(1, () => {
+                const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
+                this.setState({
+                    transportations: transportationsClone
+                }, () => console.log('Setted transportations:' + JSON.stringify(this.state.transportations)));
+                if (this.props.match.params.id === null || this.props.match.params.id === undefined) {
                     this.setState({
-                        transportations: transportationsClone
-                    }, () => console.log('Setted transportations:' + JSON.stringify(this.state.transportations)));
-                    if (this.props.match.params.id === null || this.props.match.params.id === undefined) {
-                        this.setState({
-                            transportationId: transportationsClone[0].id
-                        }, () => {
-                            this.props.getWagonsByTransportation(this.state.transportationId, () => {
-                                const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-                                this.setState({ wagons: wagonsClone });
-                            })
-                        });
-                    } else {
-                        this.props.getWagonsByTransportation(this.props.match.params.id, () => {
+                        transportationId: transportationsClone[0].id
+                    }, () => {
+                        this.props.getWagonsByTransportation(this.state.transportationId, () => {
                             const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
-                            this.setState({ wagons: wagonsClone, transportationId: this.props.match.params.id });
+                            this.setState({ wagons: wagonsClone });
                         })
+                    });
+                } else {
+                    this.props.getWagonsByTransportation(this.props.match.params.id, () => {
+                        const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
+                        this.setState({ wagons: wagonsClone, transportationId: this.props.match.params.id });
+                    })
 
-                    }
-                });
+                }
+            });
         } else {
             this.props.history.push('/login')
         }
@@ -248,66 +168,35 @@ class AdminWagonScreen extends React.Component {
     render() {
         const columns = [
             {
+                title: 'Atnaujinimas',
+                width: '10%',
+                render: (value, record, index) => (
+                    <Button onClick={(e) => this.showUpdateWagonModal(record)}>Atnaujinti</Button>
+                )
+            },
+            {
                 title: 'Vagono numeris',
                 dataIndex: 'numberOfWagon',
-                width: '25%',
-                render: (text, record, index) => (
-                    <InputNumber
-                        tyoe={'text'}
-                        defaultValue={text}
-                        value={text}
-                        onChange={(e) => this.onDataChange(e, record, "numberOfWagon")}
-                    />
-                )
-
+                width: '25%'
             },
             {
                 title: 'Vagono tipas',
                 dataIndex: 'typeOfWagon',
-                width: '20%',
-                render: (text, record, index) => (
-                    <Input
-                        type={'text'}
-                        defaultValue={text}
-                        value={text}
-                        onChange={(e) => this.onDataChange(e.target.value, record, "typeOfWagon")}
-                    />
-                )
+                width: '20%'
             },
             {
                 title: 'Keliamoji galia(tonomis)',
                 dataIndex: 'liftingCapacityTons',
-                width: '25%',
-                render: (text, record, index) => (
-                    <InputNumber
-                        tyoe={'text'}
-                        defaultValue={text}
-                        value={text}
-                        onChange={(e) => this.onDataChange(e, record, "liftingCapacityTons")}
-                    />
-                )
+                width: '25%'
             },
             {
                 title: 'Svoris(tonomis)',
                 dataIndex: 'weight',
-                width: '30%',
-                render: (text, record, index) => (
-                    <InputNumber
-                        tyoe={'text'}
-                        defaultValue={text}
-                        value={text}
-                        onChange={(e) => this.onDataChange(e, record, "weight")}
-                    />
-                )
+                width: '30%'
             },
         ]
         return (
             <>
-                <UnsavedChangesHeader
-                    visibility={this.state.visibleHeader}
-                    discardChanges={this.discardChanges}
-                    saveChanges={this.saveChanges}
-                />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={3}>
                         <Row gutter={16}>
@@ -358,6 +247,11 @@ class AdminWagonScreen extends React.Component {
                         <AddWagonComponent visible={this.state.addWagonVisible.visible} transportationId={this.state.addWagonVisible.transportationId} onClose={this.unshowWagonAdd}
                             save={this.addWagon} />
                         : null}
+                    {this.state.updateWagon.visibility !== false ?
+                        <UpdateWagonComponent visible={this.state.updateWagon.visibility} record={this.state.updateWagon.record}
+                            save={this.saveUpdateWagon} onClose={this.unshowUpdateWagonModal} />
+                        : null
+                    }
                 </div>
             </>
         )
@@ -372,4 +266,4 @@ const mapStateToProps = (state) => {
         transportationsReducer: state.transportationsReducer
     }
 }
-export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon })(withRouter(AdminWagonScreen));
+export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon, updateWagon})(withRouter(AdminWagonScreen));

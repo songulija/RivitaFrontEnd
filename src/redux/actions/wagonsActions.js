@@ -11,7 +11,6 @@ export const getWagons = () => async (dispatch,getState) =>{
             type: 'WAGONS_FETCH_SUCCESS',
             payload: response.data
         });
-        console.log('Wagons action working:'+JSON.stringify(response.data))
     }catch(error){
         if (error.response === undefined) {
             dispatch({

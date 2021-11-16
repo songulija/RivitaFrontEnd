@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal } from 'antd';
+import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal, Button } from 'antd';
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader.js'
-import { Button } from 'react-bootstrap'
 import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import { getCompanies, createCompany } from '../redux/actions/companiesActions.js'
+import { getCompanies, createCompany,updateCompany } from '../redux/actions/companiesActions.js'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import { withRouter } from 'react-router-dom';
 import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
+import UpdateCompanyComponent from '../Component/companies_components/UpdateCompanyComponent.js';
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -33,9 +33,13 @@ class CompaniesScreen extends React.Component {
         this.state = {
             companies: [],
             addItemVisibility: false,
-            visibleHeader: 'hidden'
+            updateItem: {
+                visibility: false,
+                record: null
+            }
         }
     }
+    // For AddCompanyComponent
     showAddCompanyModel = () => {
         this.setState({
             addItemVisibility: true
@@ -46,7 +50,6 @@ class CompaniesScreen extends React.Component {
             addItemVisibility: false
         });
     }
-
     addCompany = (postObj) => {
         this.props.createCompany(postObj, () => {
             const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
@@ -56,67 +59,36 @@ class CompaniesScreen extends React.Component {
         });
     }
 
-    arrayEqual = (array1, array2) => {
-        let a = JSON.parse(JSON.stringify(array1));
-        let b = JSON.parse(JSON.stringify(array2));
-
-        let original = array1;
-        let modified = array2;
-
-        if (a === b) return true;
-        if (a == null || b == null) return false;
-        if (a.length !== b.length) return false;
-
-        a = a.sort();
-        b = b.sort();
-
-        for (var i = 0; i < original.length; i++) {
-            if (original[i].name !== modified[i].name) {
-                console.log('They are not equal!!!')
-                return false;
-            }
+    // For UpdateCompanyComponent
+    showUpdateModel = (record) => {
+        const obj = {
+            visibility: true,
+            record: record
         }
-        return true;
-    }
-
-
-    //check if original companies state and modified are equal or not
-    getUpdateWindowState = () => {
-        // make clones first. i dont want to make any action to them directly
-        const originalCompanies = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
-        const modifiedCompanies = JSON.parse(JSON.stringify(this.state.companies));
-
-        if (originalCompanies === null) {
-            return 'hidden';
-        }
-        if (modifiedCompanies === null) {
-            return 'hidden';
-        }
-        if (this.arrayEqual(originalCompanies, modifiedCompanies) === false) {
-            return 'visible';
-        }
-        return 'hidden'
-
-    }
-
-    onDataChange = (value, record) => {
-        //clone of companies state. dont change directly
-        const companiesData = JSON.parse(JSON.stringify(this.state.companies));
-        companiesData.map((element, index) => {
-            if (element.id === record.id) {
-                element.name = value;
-            }
-        });
         this.setState({
-            companies: companiesData
-        }, () => {
-            const visibilityString = this.getUpdateWindowState();
-            this.setState({
-                visibleHeader: visibilityString
-            });
+            updateItem: obj
         });
-
     }
+    unshowUpdateModel = () => {
+        const obj = {
+            visibility: false,
+            record: null
+        }
+        this.setState({
+            updateItem: obj
+        });
+    }
+    saveUpdateCompany = (postObj, reducerObj) => {
+        this.props.updateCompany(postObj,reducerObj, () =>{
+            //get clone of updated companies redux state
+            const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
+            this.setState({
+                companies: companiesClone,
+            });
+            this.unshowUpdateModel();
+        });
+    }
+
 
     companiesDataSet = () => {
         //cloning companies redux state. not working directly
@@ -126,13 +98,6 @@ class CompaniesScreen extends React.Component {
         }, () => console.log('Setted companies:' + JSON.stringify(this.state.companies)));
     }
 
-    discardChanges = () => {
-        console.log('Discard changes')
-    }
-
-    saveChanges = () => {
-        console.log('Update all')
-    }
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
@@ -147,36 +112,23 @@ class CompaniesScreen extends React.Component {
     render() {
         const columns = [
             {
-                title: 'Numeris',
-                dataIndex: 'id',
-                width: '60%'
+                title: 'Atnaujinimas',
+                width: '40%',
+                render: (value, record, index) => (
+                    <Button onClick={(e) => this.showUpdateModel(record)}>Atnaujinti</Button>
+                )
             },
             {
                 title: 'Kompanijos pavadinimas',
                 dataIndex: 'name',
-                width: '40%',
-                render: (text, record, index) => (
-                    <Input
-                        type={"text"}
-                        value={text}
-                        defaultValue={text}
-                        onChange={(e) => this.onDataChange(e.target.value, record)}
-                    // value={text}
-                    // onChange={e => this.onFixedChange(e.target.value, record, "price")}
-                    />
-                )
+                width: '60%'
             }
         ]
         return (
             <>
-                <UnsavedChangesHeader
-                    visibility={this.state.visibleHeader}
-                    discardChanges={this.discardChanges}
-                    saveChanges={this.saveChanges}
-                />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={3}>
-                    <Row gutter={16}>
+                        <Row gutter={16}>
                             <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Kompanijos</Typography.Title>
@@ -190,7 +142,7 @@ class CompaniesScreen extends React.Component {
                         {/* returns second column with table */}
                         {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
                         <Row gutter={16}>
-                            <Col span={18}>
+                            <Col span={14}>
                                 <Card size={'small'} style={{ ...tableCardStyle }} bodyStyle={{ ...tableCardBodyStyle }}>
                                     <Table
                                         rowKey="id"
@@ -210,6 +162,11 @@ class CompaniesScreen extends React.Component {
                     <AddCompanyComponent visible={this.state.addItemVisibility} onClose={this.unShowAddModel}
                         save={this.addCompany} />
                     : null}
+                {this.state.updateItem.visibility !== false ?
+                    <UpdateCompanyComponent visible={this.state.updateItem.visibility}
+                        record={this.state.updateItem.record} onClose={this.unshowUpdateModel}
+                        save={this.saveUpdateCompany} />
+                    : null}
 
 
             </>
@@ -226,4 +183,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getCompanies, createCompany })(withRouter(CompaniesScreen));
+export default connect(mapStateToProps, { getCompanies, createCompany,updateCompany })(withRouter(CompaniesScreen));
