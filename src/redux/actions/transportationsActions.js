@@ -54,3 +54,30 @@ export const createTransportation = (postObject,callback) => async (dispatch,get
         }
     }
 }
+
+export const updateTransportation = (postObj,reducerObj,callback) => async(dispatch,getState) =>{
+    try{
+        dispatch({
+            type: 'TRANSPORTATIONS_UPDATE_REQUEST'
+        });
+        //get token from usersReducer
+        const token = getState().usersReducer.currentUser;
+        const response = await axios.put(`/api/Transportations/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
+        dispatch({
+            type: 'TRANSPORTATIONS_UPDATE_SUCCESS',
+            payload: reducerObj
+        });
+        callback();
+    }catch(error){
+        if (error.response === undefined) {
+            dispatch({
+                type: "ERROR",
+                payload: { message: "Oopsie... System error. Try again, later" },
+            });
+        }else{
+            dispatch({
+                type: "ERROR", payload: error.response.data
+            });
+        }
+    }
+}

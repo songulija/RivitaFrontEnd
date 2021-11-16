@@ -17,7 +17,7 @@ export const companiesReducer = (state = { companies: []}, action) => {
             return {...state, loading: true}
         case 'COMPANIES_UPDATE_SUCCESS':
             const companiesClone = JSON.parse(JSON.stringify(state.companies));
-            companies.map((element,index)=>{
+            companiesClone.map((element,index)=>{
                 if(element.id === action.payload.id){
                     element.name = action.payload.name
                 }
