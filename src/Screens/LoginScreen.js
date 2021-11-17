@@ -24,14 +24,16 @@ function LoginScreen({ location, history }) {
     useEffect(() => {
         if (currentUser) {//if user info exist than means we already are logged in
             history.push(redirect)//redirect to whatever is in redirect
+        } else {
+            history.push('/')
         }
     }, [history, currentUser, redirect])//if userInfo changed we want to redirect
 
     const submitHandler = (e) => {
         e.preventDefault();//prevemnt default behaviour when submit button is clicked. preved refresh of page
         //DISPATCH LOGIN action. pass email and password that user typed
-        dispatch(login(email, password, ()=>{
-            dispatch(getUserData(1,()=>{
+        dispatch(login(email, password, () => {
+            dispatch(getUserData(1, () => {
                 console.log('Yee')
             }))
         }));

@@ -9,18 +9,20 @@ import LoginScreen from './Screens/LoginScreen.js';
 import AdminTransportationsScreen from './Screens/AdminTransportationsScreen'
 import AdminWagonScreen from './Screens/AdminWagonScreen.js';
 import UserTransportations from './Screens/UserTransportations.js';
+import SearchScreen from './Screens/SearchScreen.js';
 
 function App() {
   return (
     <Router>
       <Header />
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/companies' component={CompaniesScreen} />
-          <Route path='/transportations' component={UserTransportations} exact/>
-          <Route path='/transportations/admin' component={AdminTransportationsScreen}/>
-          <Route path='/wagons/:id?' component={AdminWagonScreen}/>
-          <Route path='/' component={HomeScreen} exact />
+      <Route path='/login' component={LoginScreen} />
+      <Route path='/register' component={RegisterScreen} />
+      <Route path='/companies' component={CompaniesScreen} />
+      <Route path='/transportations' component={UserTransportations} exact />
+      <Route path='/transportations/admin' component={AdminTransportationsScreen} />
+      <Route path='/wagons/:id?' component={AdminWagonScreen} />
+      <Route path='/search' component={SearchScreen} />
+      <Route path='/' component={HomeScreen} exact />
 
     </Router>
   );

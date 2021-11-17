@@ -1,0 +1,31 @@
+.header-img{
+    background-image: url('http://www.rivita.lt/wp-content/uploads/2019/03/Slidas4.png');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.header-content h3{
+    color: #5f1508!important;
+    font-size: 54px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 64px;
+}
+.header-content h1{
+    color: #516c71!important;
+    font-size: 54px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 64px
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width:  100%;
+}
+
+.main div{
+    width: 800px;
+    height: 300px;
+}
