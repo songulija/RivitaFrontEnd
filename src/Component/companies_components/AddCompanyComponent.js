@@ -45,8 +45,8 @@ class AddCompanyComponent extends React.Component {
                     visible={this.props.visible}
                     footer={
                         <div>
-                            <Button key="customCancel" onClick={this.onCancel}>Cancel</Button>
-                            <Button key="customSubmit" form="myForm" onClick={this.saveChanges} htmlType="submit" type={'primary'}>Add</Button>
+                            <Button key="customCancel" onClick={this.onCancel}>Atšaukti</Button>
+                            <Button key="customSubmit" form="myForm" onClick={this.saveChanges} htmlType="submit" type={'primary'}>Pridėti</Button>
                         </div>
                     }
                 >

@@ -53,8 +53,8 @@ function UpdateCompanyComponent(props) {
                 visible={props.visible}
                 footer={
                     <div>
-                        <Button key="customCancel" onClick={onCancel}>Cancel</Button>
-                        <Button key="customSubmit" form="myForm" onClick={saveChanges} htmlType="submit" type={'primary'}>Add</Button>
+                        <Button key="customCancel" onClick={onCancel}>Atšaukti</Button>
+                        <Button key="customSubmit" form="myForm" onClick={saveChanges} htmlType="submit" type={'primary'}>Atnaujinti</Button>
                     </div>
                 }
             >

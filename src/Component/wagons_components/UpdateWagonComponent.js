@@ -13,10 +13,7 @@ const textStyle = {
     marginTop: '10px',
     paddingBottom: '5px'
 }
-// "numberOfWagon": 0,
-//         "typeOfWagon": "string",
-//         "liftingCapacityTons": 0,
-//         "weight": 0
+
 function UpdateWagonComponent(props) {
     const [wagon, setWagon] = useState({});
     const onBack = () => {
