@@ -27,7 +27,7 @@ class Header extends React.Component {
         // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
         return (
             <div>
-                <Navbar bg="light" expand="lg">
+                <Navbar bg="light" expand="xl">
                     <Container>
                         <Navbar.Brand href="#home">
                             <img style={{ width: '100px' }} src={logo} alt='Logo' />
@@ -36,7 +36,7 @@ class Header extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAGRINDINIS</Nav.Link>
-                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>APIE KOMPANIJĄ</Nav.Link>
+                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>APIE MUS</Nav.Link>
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PASLAUGOS</Nav.Link>
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KROVINIAI</Nav.Link>
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KONTAKTAI</Nav.Link>
@@ -45,14 +45,14 @@ class Header extends React.Component {
                                     <>
                                         <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>Transportacijos</Nav.Link>
                                         {this.props.userInfoReducer.role === 'Administrator' ?
-                                            <NavDropdown title="Papildomi langai" id="basic-nav-dropdown">
+                                            <NavDropdown title="Admin" id="basic-nav-dropdown">
                                                 <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
                                                 <NavDropdown.Item href="/transportations/admin">Transportacijos</NavDropdown.Item>
                                                 <NavDropdown.Item href="/wagons">Vagonai</NavDropdown.Item>
                                                 <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>
                                                 <NavDropdown.Item href="/serch">Paieška</NavDropdown.Item>
                                             </NavDropdown> : null}
-                                        <Button onClick={this.logoutHandler}>Logout</Button>
+                                        <Button onClick={this.logoutHandler}>Atsijungti</Button>
                                     </> : null}
 
 
