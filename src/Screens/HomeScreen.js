@@ -21,7 +21,7 @@ const HomeScreen = () => {
 
                 </Container>
             </div>
-            <Navbar bg="light" expand="lg">
+            {/* <Navbar bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand href="#home">
                         <img style={{ width: '100px' }} src={logo} alt='Logo' />
@@ -39,7 +39,7 @@ const HomeScreen = () => {
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
-            </Navbar>
+            </Navbar> */}
 
             <div className='header-img' style={{ height: '70vh' }} >
                 <div className='main' >

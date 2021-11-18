@@ -23,9 +23,9 @@ function LoginScreen({ location, history }) {
     //we want to redirect if we already logged in
     useEffect(() => {
         if (currentUser) {//if user info exist than means we already are logged in
-            history.push(redirect)//redirect to whatever is in redirect
+            history.push('/transportations')//redirect to whatever is in redirect
         } else {
-            history.push('/')
+            history.push('/login')
         }
     }, [history, currentUser, redirect])//if userInfo changed we want to redirect
 
