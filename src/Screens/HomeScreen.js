@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Navbar, Nav, Row, Col, Carousel, Form } from 'react-bootstrap'
+import { Container, Navbar, Nav, Row, Col, Carousel, Form, Button } from 'react-bootstrap'
+import { Checkbox } from 'antd'
 import logo from '../images/rivita-logo.png'
 import '../styles/Home.css'
 
@@ -30,13 +31,13 @@ const HomeScreen = () => {
                 </div>
             </div>
 
-            <section className='container-fluid pt-5 pb-5'>
-            
+            <section className='container-fluid pt-5 pb-5' style={{ width: '90%' }}>
+
                 <div className='row'>
-                
+
                     <div className='col-sm-12  col-lg-6'>
                         <div className='container'>
-                        <h2>Apie mus</h2>
+                            <h2>Apie mus</h2>
                             <div>
                                 <div><p>UAB “Rivita ir Ko” vykdo krovinių ekspedijavimo veiklą ir teikia kitas papildomas paslaugas šioje srityje nuo 1996 metų. Ilgametė patirtis ir per du dešimtmečius užtarnautas patikimumas, leidžia bendrovei palaikyti tvarius santykius su vežėjais ir įmonėmis, teikiančiomis paslaugas, susijusias su krovinių vežimo procesu.</p>
                                 </div>
@@ -45,41 +46,43 @@ const HomeScreen = () => {
 
                         {/* misija, vizija, tikslai */}
                         {/* wprt-icon-box style-5 clearfix icon-left w50 accent-outline outline-type align-left rounded-100 has-width */}
-                        <div className='container'>
-                            <div className="row">
-                                <div className="col-sm-2">
-                                    <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
-                                </div>
-                                <div className="col-sm-10">
-                                    <h3>MISIJA:</h3>
-                                    <div><p>Kasdienėje veikloje, naudojantis ilgamete ekspedijavimo patirtimi į ir iš NVS, Baltijos ir Europos šalis, skirti išskirtinį dėmesį klientams ir atsižvelgiant į jų individualius poreikius kompetetingai formuoti bei įgyvendinti optimaliausius ekspedijavimo sprendimus.</p>
+                        <div className='container pt-4'>
+                            <div className='container'>
+                                <div className="row">
+                                    <div className="col-sm-2">
+                                        <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <h3>MISIJA:</h3>
+                                        <div><p>Kasdienėje veikloje, naudojantis ilgamete ekspedijavimo patirtimi į ir iš NVS, Baltijos ir Europos šalis, skirti išskirtinį dėmesį klientams ir atsižvelgiant į jų individualius poreikius kompetetingai formuoti bei įgyvendinti optimaliausius ekspedijavimo sprendimus.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='container'>
-                            <div className="row">
-                                <div className="col-sm-2">
-                                    <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
-                                </div>
-                                <div className="col-sm-10">
-                                    <h3>VIZIJA:</h3>
-                                    <div><p>Siekiame tapti lyderiaujančia įmone ekspedijuojančia krovinius į ir iš NVS, Baltijos bei Europos šalis.</p>
+                            <div className='container'>
+                                <div className="row">
+                                    <div className="col-sm-2">
+                                        <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <h3>VIZIJA:</h3>
+                                        <div><p>Siekiame tapti lyderiaujančia įmone ekspedijuojančia krovinius į ir iš NVS, Baltijos bei Europos šalis.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className='container'>
-                            <div className="row">
-                                <div className="col-sm-2">
-                                    <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
-                                </div>
-                                <div className="col-sm-10">
-                                    <h3>TIKSLAI:</h3>
-                                    <div><p>Sėkmingai užmegzti ir puoselėti verslo santykius vadovaujantis įmonės vertybėmis:
-                                        • Sąžiningumas ir atvirumas – rūpintis visais savo klientais, suteikti informaciją apie vežimo kainodarą ir pateikti optimaliausius krovinių gabenimo maršrutus
-                                        • Bendradarbiavimo įgūdžiai – nuolat komunikuoti ir suprasti kliento poreikius, gebėti pasiūlyti alternatyvius ir lanksčius sprendimus
-                                        • Atsakingumas – laiku įvykdyti patikėtus darbus, prisiimti atsakomybę už patikėtus krovinius ir jų sklandų pervežimą</p>
+                            <div className='container'>
+                                <div className="row">
+                                    <div className="col-sm-2">
+                                        <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        <h3>TIKSLAI:</h3>
+                                        <div><p>Sėkmingai užmegzti ir puoselėti verslo santykius vadovaujantis įmonės vertybėmis:
+                                            • Sąžiningumas ir atvirumas – rūpintis visais savo klientais, suteikti informaciją apie vežimo kainodarą ir pateikti optimaliausius krovinių gabenimo maršrutus
+                                            • Bendradarbiavimo įgūdžiai – nuolat komunikuoti ir suprasti kliento poreikius, gebėti pasiūlyti alternatyvius ir lanksčius sprendimus
+                                            • Atsakingumas – laiku įvykdyti patikėtus darbus, prisiimti atsakomybę už patikėtus krovinius ir jų sklandų pervežimą</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -87,25 +90,58 @@ const HomeScreen = () => {
 
                     </div>
 
-                    <div className='col-sm-12  col-lg-6'>
-                        <div className='container'>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Vardas</Form.Label>
-                                <Form.Control type="text" placeholder="Įveskite vardą" />
-                                <Form.Label>E-paštas</Form.Label>
-                                <Form.Control type="text" placeholder="Įveskite paštą" />
-                                <Form.Label>Tema</Form.Label>
-                                <Form.Control type="email" placeholder="Įveskite tema" />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                <Form.Label>Žinutė</Form.Label>
-                                <Form.Control as="textarea" rows={3} style={{height: '250px'}} placeholder="Įveskite žinutę"/>
-                            </Form.Group>
-                        </Form>
+                    <div className='col-sm-12 col-lg-6'>
+                        <div className='container' >
+                            <Form>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Vardas</Form.Label>
+                                    <Form.Control type="text" placeholder="Įveskite vardą" />
+                                    <Form.Label>E-paštas</Form.Label>
+                                    <Form.Control type="text" placeholder="Įveskite paštą" />
+                                    <Form.Label>Tema</Form.Label>
+                                    <Form.Control type="email" placeholder="Įveskite tema" />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>Žinutė</Form.Label>
+                                    <Form.Control as="textarea" rows={3} style={{ height: '250px' }} placeholder="Įveskite žinutę" />
+                                </Form.Group>
+                                <Checkbox>Sutinku su šios svetainės privatumo politika.</Checkbox>
+                                <br />
+                                <Button style={{ marginTop: '10px' }}>Siųsti</Button>
+                            </Form>
+
+
                         </div>
                     </div>
                 </div>
+            </section>
+            <section className='container-fluid pt-5 pb-5' style={{ width: '100%', backgroundColor: '#F7F7F7' }}>
+                <div className='container' style={{ width: '90%' }}>
+                    <h1>Paslaugos</h1>
+                    <div className='row'>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
+                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
+                                <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
+                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
+                            <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
+                            <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            </div>
+                        </div>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
+                            <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </section>
 
 
