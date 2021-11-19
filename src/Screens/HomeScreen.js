@@ -4,6 +4,36 @@ import { Checkbox } from 'antd'
 import logo from '../images/rivita-logo.png'
 import '../styles/Home.css'
 
+
+const containerStyle = {
+    width: '150px',
+    height: '150px',
+    borderRadius: '90px',
+    backgroundColor: 'white',
+    color: '#5F1508',
+}
+
+const serviceIconsStyle = {
+    fontSize: '70px',
+    marginTop: '40px'
+}
+
+const serviceText = {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '18px'
+}
+
+const serviceButton = {
+    width: '100%',
+    paddingTop: '3px',
+    paddingBottom: '4px',
+    backgroundColor: '#85979B',
+    fontSize: '18px',
+    padding: '5px',
+    color: 'white',
+    border: 'none'
+}
+
 const HomeScreen = () => {
     return (
 
@@ -117,26 +147,47 @@ const HomeScreen = () => {
             </section>
             <section className='container-fluid pt-5 pb-5' style={{ width: '100%', backgroundColor: '#F7F7F7' }}>
                 <div className='container' style={{ width: '90%' }}>
+                    <div className='row pb-5'>
                     <h1>Paslaugos</h1>
+                        <div className='container pt-2'>
+                            
+                            <button style={{ ...serviceButton }}>KROVINIŲ GABENIMAS</button>
+                        </div>
+
+                    </div>
+
                     <div className='row'>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
-                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
-                                <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            <div className='container text-center'>
+                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                    <i className="fas fa-train" style={{ ...serviceIconsStyle }}></i>
+                                </div>
+                                <p style={{ ...serviceText }}>Krovinių ekspedijavimas geležinkelių transportu
+                                    Krovinio judėjimo </p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
-                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
-                            <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            <div className='container text-center'>
+                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                    <i className="fas fa-globe-europe" style={{ ...serviceIconsStyle }}></i>
+                                </div>
+                                <p style={{ ...serviceText }}>Krovinio judėjimo kontrolė</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
-                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
-                            <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            <div className='container text-center'>
+                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                    <i className="fas fa-file-contract" style={{ ...serviceIconsStyle }}></i>
+                                </div>
+                                <p style={{ ...serviceText }}>Pasienio ir transporto veterinarinės priežiūros tarnybų teikiamų paslaugų organizavimas</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
-                            <div className='container text-center bg-white' style={{ width: '150px', height: '150px', borderRadius: '90px' }}>
-                            <i className="fas fa-train" style={{ fontSize: '70px', marginTop: '40px' }}></i>
+                            <div className='container text-center'>
+                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                    <i className="fas fa-phone" style={{ ...serviceIconsStyle }}></i>
+                                </div>
+                                <p style={{ ...serviceText }}>Konsultacijos krovinių vežimo klausimais</p>
                             </div>
                         </div>
                     </div>
