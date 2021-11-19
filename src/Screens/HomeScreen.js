@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Navbar, Nav, Row, Col, Form, Button, Carousel } from 'react-bootstrap';
+import { Container, Navbar, Nav, Row, Col, Form, Button, Carousel, Image } from 'react-bootstrap';
 import { Checkbox } from 'antd'
 import logo from '../images/rivita-logo.png';
 import vision from '../images/vision.png';
@@ -98,18 +98,20 @@ const cargosTextStyle = {
     fontWeight: '500'
 }
 
-const cargoContainerStyle = {
-    boxShadow: '1px 1px 1px 1px'
+
+// CONTACT WITH IMAGE SECTION
+const cargoPhotoTitle = {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '45px',
+    color: 'white'
 }
 
-const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-};
-
+const cargoPhotoText = {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '15px',
+    fontWeight: '600',
+    color: 'white'
+}
 
 const HomeScreen = () => {
     return (
@@ -279,7 +281,7 @@ const HomeScreen = () => {
                 </div>
                 <div className='row'>
                     <div className='col-sm-12 col-md-12 col-lg-12 col-xl-6'>
-                        <div className='container' style={{width: '100%', paddingRight: '0', paddingLeft: '0px', paddingBottom: '20px'}}>
+                        <div className='container' style={{ width: '100%', paddingRight: '0', paddingLeft: '0px', paddingBottom: '20px' }}>
                             <Carousel>
                                 <Carousel.Item interval={3000}>
                                     <img
@@ -318,29 +320,19 @@ const HomeScreen = () => {
                                 </h3>
                             </div>
                         </div>
-                        {/* <div class="wprt-accordions style-2 ">
-                            <div class="accordion-item no-icon ">
-                                <h3 class="accordion-heading">
-                                    <span class="inner">Skysti kroviniai cisterniniuose vagonuose;</span>
-                                </h3>
-                                <div class="accordion-content">
-                                </div>
-                            </div>
-                            <div class="accordion-item no-icon ">
-                                <h3 class="accordion-heading">
-                                    <span class="inner">Birūs  ir masiniai kroviniai universaliuose ir specializuotuosiuose vagonuose;</span>
-                                </h3>
-                                <div class="accordion-content">
-                                </div>
-                            </div>
-                            <div class="accordion-item no-icon ">
-                                <h3 class="accordion-heading">
-                                    <span class="inner">Kroviniai konteineriuose.</span>
-                                </h3>
-                                <div class="accordion-content">
-                                </div>
-                            </div>
-                        </div> */}
+                    </div>
+                </div>
+            </section>
+            <section className='container-fluid text-center' style={{ width: '100%', height: '410px', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}>
+                {/* <Image src='' style={{ ...contactImageStyle }}> */}
+                <div className='row' style={{ height: '100%', position: 'relative' }}>
+                    <div className='container' style={{
+                        position: 'absolute', left: '50%', top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }}>
+                        <h3 style={{...cargoPhotoTitle}}><strong>REIKA PERVEŽTI KROVINĮ?</strong></h3>
+                        <p style={{...cargoPhotoText}}>SUSISIEKITE SU MUMIS</p>
+                        <Button  variant="outline-light">UŽPILDYKITE UŽKLAUSOS FORMĄ</Button>
                     </div>
                 </div>
 
