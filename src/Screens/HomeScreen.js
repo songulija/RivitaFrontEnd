@@ -1,11 +1,55 @@
 import React from 'react'
 import { Container, Navbar, Nav, Row, Col, Carousel, Form, Button } from 'react-bootstrap'
 import { Checkbox } from 'antd'
-import logo from '../images/rivita-logo.png'
+import logo from '../images/rivita-logo.png';
+import vision from '../images/vision.png';
+import mission from '../images/004-mission.png'
+import purpose from '../images/006-purpose.png'
 import '../styles/Home.css'
 
+// ABOUT SECTION STYLES
+const aboutTitleStyle = {
+    fontSize: '2.142em',
+    fontFamily: 'Poppins, sans-serif',
+    letterSpacing: '1px',
+    color: '#333',
+    fontWeight: '500',
+    lineHeight: '1.5',
+    textRendering: 'optimizeLegibility'
+}
 
-const containerStyle = {
+const aboutTextStyle = {
+    fontSize: '16px',
+    fontFamily: 'Open Sans, sans-serif',
+    color: '#777777'
+}
+
+const aboutParagraphsTitlesStyles = {
+    fontSize: '16px',
+    fontWeight: '540',
+    fontFamily: 'Open Sans, sans-serif',
+    color: '#333'
+}
+const aboutParagraphsTextStyles = {
+    fontSize: '14px',
+    fontFamily: 'Open Sans, sans-serif',
+    color: '#777777'
+}
+//ICONS
+
+const aboutIconsStyling = {
+    width: '60px',
+    color: 'black',
+    padding: '8px',
+    backgroundColor: 'white',
+    borderRadius: '90px',
+    border: 'solid',
+    borderWidth: '2px'
+}
+
+
+// SERVICES STYLING
+const serviceContainerStyle = {
     width: '150px',
     height: '150px',
     borderRadius: '90px',
@@ -67,9 +111,9 @@ const HomeScreen = () => {
 
                     <div className='col-sm-12  col-lg-6'>
                         <div className='container'>
-                            <h2>Apie mus</h2>
+                            <h2 style={{ ...aboutTitleStyle }}>Apie mus</h2>
                             <div>
-                                <div><p>UAB “Rivita ir Ko” vykdo krovinių ekspedijavimo veiklą ir teikia kitas papildomas paslaugas šioje srityje nuo 1996 metų. Ilgametė patirtis ir per du dešimtmečius užtarnautas patikimumas, leidžia bendrovei palaikyti tvarius santykius su vežėjais ir įmonėmis, teikiančiomis paslaugas, susijusias su krovinių vežimo procesu.</p>
+                                <div><p style={{ ...aboutTextStyle }}>UAB “Rivita ir Ko” vykdo krovinių ekspedijavimo veiklą ir teikia kitas papildomas paslaugas šioje srityje nuo 1996 metų. Ilgametė patirtis ir per du dešimtmečius užtarnautas patikimumas, leidžia bendrovei palaikyti tvarius santykius su vežėjais ir įmonėmis, teikiančiomis paslaugas, susijusias su krovinių vežimo procesu.</p>
                                 </div>
                             </div>
                         </div>
@@ -79,36 +123,37 @@ const HomeScreen = () => {
                         <div className='container pt-4'>
                             <div className='container'>
                                 <div className="row">
-                                    <div className="col-sm-2">
-                                        <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
+                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2">
+                                        <img src={mission} alt='Vision' style={{ ...aboutIconsStyling }} />
                                     </div>
-                                    <div className="col-sm-10">
-                                        <h3>MISIJA:</h3>
-                                        <div><p>Kasdienėje veikloje, naudojantis ilgamete ekspedijavimo patirtimi į ir iš NVS, Baltijos ir Europos šalis, skirti išskirtinį dėmesį klientams ir atsižvelgiant į jų individualius poreikius kompetetingai formuoti bei įgyvendinti optimaliausius ekspedijavimo sprendimus.</p>
+                                    <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
+                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>MISIJA:</h3>
+                                        <div><p style={{ ...aboutParagraphsTextStyles }}>Kasdienėje veikloje, naudojantis ilgamete ekspedijavimo patirtimi į ir iš NVS, Baltijos ir Europos šalis, skirti išskirtinį dėmesį klientams ir atsižvelgiant į jų individualius poreikius kompetetingai formuoti bei įgyvendinti optimaliausius ekspedijavimo sprendimus.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className='container'>
                                 <div className="row">
-                                    <div className="col-sm-2">
-                                        <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
+                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2">
+                                        {/* <i className="fas fa-train" style={{ ...aboutIconsStyling }}></i> */}
+                                        <img src={vision} alt='Vision' style={{ ...aboutIconsStyling }} />
                                     </div>
-                                    <div className="col-sm-10">
-                                        <h3>VIZIJA:</h3>
-                                        <div><p>Siekiame tapti lyderiaujančia įmone ekspedijuojančia krovinius į ir iš NVS, Baltijos bei Europos šalis.</p>
+                                    <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
+                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>VIZIJA:</h3>
+                                        <div><p style={{ ...aboutParagraphsTextStyles }}>Siekiame tapti lyderiaujančia įmone ekspedijuojančia krovinius į ir iš NVS, Baltijos bei Europos šalis.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className='container'>
                                 <div className="row">
-                                    <div className="col-sm-2">
-                                        <i className="fas fa-train" style={{ fontSize: '50px', marginTop: '6px' }}></i>
+                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2">
+                                        <img src={purpose} alt='Vision' style={{ ...aboutIconsStyling }} />
                                     </div>
-                                    <div className="col-sm-10">
-                                        <h3>TIKSLAI:</h3>
-                                        <div><p>Sėkmingai užmegzti ir puoselėti verslo santykius vadovaujantis įmonės vertybėmis:
+                                    <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
+                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>TIKSLAI:</h3>
+                                        <div><p style={{ ...aboutParagraphsTextStyles }}>Sėkmingai užmegzti ir puoselėti verslo santykius vadovaujantis įmonės vertybėmis:
                                             • Sąžiningumas ir atvirumas – rūpintis visais savo klientais, suteikti informaciją apie vežimo kainodarą ir pateikti optimaliausius krovinių gabenimo maršrutus
                                             • Bendradarbiavimo įgūdžiai – nuolat komunikuoti ir suprasti kliento poreikius, gebėti pasiūlyti alternatyvius ir lanksčius sprendimus
                                             • Atsakingumas – laiku įvykdyti patikėtus darbus, prisiimti atsakomybę už patikėtus krovinius ir jų sklandų pervežimą</p>
@@ -121,7 +166,7 @@ const HomeScreen = () => {
                     </div>
 
                     <div className='col-sm-12 col-lg-6'>
-                        <div className='container' >
+                        <div className='container mt-3' >
                             <Form>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Vardas</Form.Label>
@@ -148,9 +193,9 @@ const HomeScreen = () => {
             <section className='container-fluid pt-5 pb-5' style={{ width: '100%', backgroundColor: '#F7F7F7' }}>
                 <div className='container' style={{ width: '90%' }}>
                     <div className='row pb-5'>
-                    <h1>Paslaugos</h1>
+                        <h1>Paslaugos</h1>
                         <div className='container pt-2'>
-                            
+
                             <button style={{ ...serviceButton }}>KROVINIŲ GABENIMAS</button>
                         </div>
 
@@ -159,7 +204,7 @@ const HomeScreen = () => {
                     <div className='row'>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
                             <div className='container text-center'>
-                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                <div className='container text-center shadow-sm' style={{ ...serviceContainerStyle }}>
                                     <i className="fas fa-train" style={{ ...serviceIconsStyle }}></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Krovinių ekspedijavimas geležinkelių transportu
@@ -168,7 +213,7 @@ const HomeScreen = () => {
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
                             <div className='container text-center'>
-                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                <div className='container text-center shadow-sm' style={{ ...serviceContainerStyle }}>
                                     <i className="fas fa-globe-europe" style={{ ...serviceIconsStyle }}></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Krovinio judėjimo kontrolė</p>
@@ -176,7 +221,7 @@ const HomeScreen = () => {
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className='container text-center'>
-                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                <div className='container text-center shadow-sm' style={{ ...serviceContainerStyle }}>
                                     <i className="fas fa-file-contract" style={{ ...serviceIconsStyle }}></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Pasienio ir transporto veterinarinės priežiūros tarnybų teikiamų paslaugų organizavimas</p>
@@ -184,7 +229,7 @@ const HomeScreen = () => {
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className='container text-center'>
-                                <div className='container text-center shadow-sm' style={{ ...containerStyle }}>
+                                <div className='container text-center shadow-sm' style={{ ...serviceContainerStyle }}>
                                     <i className="fas fa-phone" style={{ ...serviceIconsStyle }}></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Konsultacijos krovinių vežimo klausimais</p>
