@@ -15,7 +15,7 @@ class Header extends React.Component {
 
     logoutHandler = () => {
         this.props.logout();
-        this.props.history.push('/login')
+        this.props.history.push('/')
     }
 
     componentDidMount() {
@@ -36,21 +36,24 @@ class Header extends React.Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAGRINDINIS</Nav.Link>
-                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>APIE MUS</Nav.Link>
-                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PASLAUGOS</Nav.Link>
-                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KROVINIAI</Nav.Link>
-                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KONTAKTAI</Nav.Link>
-                                <Nav.Link href="/login" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KLIENTAMS</Nav.Link>
+                                {this.props.usersReducer.currentUser === null ?
+                                    <>
+                                        <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>APIE MUS</Nav.Link>
+                                        <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PASLAUGOS</Nav.Link>
+                                        <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KROVINIAI</Nav.Link>
+                                        <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KONTAKTAI</Nav.Link>
+                                        <Nav.Link href="/login" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KLIENTAMS</Nav.Link></>
+                                    : null}
                                 {this.props.usersReducer.currentUser ?
                                     <>
-                                        <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>Transportacijos</Nav.Link>
+                                        <Nav.Link href="/serch" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAIEŠKA</Nav.Link>
+                                        <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTACIJOS</Nav.Link>
                                         {this.props.userInfoReducer.role === 'Administrator' ?
                                             <NavDropdown title="Admin" id="basic-nav-dropdown">
                                                 <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
                                                 <NavDropdown.Item href="/transportations/admin">Transportacijos</NavDropdown.Item>
                                                 <NavDropdown.Item href="/wagons">Vagonai</NavDropdown.Item>
                                                 <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>
-                                                <NavDropdown.Item href="/serch">Paieška</NavDropdown.Item>
                                             </NavDropdown> : null}
                                         <Button onClick={this.logoutHandler}>Atsijungti</Button>
                                     </> : null}

@@ -353,9 +353,9 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-            <section className='container-fluid text-center' style={{ width: '100%', height: '410px', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}>
+            <section className='container-fluid text-center' style={{ width: '100%', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}>
                 {/* <Image src='' style={{ ...contactImageStyle }}> */}
-                <div className='row' style={{ height: '100%', position: 'relative' }}>
+                <div className='row' style={{ height: '410px', position: 'relative' }}>
                     <div className='container' style={{
                         position: 'absolute', left: '50%', top: '50%',
                         transform: 'translate(-50%, -50%)'
@@ -413,7 +413,7 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-            <section className='container-fluid' style={{ width: '80%', paddingTop: '30px' }}>
+            <section className='container-fluid' style={{ width: '80%', paddingTop: '20px' }}>
                 <div className='row pb-5 pt-5'>
                     <h2 style={{ ...sectionTitleStyle }}>Kontaktinė informacija</h2>
                 </div>
