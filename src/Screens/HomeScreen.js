@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Navbar, Nav, Row, Col, Carousel, Form, Button } from 'react-bootstrap'
+import { Container, Navbar, Nav, Row, Col, Form, Button, Carousel } from 'react-bootstrap';
 import { Checkbox } from 'antd'
 import logo from '../images/rivita-logo.png';
 import vision from '../images/vision.png';
@@ -8,15 +8,6 @@ import purpose from '../images/006-purpose.png'
 import '../styles/Home.css'
 
 // ABOUT SECTION STYLES
-const aboutTitleStyle = {
-    fontSize: '2.142em',
-    fontFamily: 'Poppins, sans-serif',
-    letterSpacing: '1px',
-    color: '#333',
-    fontWeight: '500',
-    lineHeight: '1.5',
-    textRendering: 'optimizeLegibility'
-}
 
 const aboutTextStyle = {
     fontSize: '16px',
@@ -45,6 +36,20 @@ const aboutIconsStyling = {
     borderRadius: '90px',
     border: 'solid',
     borderWidth: '2px'
+}
+
+//about Button
+const aboutFormButton = {
+    padding: '10px 40px',
+    color: 'white',
+    backgroundColor: '#5F1508',
+    fontSize: '18px',
+    marginTop: '10px',
+    border: 'none',
+    borderRadius: '8px',
+    '&hover': {
+        backgroundColor: 'white'
+    }
 }
 
 
@@ -78,6 +83,34 @@ const serviceButton = {
     border: 'none'
 }
 
+// STYLING FOR ALL SECTION TITLES
+const sectionTitleStyle = {
+    fontFamily: 'Poppins, sans-serif',
+    color: '#333',
+    fontSize: '30xpx'
+}
+
+// CARGO SECTION STYLE
+const cargosTextStyle = {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '18px',
+    color: '#777777',
+    fontWeight: '500'
+}
+
+const cargoContainerStyle = {
+    boxShadow: '1px 1px 1px 1px'
+}
+
+const contentStyle = {
+    height: '160px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+};
+
+
 const HomeScreen = () => {
     return (
 
@@ -105,13 +138,13 @@ const HomeScreen = () => {
                 </div>
             </div>
 
-            <section className='container-fluid pt-5 pb-5' style={{ width: '90%' }}>
+            <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
 
                 <div className='row'>
 
                     <div className='col-sm-12  col-lg-6'>
                         <div className='container'>
-                            <h2 style={{ ...aboutTitleStyle }}>Apie mus</h2>
+                            <h2 style={{ ...sectionTitleStyle }}>Apie mus</h2>
                             <div>
                                 <div><p style={{ ...aboutTextStyle }}>UAB “Rivita ir Ko” vykdo krovinių ekspedijavimo veiklą ir teikia kitas papildomas paslaugas šioje srityje nuo 1996 metų. Ilgametė patirtis ir per du dešimtmečius užtarnautas patikimumas, leidžia bendrovei palaikyti tvarius santykius su vežėjais ir įmonėmis, teikiančiomis paslaugas, susijusias su krovinių vežimo procesu.</p>
                                 </div>
@@ -182,7 +215,7 @@ const HomeScreen = () => {
                                 </Form.Group>
                                 <Checkbox>Sutinku su šios svetainės privatumo politika.</Checkbox>
                                 <br />
-                                <Button style={{ marginTop: '10px' }}>Siųsti</Button>
+                                <button style={{ ...aboutFormButton }}>Siųsti</button>
                             </Form>
 
 
@@ -191,9 +224,9 @@ const HomeScreen = () => {
                 </div>
             </section>
             <section className='container-fluid pt-5 pb-5' style={{ width: '100%', backgroundColor: '#F7F7F7' }}>
-                <div className='container' style={{ width: '90%' }}>
+                <div className='container' style={{ width: '80%' }}>
                     <div className='row pb-5'>
-                        <h1>Paslaugos</h1>
+                        <h2 style={{ ...sectionTitleStyle }}>Paslaugos</h2>
                         <div className='container pt-2'>
 
                             <button style={{ ...serviceButton }}>KROVINIŲ GABENIMAS</button>
@@ -235,6 +268,79 @@ const HomeScreen = () => {
                                 <p style={{ ...serviceText }}>Konsultacijos krovinių vežimo klausimais</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
+                <div className='row pb-5'>
+                    <h2 style={{ ...sectionTitleStyle }}>Kroviniai</h2>
+                </div>
+                <div className='row'>
+                    <div className='col-sm-12 col-md-12 col-lg-12 col-xl-6'>
+                        <div className='container' style={{width: '100%', paddingRight: '0', paddingLeft: '0px', paddingBottom: '20px'}}>
+                            <Carousel>
+                                <Carousel.Item interval={3000}>
+                                    <img
+                                        className="d-block w-100"
+                                        src="http://www.rivita.lt/wp-content/uploads/2019/03/600-tie-down-load-out12.jpg"
+                                        alt="First slide"
+                                        style={{ height: '340px' }}
+                                    />
+                                </Carousel.Item>
+                                <Carousel.Item interval={3000}>
+                                    <img
+                                        className="d-block w-100"
+                                        src="http://www.rivita.lt/wp-content/uploads/2019/03/jailcellload.jpg"
+                                        alt="Second slide"
+                                        style={{ height: '340px' }}
+                                    />
+                                </Carousel.Item>
+                            </Carousel>
+                        </div>
+                    </div>
+                    <div className='col-sm-12 col-md-12 col-lg-12 col-xl-6'>
+                        <div className='container py-4 shadow'>
+                            <div className='container'>
+                                <h3 style={{ ...cargosTextStyle }}>
+                                    <span>Skysti kroviniai cisterniniuose vagonuose;</span>
+                                </h3>
+                            </div>
+                            <div className='container'>
+                                <h3 style={{ ...cargosTextStyle }}>
+                                    <span>Birūs  ir masiniai kroviniai universaliuose ir specializuotuosiuose vagonuose;</span>
+                                </h3>
+                            </div>
+                            <div className='container'>
+                                <h3 style={{ ...cargosTextStyle }}>
+                                    <span>Kroviniai konteineriuose.</span>
+                                </h3>
+                            </div>
+                        </div>
+                        {/* <div class="wprt-accordions style-2 ">
+                            <div class="accordion-item no-icon ">
+                                <h3 class="accordion-heading">
+                                    <span class="inner">Skysti kroviniai cisterniniuose vagonuose;</span>
+                                </h3>
+                                <div class="accordion-content">
+                                </div>
+                            </div>
+                            <div class="accordion-item no-icon ">
+                                <h3 class="accordion-heading">
+                                    <span class="inner">Birūs  ir masiniai kroviniai universaliuose ir specializuotuosiuose vagonuose;</span>
+                                </h3>
+                                <div class="accordion-content">
+                                </div>
+                            </div>
+                            <div class="accordion-item no-icon ">
+                                <h3 class="accordion-heading">
+                                    <span class="inner">Kroviniai konteineriuose.</span>
+                                </h3>
+                                <div class="accordion-content">
+                                </div>
+                            </div>
+                        </div> */}
                     </div>
                 </div>
 
