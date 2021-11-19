@@ -391,8 +391,11 @@ const HomeScreen = () => {
 
                     </div>
                 </div>
-
-
+            </section>
+            <section className='container-fluid' style={{width: '80%', height: '450px', paddingTop: '50px'}}>
+                    <div className='container'>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.9415054990154!2d25.264413215888933!3d54.675457880279055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946df73d5a7f%3A0xbd6c8ddff23db111!2s%C5%A0vitrigailos%20g.%2011%2C%20Vilnius%2003223!5e0!3m2!1slt!2slt!4v1637341318123!5m2!1slt!2slt" width="100%" height="400px" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
             </section>
 
 
