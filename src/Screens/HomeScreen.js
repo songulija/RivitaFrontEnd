@@ -87,7 +87,8 @@ const serviceButton = {
 const sectionTitleStyle = {
     fontFamily: 'Poppins, sans-serif',
     color: '#333',
-    fontSize: '30xpx'
+    fontSize: '30xpx',
+    fontWeight: '700'
 }
 
 // CARGO SECTION STYLE
@@ -111,6 +112,14 @@ const cargoPhotoText = {
     fontSize: '15px',
     fontWeight: '600',
     color: 'white'
+}
+
+const partnersTitlesStyle = {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '20px',
+    color: '#333',
+    fontWeight: '600',
+    marginTop: '25px'
 }
 
 const HomeScreen = () => {
@@ -330,11 +339,59 @@ const HomeScreen = () => {
                         position: 'absolute', left: '50%', top: '50%',
                         transform: 'translate(-50%, -50%)'
                     }}>
-                        <h3 style={{...cargoPhotoTitle}}><strong>REIKA PERVEŽTI KROVINĮ?</strong></h3>
-                        <p style={{...cargoPhotoText}}>SUSISIEKITE SU MUMIS</p>
-                        <Button  variant="outline-light">UŽPILDYKITE UŽKLAUSOS FORMĄ</Button>
+                        <h3 style={{ ...cargoPhotoTitle }}><strong>REIKA PERVEŽTI KROVINĮ?</strong></h3>
+                        <p style={{ ...cargoPhotoText }}>SUSISIEKITE SU MUMIS</p>
+                        <Button variant="outline-light">UŽPILDYKITE UŽKLAUSOS FORMĄ</Button>
                     </div>
                 </div>
+
+            </section>
+
+            <section className='container-fluid' style={{ width: '80%', height: '500px' }}>
+                <div className='row pb-5 pt-5'>
+                    <h2 style={{ ...sectionTitleStyle }}>Partneriai</h2>
+                </div>
+                <div className='container'>
+                    <div className='row text-center'>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+                            <div className="container shadow">
+                                <div className='container ' style={{ height: '195px', marginTop: '20px', width: '204px', padding: '0' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/gelezinkeliai.png'} alt="Lietuvos geležinkeliai" />
+                                </div>
+
+                            </div>
+                            <h3 style={{ ...partnersTitlesStyle }}>AB „Lietuvos geležinkeliai“</h3>
+                        </div>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+                            <div className="container shadow">
+                                <div className='container' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '40px', paddingBottom: '40px' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/ldzcargo1.png'} alt="LDZ CARGO" />
+                                </div>
+                            </div>
+                            <h3 style={{ ...partnersTitlesStyle }}>SIA „LDZ CARGO“</h3>
+                        </div>
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+                            <div className="container shadow">
+                                <div className='container' style={{ height: '195px', width: '204px', marginTop: '20px', padding: '0',  paddingTop: '20px', paddingBottom: '20px' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/logo_bzhd.png'} alt="Baltarusijos geležinkeliai" />
+                                </div>
+                            </div>
+                            <h3 style={{ ...partnersTitlesStyle }}>VĮ „Baltarusijos geležinkeliai“</h3>
+                        </div>
+
+                        <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
+
+                            <div className="container shadow">
+                                <div className='container' style={{ height: '195px', marginTop: '20px', width: '204px', padding: '10px' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/simvolika-1.jpg'} alt="Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba" />
+                                </div>
+                            </div>
+                            <h3 style={{ ...partnersTitlesStyle }}>VĮ „Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba“</h3>
+                        </div>
+
+                    </div>
+                </div>
+
 
             </section>
 
