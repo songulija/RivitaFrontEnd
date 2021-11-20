@@ -42,7 +42,7 @@ const aboutIconsStyling = {
 const aboutFormButton = {
     padding: '10px 40px',
     color: 'white',
-    backgroundColor: '#5F1508',
+    backgroundColor: '#4C686E',
     fontSize: '18px',
     marginTop: '10px',
     border: 'none',
@@ -54,6 +54,18 @@ const aboutFormButton = {
 
 
 // SERVICES STYLING
+const serviceSectionStyle = {
+    width: '100%',
+    backgroundImage: "linear-gradient(to bottom, #4C686E 55%, #7B9094 100%)",
+    color: 'white'
+}
+
+const serviceContainer = {
+    padding: '8px',
+    borderRadius: '5px',
+    backgroundColor: '#90B9DC'
+}
+
 const serviceContainerStyle = {
     width: '150px',
     height: '150px',
@@ -64,7 +76,8 @@ const serviceContainerStyle = {
 
 const serviceIconsStyle = {
     fontSize: '70px',
-    marginTop: '40px'
+    marginTop: '40px',
+    color: '#20252B'
 }
 
 const serviceText = {
@@ -83,12 +96,21 @@ const serviceButton = {
     border: 'none'
 }
 
+const serviceTitleStyle = {
+    fontFamily: 'Poppins, sans-serif',
+    color: 'white',
+    fontSize: '30xpx',
+    fontWeight: '700',
+    paddingLeft: '0'
+}
+
 // STYLING FOR ALL SECTION TITLES
 const sectionTitleStyle = {
     fontFamily: 'Poppins, sans-serif',
     color: '#333',
     fontSize: '30xpx',
-    fontWeight: '700'
+    fontWeight: '700',
+    paddingLeft: '0'
 }
 
 // CARGO SECTION STYLE
@@ -139,20 +161,47 @@ const contactsInfoIconsStyle = {
     fontSize: '50px',
     color: 'black',
     paddingBottom: '10px',
-    color: '#5F1508'
+    color: '#4C686E'
 
+}
+
+// FOOTER STYLE
+const footerStyle = {
+    width: '100%',
+    paddingTop: '20px',
+    // backgroundColor: '#20252B',
+    backgroundColor: '#446167',
+    color: 'white'
+}
+
+const footerTitle = {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '1.2rem',
+    fontWeight: '700',
+    color: 'white'
+}
+
+const footerListElementsStyle = {
+    fontFamily: 'Open Sans, sans-serif',
+    fontSize: '1.1rem',
+    color: '#DDDDDD',
+    fontWeight: '500'
+}
+
+const titleLineStyle = {
+    width: '70px',
+    height: '2px'
 }
 
 const HomeScreen = () => {
     return (
-
         <>
             <div style={{ background: '#82979c', color: 'white' }}>
                 <Container>
                     <Row>
-                        <Col lg={3}><i class="fas fa-map-marker"></i> <span>Švitrigailos g.11A, LT-03228 Vilnius</span></Col>
-                        <Col lg={2}><i class="fas fa-phone"></i><span>+3702650264</span></Col>
-                        <Col lg={3}><i class="far fa-clock"></i><span> Pirmdienis-Penktadienis, 8:00-17:30</span></Col>
+                        <Col lg={3}><i className="fas fa-map-marker"></i> <span>Švitrigailos g.11A, LT-03228 Vilnius</span></Col>
+                        <Col lg={2}><i className="fas fa-phone"></i><span>+3702650264</span></Col>
+                        <Col lg={3}><i className="far fa-clock"></i><span> Pirmdienis-Penktadienis, 8:00-17:30</span></Col>
                     </Row>
 
                     {/* <span style={{ color: '#fff' }} class="content"><i class="fa rt-icon-placeholder2"></i> Švitrigailos g.11A, LT-03228 Vilnius</span>
@@ -177,6 +226,7 @@ const HomeScreen = () => {
                     <div className='col-sm-12  col-lg-6'>
                         <div className='container'>
                             <h2 style={{ ...sectionTitleStyle }}>Apie mus</h2>
+                            <hr style={{ ...titleLineStyle }}></hr>
                             <div>
                                 <div><p style={{ ...aboutTextStyle }}>UAB “Rivita ir Ko” vykdo krovinių ekspedijavimo veiklą ir teikia kitas papildomas paslaugas šioje srityje nuo 1996 metų. Ilgametė patirtis ir per du dešimtmečius užtarnautas patikimumas, leidžia bendrovei palaikyti tvarius santykius su vežėjais ir įmonėmis, teikiančiomis paslaugas, susijusias su krovinių vežimo procesu.</p>
                                 </div>
@@ -255,14 +305,15 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-            <section className='container-fluid pt-5 pb-5' style={{ width: '100%', backgroundColor: '#F7F7F7' }}>
+            <section className='container-fluid pt-5 pb-5' style={{ ...serviceSectionStyle }}>
                 <div className='container' style={{ width: '80%' }}>
                     <div className='row pb-5'>
-                        <h2 style={{ ...sectionTitleStyle }}>Paslaugos</h2>
-                        <div className='container pt-2'>
+                        <h2 style={{ ...serviceTitleStyle }}>Paslaugos</h2>
+                        <hr style={{ ...titleLineStyle }}></hr>
+                        {/* <div className='container pt-2'>
 
                             <button style={{ ...serviceButton }}>KROVINIŲ GABENIMAS</button>
-                        </div>
+                        </div> */}
 
                     </div>
 
@@ -308,6 +359,7 @@ const HomeScreen = () => {
             <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
                 <div className='row pb-5'>
                     <h2 style={{ ...sectionTitleStyle }}>Kroviniai</h2>
+                    <hr style={{ ...titleLineStyle }}></hr>
                 </div>
                 <div className='row'>
                     <div className='col-sm-12 col-md-12 col-lg-12 col-xl-6'>
@@ -371,6 +423,7 @@ const HomeScreen = () => {
             <section className='container-fluid' style={{ width: '80%' }}>
                 <div className='row pb-5 pt-5'>
                     <h2 style={{ ...sectionTitleStyle }}>Partneriai</h2>
+                    <hr style={{ ...titleLineStyle }}></hr>
                 </div>
                 <div className='container'>
                     <div className='row text-center'>
@@ -416,6 +469,7 @@ const HomeScreen = () => {
             <section className='container-fluid' style={{ width: '80%', paddingTop: '20px' }}>
                 <div className='row pb-5 pt-5'>
                     <h2 style={{ ...sectionTitleStyle }}>Kontaktinė informacija</h2>
+                    <hr style={{ ...titleLineStyle }}></hr>
                 </div>
                 <div className='row'>
                     <div className='col-sm-12 col-md-6 py-4'>
@@ -460,7 +514,7 @@ const HomeScreen = () => {
                     <div className='col-sm-12 col-md-6 py-4'>
                         <div className='container'>
                             <div className='row'>
-                            <div className='col-sm-12 col-md-3 col-lg-2'>
+                                <div className='col-sm-12 col-md-3 col-lg-2'>
                                     <i class="fas fa-envelope-open-text" style={{ ...contactsInfoIconsStyle }}></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
@@ -473,11 +527,77 @@ const HomeScreen = () => {
                 </div>
 
             </section>
-            <section className='container-fluid' style={{ width: '80%', paddingTop: '20px' }}>
+            <section className='container-fluid' style={{ width: '80%', paddingTop: '20px', paddingBottom: '40px' }}>
                 <div className='container'>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.9415054990154!2d25.264413215888933!3d54.675457880279055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946df73d5a7f%3A0xbd6c8ddff23db111!2s%C5%A0vitrigailos%20g.%2011%2C%20Vilnius%2003223!5e0!3m2!1slt!2slt!4v1637341318123!5m2!1slt!2slt" width="100%" height="400px" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </section>
+
+            <section className='container-fluid' style={{ ...footerStyle }}>
+                <div className='container text-sm-left' style={{ width: '80%', padding: '30px' }}>
+                    <div className='row' >
+                        <div className='col-sm-12 col-md-6 pb-2'>
+                            <h5 className="font-weight-bold text-uppercase mb-4" style={{ ...footerTitle }}>Kontaktai</h5>
+
+                            <ul className="list-unstyled">
+                                <li>
+                                    <p>
+                                        <i className="fas fa-map-pin"></i> Švitrigailos g.11A, LT-03228 Vilnius</p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i className="fas fa-envelope-open-text"></i> info@rivita.lt</p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i className="fas fa-phone"></i> +370 265 0264</p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i className="fas fa-print mr-3"></i> +370 265 0264</p>
+                                </li>
+                                </ul>
+                        </div>
+                        <div className='col-sm-12 col-md-6 pb-2'>
+                                <h3 style={{ ...footerTitle }}>PUSLAPIAI</h3>
+                                <hr style={{ ...titleLineStyle }}></hr>
+                                <ul className="list-unstyled" >
+                                    {/* <li style={{ ...footerListElementsStyle }}>Krovinių ekspedijavimas geležinkelių transportu</li>
+                                    <li style={{ ...footerListElementsStyle }}>Krovinio judėjimo kontrolė</li>
+                                    <li style={{ ...footerListElementsStyle }}>Pasienio ir transporto veterinarinės priežiūros tarnybų teikiamų paslaugų organizavimas</li>
+                                    <li style={{ ...footerListElementsStyle }}>Konsultacijos krovinių vežimo klausimais</li> */}
+                                    <li style={{ ...footerListElementsStyle }}>
+                                    <a style={{color: 'white'}} href="#!">APIE MUS</a>
+                                    </li>
+                                    <li style={{ ...footerListElementsStyle }}>
+                                    <a style={{color: 'white'}} href="#!">PASLAUGOS</a>
+                                    </li>
+                                    <li style={{ ...footerListElementsStyle }}>
+                                    <a style={{color: 'white'}} href="#!">KROVINIAI</a>
+                                    </li>
+                                    <li style={{ ...footerListElementsStyle }}>
+                                    <a style={{color: 'white'}} href="#!">PARTNERIAI</a>
+                                    </li>
+                                    <li style={{ ...footerListElementsStyle }}>
+                                    <a style={{color: 'white'}} href="#!">KONTAKTINĖ INFORMACIJA</a>
+                                    </li>
+                                </ul>
+                           
+                        </div>
+                    </div>
+                    <hr style={{ color: '#D1DBDD', opacity: '0.2' }}></hr>
+                    <div className='row'>
+                        <div className='col-sm-12 col-md-6'>
+                            <p class="copyright">UAB "Rivita ir ko" © 2021</p>
+                            <p>Made by Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed</p>
+                        </div>
+                        <div className='col-sm-12 col-md-6'>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
 
 
         </>
