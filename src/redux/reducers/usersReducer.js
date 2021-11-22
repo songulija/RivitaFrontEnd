@@ -23,16 +23,18 @@ export const usersReducer = (state = { currentUser: null}, action) => {
     }
 }
 
-export const userInfoReducer = (state = { role: null, exp: null }, action) => {
+export const userInfoReducer = (state = { role: null }, action) => {
     switch (action.type) {//switching action type/name that was dispatched
         case 'USER_DATA_REQUEST':
             return { ...state,loading: true };
         case 'USER_DATA_SUCCESS':
             return { ...state, loading: false, 'role': action.payload};
-        case 'USER_DATA_REMOVE':
-            return {...state,loading: false, 'role':null, 'exp':null}
+        // case 'USER_DATA_REMOVE':
+        //     return {...state,loading: false, 'role':null}
         case 'USER_DATA_FAIL':
             return { ...state,loading: false, error: action.payload };
+        case 'USER_DATA_COOKIE_REQUEST':
+            return {...state}
         default:
             return state
     }

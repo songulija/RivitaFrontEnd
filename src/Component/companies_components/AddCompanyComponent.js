@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Modal, Button, Form, Space, Select, Input } from 'antd';
+import { Modal, Button, Form, Space, Input } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import {createCompany} from '../../redux/actions/companiesActions'
 import { withRouter } from 'react-router-dom';

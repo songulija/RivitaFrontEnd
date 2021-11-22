@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Table, Space, Select, Card, Typography, Col, Row, Input, Modal } from 'antd'
+import { Space, Select,Modal } from 'antd'
 import {Form} from 'react-bootstrap'
-import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import Button from "react-bootstrap/Button";
-import {tableCardStyle, tableCardBodyStyle, buttonStyle} from '../../styles/customStyles.js'
 
 const {Option} = Select;
 

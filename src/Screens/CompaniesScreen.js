@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal, Button } from 'antd';
 import UnsavedChangesHeader from '../Component/UnsavedChangesHeader.js'
 import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import { getCompanies, createCompany,updateCompany } from '../redux/actions/companiesActions.js'
+import { getCompanies, createCompany, updateCompany } from '../redux/actions/companiesActions.js';
+// import { getUserData } from '../redux/actions/userActions'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import { withRouter } from 'react-router-dom';
 import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
@@ -79,7 +80,7 @@ class CompaniesScreen extends React.Component {
         });
     }
     saveUpdateCompany = (postObj, reducerObj) => {
-        this.props.updateCompany(postObj,reducerObj, () =>{
+        this.props.updateCompany(postObj, reducerObj, () => {
             //get clone of updated companies redux state
             const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
             this.setState({
@@ -100,16 +101,19 @@ class CompaniesScreen extends React.Component {
 
 
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
+        if(this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role !== null){
             this.props.getCompanies(1, () => {
-                this.companiesDataSet();
-            });
-        } else {
-            this.props.history.push('/login');
+                const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
+                this.setState({
+                    companies: companiesClone
+                })
+            })
+        }else{
+            this.props.history.push('/')
         }
-
     }
     render() {
+        console.log('Render User data:' + JSON.stringify(this.props.userInfoReducer))
         const columns = [
             {
                 title: 'Atnaujinimas',
@@ -183,4 +187,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getCompanies, createCompany,updateCompany })(withRouter(CompaniesScreen));
+export default connect(mapStateToProps, { getCompanies, createCompany, updateCompany })(withRouter(CompaniesScreen));

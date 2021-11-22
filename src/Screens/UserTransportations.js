@@ -84,7 +84,7 @@ class UserTransportations extends React.Component {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });
         } else {
-            this.props.history.push('/')
+            this.props.history.push('/login')
         }
     }
 

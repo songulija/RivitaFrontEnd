@@ -1,7 +1,8 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import Cookies from 'js-cookie'
 
-export const login = (email, password,callback) => async (dispatch) => {
+export const login = (email, password, callback) => async (dispatch) => {
     try {
         dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
             type: 'USER_LOGIN_REQUEST'
@@ -27,11 +28,25 @@ export const login = (email, password,callback) => async (dispatch) => {
         });
 
         //then we want to set our user to local storage. set this 'userInfo' and pass data as as string(json)
-        localStorage.setItem('currentUser', response.data.token);
+        // localStorage.setItem('currentUser', response.data.token);
+        // set cookie
+        var inFifteenMinutes = new Date(new Date().getTime() + 1 * 60 * 1000);
+        Cookies.set('currentUser', response.data.token, {
+            expires: inFifteenMinutes
+        });
+        var userRole = '';
+        const userData = jwt_decode(response.data.token); // decode your token here
+        // if userRole is admin save userRole in localStorage to access at all times
+        if (userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Administrator') {
+            userRole = 'Administrator';
+            Cookies.set('role', 'Administrator', {
+                expires: inFifteenMinutes
+            });
+        }
+
         callback();
 
     } catch (error) {//if something fails then dispatch action with type/name PRODUCT_DETAILS_FAIL and pass error data as payload
-        console.log(error)
         dispatch({
             type: 'USER_LOGIN_FAIL',
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
@@ -39,34 +54,17 @@ export const login = (email, password,callback) => async (dispatch) => {
     }
 }
 
-export const getUserData = (num,callback) => async(dispatch, getState)=>{
-    try{
-        // let numb = num;
-        dispatch({
-            type: 'USER_DATA_REQUEST'
-        });
 
-        const { usersReducer: { currentUser } } = getState();
-        // const { usersReducer: { currentUser } } = getState();//get user info
-        
-        const token = currentUser;
-        let userRole = '';
-        const userData = jwt_decode(token); // decode your token here
-        // if userRole is admin save userRole in localStorage to access at all times
-        if (userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Administrator') {
-            userRole = 'Administrator';
-        }else{
-            userRole = 'User';
-        }
+export const getUserData = () => (dispatch, getState) => {
+    try {
+        // const role = getState().userInfoReducer.role;
         dispatch({
             type: 'USER_DATA_SUCCESS',
-            payload: userRole
+            payload: Cookies.get('role')
         });
-        if(userRole === 'Administrator'){
-            localStorage.setItem('userRole',userRole)
-        }
-        callback()
-    }catch(error){
+        console.log('Have role in cookie')
+
+    } catch (error) {
         dispatch({
             type: 'USER_DATA_FAIL',
             payload:
@@ -75,22 +73,19 @@ export const getUserData = (num,callback) => async(dispatch, getState)=>{
                     : error.message,
         })
     }
+
+
 }
-
-// export const removeUserData = () => (dispatch)=>{
-//     dispatch({type: 'USER_DATA_REMOVE'})
-
-// }
 
 export const logout = () => (dispatch) => {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('userRole');
+    Cookies.remove('currentUser')
+    Cookies.remove('role')
     dispatch({ type: 'USER_LOGOUT' });
-    dispatch({type: 'USER_DATA_REMOVE'});
+    dispatch({ type: 'USER_DATA_REMOVE' });
 }
 
 
-export const register = (postObject,callback) => async (dispatch,getState) => {
+export const register = (postObject, callback) => async (dispatch, getState) => {
     try {
 
         dispatch({
@@ -98,8 +93,7 @@ export const register = (postObject,callback) => async (dispatch,getState) => {
         })
 
         const token = getState().usersReducer.currentUser;
-        console.log('Action postObj:'+JSON.stringify(postObject))
-        const response = await axios.post('/api/Accounts/register',postObject,{ headers: { Authorization: `Bearer ${token}` } })
+        const response = await axios.post('/api/Accounts/register', postObject, { headers: { Authorization: `Bearer ${token}` } })
 
         dispatch({
             type: 'USER_REGISTER_SUCCESS',

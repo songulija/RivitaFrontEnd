@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Space, Select, Input } from 'antd';
+import { Modal, Button, Form, Space, Input } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 
-const { Option } = Select;
 const textStyle = {
     fontSize: '18px',
     color: '#8C8C8C',

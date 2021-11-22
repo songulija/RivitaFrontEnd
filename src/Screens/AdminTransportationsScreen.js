@@ -125,7 +125,7 @@ class AdminTransportationScreen extends React.Component {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });
         } else {
-            this.props.history.push('/login');
+            this.props.history.push('/');
         }
     }
     render() {
@@ -296,10 +296,10 @@ class AdminTransportationScreen extends React.Component {
                         <Row gutter={16}>
                             <Col span={18}>
                                 <div style={{ marginRight: '40px', marginBottom: 25 }}>
-                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportacijos</Typography.Title>
+                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportavimas</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Pridėkite naujas transportacijas ir priskirti prie kiekvienos transportacijos vagonus.
-                                        Taip pat galite atnaujinti kiekvienos transportacijos duomenis kai reikia.
+                                        Pridėkite naujus transportavimus ir priskirti prie kiekvieno transportavimo vagonus.
+                                        Taip pat galite atnaujinti kiekvienos transportavimo duomenis kai reikia.
                                     </Typography.Text>
                                 </div>
                             </Col>

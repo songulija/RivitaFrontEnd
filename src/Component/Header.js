@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
 import { withRouter } from "react-router-dom";
-import { getUserData, logout } from '../redux/actions/userActions'
+import { logout } from '../redux/actions/userActions'
 import logo from '../images/rivita-logo.png'
 
 class Header extends React.Component {
@@ -19,9 +19,10 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        // if (this.props.usersReducer.currentUser === null) {
-        //     this.props.history.push('/login');
-        // }
+        // this.props.getUserData(() =>{
+        //     console.log('Header got user data:'+JSON.stringify(this.props.userInfoReducer))
+        // })
+        
     }
     render() {
         // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
@@ -29,7 +30,7 @@ class Header extends React.Component {
             <div>
                 <Navbar bg="light" expand="xl">
                     <Container>
-                        <Navbar.Brand href="#home">
+                        <Navbar.Brand href="/">
                             <img style={{ width: '100px' }} src={logo} alt='Logo' />
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -46,14 +47,14 @@ class Header extends React.Component {
                                     : null}
                                 {this.props.usersReducer.currentUser ?
                                     <>
-                                        <Nav.Link href="/serch" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAIEŠKA</Nav.Link>
-                                        <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTACIJOS</Nav.Link>
+                                        <Nav.Link href="/search" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAIEŠKA</Nav.Link>
+                                        <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link>
                                         {this.props.userInfoReducer.role === 'Administrator' ?
                                             <NavDropdown title="Admin" id="basic-nav-dropdown">
-                                                <NavDropdown.Item href="/companies">Kompanijos</NavDropdown.Item>
-                                                <NavDropdown.Item href="/transportations/admin">Transportacijos</NavDropdown.Item>
-                                                <NavDropdown.Item href="/wagons">Vagonai</NavDropdown.Item>
-                                                <NavDropdown.Item href="/register">Naudotoju registracija</NavDropdown.Item>
+                                                <NavDropdown.Item href="/companies">KOMPANIJOS</NavDropdown.Item>
+                                                <NavDropdown.Item href="/transportations/admin">TRANSPORTAVIMAS</NavDropdown.Item>
+                                                <NavDropdown.Item href="/wagons">VAGONAI</NavDropdown.Item>
+                                                <NavDropdown.Item href="/register">NAUDOTOJŲ REGISTRACIJA</NavDropdown.Item>
                                             </NavDropdown> : null}
                                         <Button onClick={this.logoutHandler}>Atsijungti</Button>
                                     </> : null}
@@ -79,4 +80,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getUserData, logout })(withRouter(Header));
+export default connect(mapStateToProps, { logout })(withRouter(Header));

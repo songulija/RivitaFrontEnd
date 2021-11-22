@@ -23,7 +23,7 @@ function LoginScreen({ location, history }) {
     //we want to redirect if we already logged in
     useEffect(() => {
         if (currentUser) {//if user info exist than means we already are logged in
-            history.push('/transportations')//redirect to whatever is in redirect
+            history.push('/search')//redirect to whatever is in redirect
         } else {
             history.push('/login')
         }
@@ -33,9 +33,7 @@ function LoginScreen({ location, history }) {
         e.preventDefault();//prevemnt default behaviour when submit button is clicked. preved refresh of page
         //DISPATCH LOGIN action. pass email and password that user typed
         dispatch(login(email, password, () => {
-            dispatch(getUserData(1, () => {
-                console.log('Yee')
-            }))
+            dispatch(getUserData());
         }));
     }
     return (
