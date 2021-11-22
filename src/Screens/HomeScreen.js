@@ -203,11 +203,6 @@ const HomeScreen = () => {
                         <Col lg={2}><i className="fas fa-phone"></i><span>+3702650264</span></Col>
                         <Col lg={3}><i className="far fa-clock"></i><span> Pirmdienis-Penktadienis, 8:00-17:30</span></Col>
                     </Row>
-
-                    {/* <span style={{ color: '#fff' }} class="content"><i class="fa rt-icon-placeholder2"></i> Švitrigailos g.11A, LT-03228 Vilnius</span>
-                    <span style={{ color: '#fff' }} class="content"><i class="fa rt-icon-telephone"></i> <span style={{ color: '#fff' }}>+3702650264</span></span>
-                    <span style={{ color: '#fff' }} class="content"><i class="fa rt-icon-3-time"></i> Pirmdienis-Penktadienis, 8:00-17:30</span> */}
-
                 </Container>
             </div>
             <div className='header-img' style={{ height: '70vh' }} >
@@ -234,7 +229,6 @@ const HomeScreen = () => {
                         </div>
 
                         {/* misija, vizija, tikslai */}
-                        {/* wprt-icon-box style-5 clearfix icon-left w50 accent-outline outline-type align-left rounded-100 has-width */}
                         <div className='container pt-4'>
                             <div className='container'>
                                 <div className="row">
@@ -277,7 +271,7 @@ const HomeScreen = () => {
                             </div>
                         </div>
 
-                    </div>
+                    </div >
 
                     <div className='col-sm-12 col-lg-6'>
                         <div className='container mt-3' >
@@ -302,18 +296,13 @@ const HomeScreen = () => {
 
                         </div>
                     </div>
-                </div>
-            </section>
+                </div >
+            </section >
             <section className='container-fluid pt-5 pb-5' style={{ ...serviceSectionStyle }}>
                 <div className='container' style={{ width: '80%' }}>
                     <div className='row pb-5'>
                         <h2 style={{ ...serviceTitleStyle }}>Paslaugos</h2>
                         <hr style={{ ...titleLineStyle }}></hr>
-                        {/* <div className='container pt-2'>
-
-                            <button style={{ ...serviceButton }}>KROVINIŲ GABENIMAS</button>
-                        </div> */}
-
                     </div>
 
                     <div className='row'>
@@ -405,7 +394,6 @@ const HomeScreen = () => {
                 </div>
             </section>
             <section className='container-fluid text-center' style={{ width: '100%', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}>
-                {/* <Image src='' style={{ ...contactImageStyle }}> */}
                 <div className='row' style={{ height: '410px', position: 'relative' }}>
                     <div className='container' style={{
                         position: 'absolute', left: '50%', top: '50%',
@@ -581,13 +569,12 @@ const HomeScreen = () => {
                                     <a style={{ color: 'white' }} href="#!">KONTAKTINĖ INFORMACIJA</a>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                     <hr style={{ color: '#D1DBDD', opacity: '0.2' }}></hr>
                     <div className='row'>
                         <div className='col-sm-12 col-md-6'>
-                            <p class="copyright">UAB "Rivita ir ko" © 2021</p>
+                            <p class="copyright">UAB "Rivita ir Ko" © 2021</p>
                             <p>Made by Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed</p>
                         </div>
                         <div className='col-sm-12 col-md-6'>
@@ -595,10 +582,6 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-
-
-
-
         </>
 
     )
