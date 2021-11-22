@@ -29,3 +29,75 @@
     width: 800px;
     height: 300px;
 }
+.aboutUsHover img{
+    width: 60px;
+    color: black;
+    padding: 8px;
+    background-color: white;
+    border-radius: 90px;
+    border: solid;
+    border-width: 2px;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out ;
+}
+.aboutUsHover img:hover{
+    
+    background-color: #5f1508;
+}
+
+
+.serviceIconsStyle  {
+    font-size: 70px;
+    margin-top: 40px;
+}
+
+.serviceContainerStyle  {
+    width: 150px;
+    height:150px;
+    border-radius: 90px;
+    background-color:white;
+    color: #20252B;
+}
+
+.serviceContainerStyle:hover  {
+    
+    color: #516c71 !important;
+    transition: all .5s;
+    box-shadow: 9px 9px 9px 9px rgba(0, 0, 0, 0.2) !important;
+}
+.PartnersHover{
+    /* 
+     margin-top:20px;
+      width: 204px;
+      padding: 0; */
+      /* height: 195px; */
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out ;
+}
+.PartnersHover:hover{
+    box-shadow: 6px 6px 6px 6px rgba(0, 0, 0, 0.2) !important;
+
+    
+}
+
+.contactsInfoIconsStyle  {
+    font-size:50px;
+    color: black;
+    padding-bottom: 10px;
+    color: #4C686E;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out ;
+
+}
+.contactHover:hover i{
+    
+    color: #5f1508;
+    
+}
+
