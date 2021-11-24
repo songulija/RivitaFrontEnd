@@ -14,6 +14,7 @@ import Footer from '../Component/Footer';
 const HomeScreen = () => {
     return (
         <>
+        
             <div style={{ background: '#82979c', color: 'white' }}>
                 <Container>
                     <Row>
@@ -89,7 +90,7 @@ const HomeScreen = () => {
                             </div>
                         </div>
 
-                    </div >
+                    </div>
 
                     <div className='col-sm-12 col-lg-6'>
                         <div className='container mt-3' >
@@ -114,8 +115,8 @@ const HomeScreen = () => {
 
                         </div>
                     </div>
-                </div >
-            </section >
+                </div>
+            </section>
             <section className='container-fluid pt-5 pb-5' style={{ ...serviceSectionStyle }}>
                 <div className='container' style={{ width: '80%' }}>
                     <div className='row pb-5'>
@@ -339,6 +340,7 @@ const HomeScreen = () => {
             </section>
 
             <Footer/>
+           
         </>
 
     )

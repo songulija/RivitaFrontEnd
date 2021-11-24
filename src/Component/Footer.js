@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {footerStyle,footerTitle,footerListElementsStyle} from '../styles/footerStyles.js'
-
-
-const titleLineStyle = {
-    width: '70px',
-    height: '2px'
-}
+import {titleLineStyle} from '../styles/homeScreenStyles.js'
 function Footer(props) {
 
     return (
