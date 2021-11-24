@@ -1,14 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Modal, Button, Form, Space, Select, Table, Row, Col, Card, Typography, InputNumber, Input } from 'antd';
+import { Button, Space, Select, Table, Row, Col, Card, Typography } from 'antd';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
-import { ArrowLeftOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
-import { getWagonsByTransportation, getWagons, insertWagon, updateWagon} from '../redux/actions/wagonsActions';
+import { getWagonsByTransportation, getWagons, insertWagon, updateWagon } from '../redux/actions/wagonsActions';
 import { getTransportations } from '../redux/actions/transportationsActions'
-import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
-import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
 import UpdateWagonComponent from '../Component/wagons_components/UpdateWagonComponent'
 
@@ -29,7 +26,7 @@ const textStyle = {
     marginRight: '40px',
 }
 
-const { Text } = Typography;
+const { Paragraph, Text } = Typography;
 const { Option } = Select;
 
 class AdminWagonScreen extends React.Component {
@@ -95,7 +92,7 @@ class AdminWagonScreen extends React.Component {
         }
         this.setState({
             updateWagon: obj
-        }, () => console.log('UpdateWagon state:'+JSON.stringify(this.state.updateWagon)));
+        }, () => console.log('UpdateWagon state:' + JSON.stringify(this.state.updateWagon)));
     }
     unshowUpdateWagonModal = () => {
         const obj = {
@@ -107,7 +104,7 @@ class AdminWagonScreen extends React.Component {
         });
     }
     saveUpdateWagon = (postObj, reducerObj) => {
-        this.props.updateWagon(postObj,reducerObj, () =>{
+        this.props.updateWagon(postObj, reducerObj, () => {
             //clone updated wagons redux state
             const wagonsClone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons));
             this.setState({
@@ -175,9 +172,17 @@ class AdminWagonScreen extends React.Component {
                 )
             },
             {
+                title: 'Transportavimo numeris',
+                dataIndex: 'transportationId',
+                width: '10%',
+                render: (text, record, index) => (
+                    <Text>{record.transportation.transportationNumber}</Text>
+                )
+            },
+            {
                 title: 'Vagono numeris',
                 dataIndex: 'numberOfWagon',
-                width: '25%'
+                width: '20%'
             },
             {
                 title: 'Vagono tipas',
@@ -187,12 +192,12 @@ class AdminWagonScreen extends React.Component {
             {
                 title: 'Keliamoji galia(tonomis)',
                 dataIndex: 'liftingCapacityTons',
-                width: '25%'
+                width: '20%'
             },
             {
                 title: 'Svoris(tonomis)',
                 dataIndex: 'weight',
-                width: '30%'
+                width: '20%'
             },
         ]
         return (
@@ -229,16 +234,18 @@ class AdminWagonScreen extends React.Component {
                         {/* returns second column with table */}
                         {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
                         <Row gutter={16}>
-                            <Col span={18}>
+                            <Col span={22}>
                                 <Card size={'small'} style={{ ...tableCardStyle }} bodyStyle={{ ...tableCardBodyStyle }}>
                                     <Table
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.state.wagons}
                                         pagination={{ pageSize: 15 }}
+                                        bordered
+                                        scroll={{ x: 'calc(700px + 50%)' }}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
-                                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddWagonModel}><PlusOutlined />Vagona</Button></Space>
+                                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddWagonModel}><PlusOutlined />Pridėti vagoną</Button></Space>
                                 </Card>
                             </Col>
                         </Row>
@@ -266,4 +273,4 @@ const mapStateToProps = (state) => {
         transportationsReducer: state.transportationsReducer
     }
 }
-export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon, updateWagon})(withRouter(AdminWagonScreen));
+export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon, updateWagon })(withRouter(AdminWagonScreen));

@@ -30,7 +30,7 @@ export const login = (email, password, callback) => async (dispatch) => {
         //then we want to set our user to local storage. set this 'userInfo' and pass data as as string(json)
         // localStorage.setItem('currentUser', response.data.token);
         // set cookie
-        var inFifteenMinutes = new Date(new Date().getTime() + 1 * 60 * 1000);
+        var inFifteenMinutes = new Date(new Date().getTime() + 50 * 60 * 1000);
         Cookies.set('currentUser', response.data.token, {
             expires: inFifteenMinutes
         });
