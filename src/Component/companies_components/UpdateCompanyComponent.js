@@ -40,7 +40,7 @@ function UpdateCompanyComponent(props) {
 
     useEffect(() => {
         setCompany(props.record.name);
-    }, []);
+    }, [props.record.name]);
     return (
         <>
             <Modal

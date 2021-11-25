@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTransportations } from '../redux/actions/transportationsActions'
 import { withRouter } from 'react-router-dom';
-import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
-import { Col, Table, Row, Space, Typography, Input, Button } from 'antd';
+import { Col, Table, Row, Typography, Button } from 'antd';
 import moment from 'moment'
 
 
@@ -23,8 +22,6 @@ const textStyle = {
     marginRight: '40px',
 }
 
-const { Text } = Typography;
-
 
 class UserTransportations extends React.Component {
     constructor(props) {
@@ -32,27 +29,26 @@ class UserTransportations extends React.Component {
         this.state = {
             originalTransportations: [],
             transportations: [],
-            search: {
-                "transportationNumber": this.props.location.transportationNumber,
-                "cargoAcceptanceDate": moment().format("DD/MM/YYYY"),
-                "movementStartDateInBelarusFrom": moment(this.props.location.movementStartDateInBelarusFrom).format("YYYY/MM/DD"),
-                "movementStartDateInBelarusTo": moment(this.props.location.movementStartDateInBelarusTo).format("YYYY/MM/DD"),
-                "movementEndDateInBelarusFrom": moment(this.props.location.movementEndDateInBelarusFrom).format("YYYY/MM/DD"),
-                "movementEndDateInBelarusTo": moment(this.props.location.movementEndDateInBelarusTo).format("YYYY/MM/DD"),
-                "etsngCargoCode": this.props.location.etsngCargoCode,
-                "gngCargoCode": this.props.location.gngCargoCode,
-                "departureStationCode": this.props.location.departureStationCode,
-                "departureCountryCode": this.props.location.departureCountryCode,
-                "destinationStationCode": this.props.location.destinationStationCode,
-                "destinationCountryCode": this.props.location.destinationCountryCode,
-                "stationMovementBeginingBelarusCode": this.props.location.stationMovementBeginingBelarusCode,
-                "stationMovementEndBelarusCode": this.props.location.stationMovementEndBelarusCode
-            }
+            // search: {
+            //     "transportationNumber": this.props.location.transportationNumber,
+            //     "cargoAcceptanceDate": moment().format("DD/MM/YYYY"),
+            //     "movementStartDateInBelarusFrom": moment(this.props.location.movementStartDateInBelarusFrom).format("YYYY/MM/DD"),
+            //     "movementStartDateInBelarusTo": moment(this.props.location.movementStartDateInBelarusTo).format("YYYY/MM/DD"),
+            //     "movementEndDateInBelarusFrom": moment(this.props.location.movementEndDateInBelarusFrom).format("YYYY/MM/DD"),
+            //     "movementEndDateInBelarusTo": moment(this.props.location.movementEndDateInBelarusTo).format("YYYY/MM/DD"),
+            //     "etsngCargoCode": this.props.location.etsngCargoCode,
+            //     "gngCargoCode": this.props.location.gngCargoCode,
+            //     "departureStationCode": this.props.location.departureStationCode,
+            //     "departureCountryCode": this.props.location.departureCountryCode,
+            //     "destinationStationCode": this.props.location.destinationStationCode,
+            //     "destinationCountryCode": this.props.location.destinationCountryCode,
+            //     "stationMovementBeginingBelarusCode": this.props.location.stationMovementBeginingBelarusCode,
+            //     "stationMovementEndBelarusCode": this.props.location.stationMovementEndBelarusCode
+            // }
         }
     }
 
     transportationsDataSet = (transportationsArray) => {
-        // console.log('Component Did mount Transportations data:' + JSON.stringify(this.props.transportationsReducer.transportations))
         const transportationsClone = JSON.parse(JSON.stringify(transportationsArray));
         //removing time from data that we get
         transportationsClone.map((element, index) => {
@@ -67,19 +63,12 @@ class UserTransportations extends React.Component {
         this.setState({
             transportations: transportationsClone,
             originalTransportations: transportationsClone
-        }, () => {
-            console.log('Transportations array is equal to:' + JSON.stringify(this.state.transportations))
         })
     }
 
-    // setParameters = () => {
-    //     // gettig passed object from HomeScreen. Object with all params
-    //     // console.log(this.props.location.params)
-    // }
-
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === "Administrator") {
-            console.log('Param: ' + JSON.stringify(this.state.search.gngCargoCode))
+            // console.log('Param: ' + JSON.stringify(this.state.search.gngCargoCode))
             this.props.getTransportations(1, () => {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });

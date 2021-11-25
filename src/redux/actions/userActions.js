@@ -4,41 +4,26 @@ import Cookies from 'js-cookie'
 
 export const login = (email, password, callback) => async (dispatch) => {
     try {
-        dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
+        dispatch({
             type: 'USER_LOGIN_REQUEST'
         });
-        //then we want to dispatch 'USER_LOGIN_SUCCESS' but we need to check data first
-        //but when we're sending data we want to send it in headers
 
-        const config = {//but for now we set content type to application/json'
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        //we want to make post request and pass object with email and password. and as third argument pass config
-        //this post request will return json data. _id,name,email .. TOKEN
         const postObject = {
             "email": email,
             "password": password
         }
         const response = await axios.post('/api/Accounts/login', postObject);
-        dispatch({//dispatch action with type/name USER_LOGIN_SUCCESS. and send data as payload
+        dispatch({
             type: 'USER_LOGIN_SUCCESS',
             payload: response.data
         });
-
-        //then we want to set our user to local storage. set this 'userInfo' and pass data as as string(json)
-        // localStorage.setItem('currentUser', response.data.token);
-        // set cookie
         var inFifteenMinutes = new Date(new Date().getTime() + 50 * 60 * 1000);
         Cookies.set('currentUser', response.data.token, {
             expires: inFifteenMinutes
         });
-        var userRole = '';
-        const userData = jwt_decode(response.data.token); // decode your token here
-        // if userRole is admin save userRole in localStorage to access at all times
+        const userData = jwt_decode(response.data.token);
+       
         if (userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Administrator') {
-            userRole = 'Administrator';
             Cookies.set('role', 'Administrator', {
                 expires: inFifteenMinutes
             });
@@ -46,7 +31,7 @@ export const login = (email, password, callback) => async (dispatch) => {
 
         callback();
 
-    } catch (error) {//if something fails then dispatch action with type/name PRODUCT_DETAILS_FAIL and pass error data as payload
+    } catch (error) {
         dispatch({
             type: 'USER_LOGIN_FAIL',
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
@@ -57,7 +42,6 @@ export const login = (email, password, callback) => async (dispatch) => {
 
 export const getUserData = () => (dispatch, getState) => {
     try {
-        // const role = getState().userInfoReducer.role;
         dispatch({
             type: 'USER_DATA_SUCCESS',
             payload: Cookies.get('role')

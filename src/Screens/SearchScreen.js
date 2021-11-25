@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Container, Button, Row, Col, Card, Space, Typography, Input } from 'antd'
-import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Button, Row, Col, Checkbox, Typography, Input, Space } from 'antd'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
-import LoginScreen from './LoginScreen'
-import { getUserData } from '../redux/actions/userActions'
+import { withRouter } from 'react-router-dom';
+import { getTransportationsByParams } from '../redux/actions/transportationsActions'
+
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -23,174 +22,224 @@ const textStyle = {
     marginRight: '40px',
 }
 
-const cardTextStyle = {
-    marginTop: 0,
-    marginRight: 0,
-    marginLeft: 0,
-    marginBottom: '2px'
-}
 
-function SearchScreen({ location, history }) {
-    const dispatch = useDispatch();
-    const [search, setSearch] = useState({
-        "transportationNumber": "",
-        "transportationStatus": "",
-        "transportationType": "",
-        "transportationSubCode": 0,
-        "cargoAcceptanceDate": moment().format("DD/MM/YYYY"),
-        "movementStartDateInBelarusFrom": moment().format("YYYY/MM/DD"),
-        "movementStartDateInBelarusTo": moment().format("YYYY/MM/DD"),
-        "movementEndDateInBelarusFrom": moment().format("YYYY/MM/DD"),
-        "movementEndDateInBelarusTo": moment().format("YYYY/MM/DD"),
-        "etsngCargoCode": 0,
-        "gngCargoCode": 0,
-        "departureStationCode": 0,
-        "departureCountryCode": 0,
-        "destinationStationCode": 0,
-        "destinationCountryCode": 0,
-        "stationMovementBeginingBelarusCode": 0,
-        "stationMovementEndBelarusCode": 0
-    });
-
-
-    const usersReducer = useSelector((state) => state.usersReducer);
-    const { loading, error, currentUser } = usersReducer;//we want to distructure userLogin to these
-
-    //check the query string. if there is then take left size of query which is number
-    const redirect = location.search ? location.search.split('=')[1] : '/login';
-
-    // const searchTransportations = () =>{
-    //     history.push(`/transportations?transportationNumber=${search.transportationNumber}&cargoAcceptanceDate=${search.cargoAcceptanceDate}&movementStartDateInBelarusFrom=${search.movementStartDateInBelarusFrom}&movementStartDateInBelarusTo=${search.movementStartDateInBelarusTo}`)
-    // }
-    const newTo = {
-        pathname: "/transportations",
-        transportationNumber: search.transportationNumber,
-        cargoAcceptanceDate: search.cargoAcceptanceDate,
-        movementStartDateInBelarusFrom: search.movementStartDateInBelarusFrom,
-        movementStartDateInBelarusTo: search.movementStartDateInBelarusTo,
-        movementEndDateInBelarusFrom: search.movementEndDateInBelarusFrom,
-        movementEndDateInBelarusTo: search.movementEndDateInBelarusTo,
-        etsngCargoCode: search.etsngCargoCode,
-        gngCargoCode: search.gngCargoCode,
-        departureStationCode: search.departureStationCode,
-        departureCountryCode: search.departureStationCode,
-        destinationStationCode: search.destinationStationCode,
-        destinationCountryCode: search.destinationCountryCode,
-        stationMovementBeginingBelarusCode: search.stationMovementBeginingBelarusCode,
-        stationMovementEndBelarusCode: search.stationMovementEndBelarusCode
-    };
-    useEffect(() => {
-        if (currentUser) {
-            // dispatch(getUserData(()=>{
-            //     console.log('Got user data')
-            // }));
-            // console.log('Home screen has user')
-        } else {
-            history.push(redirect);
+class SearchScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: [
+                {
+                    "id": 1,
+                    "title": "Tranportavimo numeris",
+                    "dataIndex":"transportationNumber",
+                    "value": 0
+                },
+                {
+                    "id": 2,
+                    "title": "Krovinio priėmimo data",
+                    "dataIndex":"cargoAcceptanceDate",
+                    "value": moment().format("DD/MM/YYYY"),
+                },
+                {
+                    "id": 3,
+                    "title": "Judėjimo pradžios data per baltarusija nuo",
+                    "dataIndex":"movementStartDateInBelarusFrom",
+                    "value": moment().format("YYYY/MM/DD"),
+                },
+                {
+                    "id": 4,
+                    "title": "Judėjimo pradžios data per baltarusija iki",
+                    "dataIndex":"movementStartDateInBelarusTo",
+                    "value": moment().format("YYYY/MM/DD"),
+                },
+                {
+                    "id": 5,
+                    "title": "Judėjimo pabaigos data per baltarusija nuo",
+                    "dataIndex":"movementEndDateInBelarusFrom",
+                    "value": moment().format("YYYY/MM/DD"),
+                },
+                {
+                    "id": 6,
+                    "title": "Judėjimo pabaigos data per baltarusija iki",
+                    "dataIndex":"movementEndDateInBelarusTo",
+                    "value": moment().format("YYYY/MM/DD"),
+                },
+                {
+                    "id": 7,
+                    "title": "Krovinio tipas(ETSNG)",
+                    "dataIndex":"etsngCargoCode",
+                    "value": 0,
+                },
+                {
+                    "id": 8,
+                    "title": "Krovinio tipas(GNG)",
+                    "dataIndex":"gngCargoCode",
+                    "value": 0,
+                },
+                {
+                    "id": 9,
+                    "title": "Išvykimo stoties kodas",
+                    "dataIndex":"departureStationCode",
+                    "value": 0,
+                },
+                {
+                    "id": 10,
+                    "title": "Atvykimo stoties kodas",
+                    "dataIndex":"destinationStationCode",
+                    "value": 0
+                },
+                {
+                    "id": 11,
+                    "title": "Judėjimo pradžios stotis(per Baltarusiją)",
+                    "dataIndex":"stationMovementBeginingBelarusCode",
+                    "value": 0,
+                },
+                {
+                    "id": 12,
+                    "title": 'Judėjimo pabaigos stotis(per Baltarusiją)',
+                    "dataIndex":"stationMovementEndBelarusCode",
+                    "value": 0
+                },
+                // "transportationStatus": "",
+                // "transportationType": "",
+                // "transportationSubCode": 0,
+                // "departureCountryCode": 0,
+                // "destinationCountryCode": 0,
+            ],
+            features: [],
+            checked: []
         }
-    }, [history, redirect, currentUser]);
+    }
 
+    onChange = checkedValues => {
+        this.setState(() => {
+            return { checked: checkedValues };
+        }, () => console.log('Checked:'+this.state.checked));
+        // this.props.setProductFeatures(checkedValues);
+    };
 
+    isDisabled(id) {
+        return (
+            this.state.checked.length > 3 && this.state.checked.indexOf(id) === -1
+        );
+    };
+    setInitialChecked = () => {
+        const searchClone = JSON.parse(JSON.stringify(this.state.search));
+        const array = []
+        searchClone.map((element, index) => {
+            if(index < 5){
+                array.push(element.id);
+            }
+        });
+        this.setState({
+            checked: array
+        })
+    }
 
-    return (
-        <>
-            <div style={{ marginTop: 45, marginBottom: 45 }}>
-                <Col span={24} offset={3}>
-                    <Row gutter={16}>
-                        <Col span={16}>
-                            <div style={{ marginRight: '40px' }}>
-                                <Typography.Title style={{ ...aboutTitleTextStyle }}>Paieška</Typography.Title>
-                                <Typography.Text style={{ ...textStyle }}>
-                                    Parinkite parametrus pagal kuriuos ieškosite transportacijų
-                                </Typography.Text>
-                            </div>
-                        </Col>
-                    </Row>
-                    {/* returns second column with table */}
-                    {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
-                    <Row gutter={16} style={{ marginTop: '15px' }}>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }} bodyStyle={{ ...tableCardBodyStyle }} title={'Judėjimo pradžios data per baltarusija'}>
-                                <p style={{ ...cardTextStyle }}>Nuo</p>
-                                <Input defaultValue={search.movementStartDateInBelarusFrom} />
-                                <p style={{ ...cardTextStyle }}>Iki</p>
-                                <Input defaultValue={search.movementStartDateInBelarusTo} />
-                            </Card>
-                        </Col>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }}
-                                bodyStyle={{ ...tableCardBodyStyle }} title={'Judėjimo pabaigos data per baltarusija'}>
-                                <p style={{ ...cardTextStyle }}>Nuo</p>
-                                <Input defaultValue={search.movementEndDateInBelarusFrom} />
-                                <p style={{ ...cardTextStyle }}>Iki</p>
-                                <Input defaultValue={search.movementEndDateInBelarusTo} />
+    onDataChange = (value,inputName) => {
+        const searchClone = JSON.parse(JSON.stringify(this.state.search));
+        searchClone.map((element,index)=>{
+            if(element.dataIndex === inputName){
+                element.value = value
+            }
+        });
+        this.setState({
+            search: searchClone
+        })
+    }
+    getTransportations = () => {
+        // i will get by only those values that are checked
+        const checkedClone = JSON.parse(JSON.stringify(this.state.checked));
+        const searchClone = JSON.parse(JSON.stringify(this.state.search));
+        let queryString = "";
+        console.log('Checked array'+JSON.stringify(checkedClone))
+        checkedClone.map((element,index)=>{
+            searchClone.map((element2,index1)=>{
+                if(element === element2.id){
+                    let query = `${element2.dataIndex}=${element2.value}&`
+                    queryString = queryString + query;
+                    // console.log(query)
+                }
+            });
+        })
+        queryString = queryString.slice(0,-1)
+        console.log(queryString)
+        this.props.getTransportationsByParams(queryString, () =>{
+            const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations))
+            console.log('Transportations are equal to:'+JSON.stringify(transportationsClone))
+        })
+    }
+    componentDidMount() {
+        if (this.props.usersReducer.currentUser) {
+            // this.setInitialChecked();
+        } else {
+            this.props.history.push('/login');
+        }
+    }
 
-                            </Card>
-                        </Col>
-                    </Row>
+    render() {
+        return (
+            <>
+                <div style={{ marginTop: 45, marginBottom: 45 }}>
+                    <Col span={24} offset={1}>
+                        <Row gutter={16}>
+                            <Col span={16}>
+                                <div style={{ marginRight: '40px' }}>
+                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Paieška</Typography.Title>
+                                    <Typography.Text style={{ ...textStyle }}>
+                                        Parinkite parametrus pagal kuriuos ieškosite transportacijų
+                                    </Typography.Text>
+                                </div>
+                            </Col>
+                        </Row>
+                        {/* returns second column with table */}
+                        {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
+                        <Row gutter={16} style={{ marginTop: '15px' }}>
+                        <Col span={22}>
+                            
+                                <Space direction="vertical">
+                                    <Checkbox.Group onChange={this.onChange}>
+                                    <div className='container' style={{padding: '20px',borderStyle: 'solid',borderColor:'#e0e0e0',borderWidth: '1px',borderRadius: '5px'}}>
+                                        <Space direction="vertical">
+                                            {this.state.search.map((element) => (
+                                                <div key={element.dataIndex}>
+                                                <Checkbox key={element.id} value={element.id} disabled={this.isDisabled(element.id)}>{element.title}</Checkbox>
+                                                <Input key={element.id+1} value={element.value} disabled={this.isDisabled(element.id)} onChange={(e) => this.onDataChange(e.target.value,element.dataIndex)}/>
+                                            </div>
+                                            ))}
+                                        </Space>
+                                        </div>
+                                    </Checkbox.Group>
+                                </Space>
 
-                    <Row gutter={16} style={{ marginTop: '15px' }}>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }} bodyStyle={{ ...tableCardBodyStyle }} title={'Krovinio tipas(ETSNG)'}>
-                                <p style={{ ...cardTextStyle }}>Kodas</p>
-                                <Input defaultValue={search.etsngCargoCode} />
-                            </Card>
-                        </Col>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }}
-                                bodyStyle={{ ...tableCardBodyStyle }} title={'Krovinio tipas(GNG)'}>
-                                <p style={{ ...cardTextStyle }}>Nuo</p>
-                                <Input defaultValue={search.gngCargoCode} />
+                                {/* <p style={{ ...cardTextStyle }}>Nuo</p>
+                                            <Input defaultValue={this.state.search.movementStartDateInBelarusTo} />
+                                            <p style={{ ...cardTextStyle }}>Iki</p>
+                                            <Input defaultValue={this.state.search.movementStartDateInBelarusTo} /> */}
+                            </Col>
+                        </Row>
+                        <Button size="large" style={{
+                            borderRadius: '4px',
+                            fontWeight: '600',
+                            fontSize: '14px',
+                            marginTop: '10px',
+                            width: '220px',
+                            height: '60px'
+                        }}
+                        onClick={this.getTransportations}>Ieškoti</Button>
 
-                            </Card>
-                        </Col>
-                    </Row>
-
-                    <Row gutter={16} style={{ marginTop: '15px' }}>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }} bodyStyle={{ ...tableCardBodyStyle }} title={'Išvykimo stotis'}>
-                                <p style={{ ...cardTextStyle }}>Kodas</p>
-                                <Input defaultValue={search.departureStationCode} />
-                            </Card>
-                        </Col>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }}
-                                bodyStyle={{ ...tableCardBodyStyle }} title={'Atvykimo stotis'}>
-                                <p style={{ ...cardTextStyle }}>Kodas</p>
-                                <Input defaultValue={search.destinationStationCode} />
-                            </Card>
-                        </Col>
-                    </Row>
-
-                    {/* BC */}
-                    <Row gutter={16} style={{ marginTop: '15px' }}>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }} bodyStyle={{ ...tableCardBodyStyle }} title={'Judėjimo pradžios stotis(per Baltarusiją)'}>
-                                <p style={{ ...cardTextStyle }}>Kodas</p>
-                                <Input defaultValue={search.stationMovementBeginingBelarusCode} />
-                            </Card>
-                        </Col>
-                        <Col span={10}>
-                            <Card size={'small'} style={{ padding: '7px' }}
-                                bodyStyle={{ ...tableCardBodyStyle }} title={'Judėjimo pabaigos stotis(per Baltarusiją)'}>
-                                <p style={{ ...cardTextStyle }}>Kodas</p>
-                                <Input defaultValue={search.stationMovementEndBelarusCode} />
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Button size="large" style={{
-                        borderRadius: '4px',
-                        fontWeight: '600',
-                        fontSize: '14px',
-                        marginTop: '10px',
-                        width: '220px',
-                        height: '60px'
-                    }}><Link to={newTo}>Ieškoti</Link></Button>
-
-                </Col>
-            </div>
-        </>
-    )
+                    </Col>
+                </div>
+            </>
+        )
+    }
+}
+// get redux states. map to props
+const mapStateToProps = (state) => {
+    return {
+        usersReducer: state.usersReducer,
+        transportationsReducer: state.transportationsReducer
+    }
 }
 
-export default SearchScreen;
+export default connect(mapStateToProps, { getTransportationsByParams })(withRouter(SearchScreen));

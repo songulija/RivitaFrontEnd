@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios'
 import { getTransportations, createTransportation, updateTransportation } from '../redux/actions/transportationsActions.js';
-import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
+import { buttonStyle } from '../styles/customStyles';
 import { getWagons } from '../redux/actions/wagonsActions';
-import { Col, Table, Row, Space, Typography, Input, Button } from 'antd';
-import { Card } from 'react-bootstrap'
+import { Col, Table, Row, Space, Typography, Button } from 'antd';
 // import { Button } from 'react-bootstrap'
 import { PlusOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
-import UnsavedChangesHeader from '../Component/UnsavedChangesHeader';
 import AddTransportationComponent from '../Component/transportations_components/AddTransportationComponent';
 import moment from 'moment'
 import UpdateTransportationComponent from '../Component/transportations_components/UpdateTransportationComponent.js';
@@ -31,7 +28,6 @@ const textStyle = {
     marginRight: '40px',
 }
 
-const { Text } = Typography;
 
 class AdminTransportationScreen extends React.Component {
     constructor(props) {
@@ -66,7 +62,6 @@ class AdminTransportationScreen extends React.Component {
 
     addTransportation = (postObj) => {
         //dispatching addTransporation action action
-        console.log('Saving:' + JSON.stringify(postObj));
         this.props.createTransportation(postObj, () => {
             this.transportationsDataSet(this.props.transportationsReducer.transportations);
         });
@@ -102,10 +97,9 @@ class AdminTransportationScreen extends React.Component {
 
 
     transportationsDataSet = (transportationsArray) => {
-        // console.log('Component Did mount Transportations data:' + JSON.stringify(this.props.transportationsReducer.transportations))
         const transportationsClone = JSON.parse(JSON.stringify(transportationsArray));
         //removing time from data that we get
-        transportationsClone.map((element, index) => {
+        transportationsClone.map((element) => {
             //for each element in array change dates
             let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
             let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
@@ -117,11 +111,11 @@ class AdminTransportationScreen extends React.Component {
         this.setState({
             transportations: transportationsClone,
             originalTransportations: transportationsClone
-        }, () => console.log('Transportations array is equal to:' + this.state.transportations));
+        });
     }
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
-            this.props.getTransportations(1, () => {
+            this.props.getTransportations(() => {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });
         } else {

@@ -1,7 +1,6 @@
 import axios from 'axios'
-export const getTransportations = (num,callback) => async (dispatch,getState) => {
+export const getTransportations = (callback) => async (dispatch,getState) => {
     try{
-        let numb = num;
         dispatch({
             type: 'TRANSPORTATIONS_FETCH_REQUEST'
         });
@@ -13,6 +12,33 @@ export const getTransportations = (num,callback) => async (dispatch,getState) =>
         });
         callback();
     } catch(error){
+        if (error.response === undefined) {
+            dispatch({
+                type: "ERROR",
+                payload: { message: "Oopsie... System error. Try again, later" },
+            });
+        }else{
+            dispatch({
+                type: "ERROR", payload: error.response.data
+            });
+        }
+    }
+}
+
+export const getTransportationsByParams = (query,callback) => async(dispatch,getState)=>{
+    try{
+        dispatch({
+            type: 'TRANSPORTATIONS_BY_PARAMS_FETCH_REQUEST'
+        });
+        // get token from usersReducer
+        const token = getState().usersReducer.currentUser;
+        const response = await axios.get(`/api/Transportations/search?${query}`,{headers: {Authorization: `Bearer ${token}`}});
+        dispatch({
+            type: 'TRANSPORTATIONS_BY_PARAMS_FETCH_SUCCESS',
+            payload: response.data
+        });
+        callback();
+    }catch(error){
         if (error.response === undefined) {
             dispatch({
                 type: "ERROR",
@@ -62,7 +88,7 @@ export const updateTransportation = (postObj,reducerObj,callback) => async(dispa
         });
         //get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        const response = await axios.put(`/api/Transportations/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
+        await axios.put(`/api/Transportations/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
         dispatch({
             type: 'TRANSPORTATIONS_UPDATE_SUCCESS',
             payload: reducerObj

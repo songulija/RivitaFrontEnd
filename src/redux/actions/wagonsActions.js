@@ -25,33 +25,6 @@ export const getWagons = () => async (dispatch,getState) =>{
     }
 }
 
-// export const updateWagons = (postObj, callback) => async(dispatch,getState)=>{
-//     try{
-//         dispatch({
-//             type: 'WAGONS_UPDATE_REQUEST'
-//         });
-
-//         const token = getState().usersReducer.currentUser;
-//         const response = await axios.post('/api/wagons/update',postObj, { headers: { Authorization: `Bearer ${token}` } })
-//         dispatch({
-//             type: 'WAGONS_UPDATE_SUCCESS',
-//             payload: postObj
-//         });
-//         callback();
-//     }catch(error){
-//         if (error.response === undefined) {
-//             dispatch({
-//                 type: "ERROR",
-//                 payload: { message: "Oopsie... System error. Try again, later" },
-//             });
-//         }else{
-//             dispatch({
-//                 type: "ERROR", payload: error.response.data
-//             });
-//         }
-//     }
-// }
-
 export const getWagonsByTransportation = (transportationId,callback) => async (dispatch,getState) =>{
     try{
         dispatch({
@@ -115,7 +88,7 @@ export const updateWagon = (postObj,reducerObj,callback) => async(dispatch,getSt
         });
         // get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        const response = await axios.put(`/api/Wagons/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
+        await axios.put(`/api/Wagons/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
         dispatch({
             type: 'WAGONS_UPDATE_SUCCESS',
             payload: reducerObj

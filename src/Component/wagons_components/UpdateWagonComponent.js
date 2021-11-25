@@ -69,7 +69,7 @@ function UpdateWagonComponent(props) {
     useEffect(() => {
         setWagon(props.record);
         console.log('Got record as props:'+JSON.stringify(props.record))
-    }, [])
+    }, [props.record])
     return (
         <>
             <Modal

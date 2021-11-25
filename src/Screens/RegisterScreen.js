@@ -1,21 +1,16 @@
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import { Table, Space, Select, Card, Typography, Col, Row, Input, Modal } from 'antd'
-import { Container, Image, Text } from 'react-bootstrap'
-import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons'
-import Form from "react-bootstrap/Form";
+import { Table, Space, Card, Typography, Col, Row } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
 import { register } from '../redux/actions/userActions'
 import { getCompanies } from '../redux/actions/companiesActions.js'
 import { getUsers } from '../redux/actions/userListActions'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import AddUserComponent from '../Component/register_components/AddUserComponent'
 
-const { Option } = Select;
-// const { Text } = Typography;
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',

@@ -9,7 +9,6 @@ import AdminTransportationsScreen from './Screens/AdminTransportationsScreen'
 import AdminWagonScreen from './Screens/AdminWagonScreen.js';
 import UserTransportations from './Screens/UserTransportations.js';
 import SearchScreen from './Screens/SearchScreen.js';
-import Footer from './Component/Footer.js';
 
 function App() {
   return (

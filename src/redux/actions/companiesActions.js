@@ -1,8 +1,7 @@
 import axios from "axios";
 
-export const getCompanies = (num,callback) => async (dispatch,getState) => {
+export const getCompanies = (callback) => async (dispatch,getState) => {
     try {
-        const number= num;
         dispatch({//first dispatch action with type/name USER_LOGIN_REQUEST. reducer will caught it. and set loading to true
             type: 'COMPANIES_FETCH_REQUEST'
         });
@@ -63,7 +62,7 @@ export const updateCompany = (postObj,reducerObj,callback) => async(dispatch,get
         });
         //get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        const response = await axios.put(`/api/Companies/${reducerObj.id}`,postObj, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.put(`/api/Companies/${reducerObj.id}`,postObj, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'COMPANIES_UPDATE_SUCCESS',
             payload: reducerObj

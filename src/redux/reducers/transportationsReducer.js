@@ -4,6 +4,10 @@ export const transportationsReducer = (state = { transportations: [] }, action) 
             return { 'loading': true }
         case 'TRANSPORTATIONS_FETCH_SUCCESS':
             return { ...state,'loading': false, 'transportations': action.payload }
+        case 'TRANSPORTATIONS_BY_PARAMS_FETCH_REQUEST':
+            return {...state,'loading':true}
+        case 'TRANSPORTATIONS_BY_PARAMS_FETCH_SUCCESS':
+            return {...state,'loading':false, 'transportations':action.payload} 
         case 'TRANSPORTATIONS_CREATE_REQUEST':
             return {...state, 'loading': true}
         case 'TRANSPORTATIONS_CREATE_SUCCESS':

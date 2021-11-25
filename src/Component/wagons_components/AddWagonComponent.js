@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Button,Form,Input,Modal,Space,InputNumber} from 'antd'
 import {ArrowLeftOutlined} from '@ant-design/icons'
 
@@ -32,6 +32,7 @@ function AddWagonComponent(props) {
     }
     const saveChanges = () => {
         const postObj = JSON.parse(JSON.stringify(wagon))
+        console.log('POst Obj:'+JSON.stringify(postObj))
         props.save(postObj)
     }
     return (

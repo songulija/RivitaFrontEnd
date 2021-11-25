@@ -116,7 +116,7 @@ function UpdateTransportationComponent(props) {
     useEffect(() => {
         setTransportation(props.record);
         console.log('UpdateCOmponent record:' + JSON.stringify(props.record))
-    }, [])
+    }, [props.record])
 
     return (
         <>

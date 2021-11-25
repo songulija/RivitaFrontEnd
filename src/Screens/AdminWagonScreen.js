@@ -136,7 +136,7 @@ class AdminWagonScreen extends React.Component {
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
             console.log('TransportationId:' + this.props.match.params.id)
-            this.props.getTransportations(1, () => {
+            this.props.getTransportations(() => {
                 const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
                 this.setState({
                     transportations: transportationsClone

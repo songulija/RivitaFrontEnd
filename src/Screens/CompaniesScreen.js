@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Table, Space, Input, Col, Card, Row, Typography, Form, Modal, Button } from 'antd';
-import UnsavedChangesHeader from '../Component/UnsavedChangesHeader.js'
-import { PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { Table, Space, Col, Card, Row, Typography,Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { getCompanies, createCompany, updateCompany } from '../redux/actions/companiesActions.js';
-// import { getUserData } from '../redux/actions/userActions'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import { withRouter } from 'react-router-dom';
 import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
@@ -26,7 +24,6 @@ const textStyle = {
     marginRight: '40px',
 }
 
-const { Text } = Typography;
 
 class CompaniesScreen extends React.Component {
     constructor(props) {
@@ -96,13 +93,13 @@ class CompaniesScreen extends React.Component {
         const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
         this.setState({
             companies: companiesClone
-        }, () => console.log('Setted companies:' + JSON.stringify(this.state.companies)));
+        });
     }
 
 
     componentDidMount() {
         if(this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role !== null){
-            this.props.getCompanies(1, () => {
+            this.props.getCompanies(() => {
                 const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
                 this.setState({
                     companies: companiesClone
@@ -113,7 +110,6 @@ class CompaniesScreen extends React.Component {
         }
     }
     render() {
-        console.log('Render User data:' + JSON.stringify(this.props.userInfoReducer))
         const columns = [
             {
                 title: 'Atnaujinimas',
