@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Row, Col, Checkbox, Typography, Input, Space } from 'antd'
 import moment from 'moment'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { getTransportationsByParams } from '../redux/actions/transportationsActions'
 
 
@@ -27,6 +27,7 @@ class SearchScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            queryString: "",
             search: [
                 {
                     "id": 1,
@@ -163,11 +164,21 @@ class SearchScreen extends React.Component {
             });
         })
         queryString = queryString.slice(0,-1)
-        console.log(queryString)
-        this.props.getTransportationsByParams(queryString, () =>{
-            const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations))
-            console.log('Transportations are equal to:'+JSON.stringify(transportationsClone))
+        this.setState({
+            queryString: queryString
+        });
+
+        this.props.history.push({
+            pathname: '/transportations',
+            state: {query: queryString}
         })
+        // this.props.getTransportationsByParams(queryString, () =>{
+        //     const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations))
+        //     console.log('Transportations are equal to:'+JSON.stringify(transportationsClone))
+        //     this.setState({
+                
+        //     });
+        // });
     }
     componentDidMount() {
         if (this.props.usersReducer.currentUser) {
@@ -211,11 +222,6 @@ class SearchScreen extends React.Component {
                                         </div>
                                     </Checkbox.Group>
                                 </Space>
-
-                                {/* <p style={{ ...cardTextStyle }}>Nuo</p>
-                                            <Input defaultValue={this.state.search.movementStartDateInBelarusTo} />
-                                            <p style={{ ...cardTextStyle }}>Iki</p>
-                                            <Input defaultValue={this.state.search.movementStartDateInBelarusTo} /> */}
                             </Col>
                         </Row>
                         <Button size="large" style={{
@@ -226,8 +232,10 @@ class SearchScreen extends React.Component {
                             width: '220px',
                             height: '60px'
                         }}
-                        onClick={this.getTransportations}>Ieškoti</Button>
-
+                        onClick={this.getTransportations}>
+                        Ieškoti
+                        </Button>
+                        {/* <Link to={{pathname:"/transportations",state:{queryString: this.state.queryString}}}> */}
                     </Col>
                 </div>
             </>

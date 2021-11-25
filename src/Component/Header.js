@@ -48,7 +48,7 @@ class Header extends React.Component {
                                 {this.props.usersReducer.currentUser ?
                                     <>
                                         <Nav.Link href="/search" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAIEŠKA</Nav.Link>
-                                        <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link>
+                                        {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
                                         {this.props.userInfoReducer.role === 'Administrator' ?
                                             <NavDropdown title="Admin" id="basic-nav-dropdown">
                                                 <NavDropdown.Item href="/companies">KOMPANIJOS</NavDropdown.Item>

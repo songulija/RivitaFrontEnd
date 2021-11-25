@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTransportations } from '../redux/actions/transportationsActions'
+import { getTransportations, getTransportationsByParams } from '../redux/actions/transportationsActions'
 import { withRouter } from 'react-router-dom';
 import { Col, Table, Row, Typography, Button } from 'antd';
 import moment from 'moment'
@@ -29,22 +29,7 @@ class UserTransportations extends React.Component {
         this.state = {
             originalTransportations: [],
             transportations: [],
-            // search: {
-            //     "transportationNumber": this.props.location.transportationNumber,
-            //     "cargoAcceptanceDate": moment().format("DD/MM/YYYY"),
-            //     "movementStartDateInBelarusFrom": moment(this.props.location.movementStartDateInBelarusFrom).format("YYYY/MM/DD"),
-            //     "movementStartDateInBelarusTo": moment(this.props.location.movementStartDateInBelarusTo).format("YYYY/MM/DD"),
-            //     "movementEndDateInBelarusFrom": moment(this.props.location.movementEndDateInBelarusFrom).format("YYYY/MM/DD"),
-            //     "movementEndDateInBelarusTo": moment(this.props.location.movementEndDateInBelarusTo).format("YYYY/MM/DD"),
-            //     "etsngCargoCode": this.props.location.etsngCargoCode,
-            //     "gngCargoCode": this.props.location.gngCargoCode,
-            //     "departureStationCode": this.props.location.departureStationCode,
-            //     "departureCountryCode": this.props.location.departureCountryCode,
-            //     "destinationStationCode": this.props.location.destinationStationCode,
-            //     "destinationCountryCode": this.props.location.destinationCountryCode,
-            //     "stationMovementBeginingBelarusCode": this.props.location.stationMovementBeginingBelarusCode,
-            //     "stationMovementEndBelarusCode": this.props.location.stationMovementEndBelarusCode
-            // }
+            queryString: ""
         }
     }
 
@@ -68,16 +53,27 @@ class UserTransportations extends React.Component {
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === "Administrator") {
+            if (this.props.location.state.query !== null && this.props.location.state.query !== undefined) {
+                this.props.getTransportationsByParams(this.props.location.state.query, () =>{
+                    this.transportationsDataSet(this.props.transportationsReducer.transportations);
+                })
+            } else {
+                this.props.getTransportations(() => {
+                    this.transportationsDataSet(this.props.transportationsReducer.transportations);
+                })
+            }
             // console.log('Param: ' + JSON.stringify(this.state.search.gngCargoCode))
-            this.props.getTransportations(1, () => {
-                this.transportationsDataSet(this.props.transportationsReducer.transportations);
-            });
+            // this.props.getTransportations(() => {
+            //     this.transportationsDataSet(this.props.transportationsReducer.transportations);
+            // });
+            // console.log(JSON.stringify(this.props.location.state.query))
         } else {
             this.props.history.push('/login')
         }
     }
 
     render() {
+        console.log(JSON.stringify(this.props.location.state.query))
         const columns = [
             {
                 title: 'Pridėti vagonų',
@@ -276,4 +272,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getTransportations })(withRouter(UserTransportations))
+export default connect(mapStateToProps, { getTransportationsByParams, getTransportations })(withRouter(UserTransportations))

@@ -72,16 +72,13 @@ class AdminWagonScreen extends React.Component {
     }
 
     addWagon = (postObj) => {
-        console.log('Post object to save:' + JSON.stringify(postObj))
         this.props.insertWagon(postObj, () => {
-            console.log('Wagon inserted')
             const newWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
             this.setState({
                 wagons: newWagons
             });
             this.unshowWagonAdd();
         });
-
     }
 
     // For UpdateTransportationScreen

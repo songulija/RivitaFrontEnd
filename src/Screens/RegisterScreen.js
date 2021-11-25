@@ -40,7 +40,7 @@ class RegisterScreen extends React.Component {
     showAddUser = () => {
         this.setState({
             addUserVisibility: true
-        }, () => console.log('visibility is:'+this.state.addUserVisibility))
+        })
     }
     unshowAddUser = () => {
         this.setState({
@@ -67,13 +67,13 @@ class RegisterScreen extends React.Component {
                 const usersClone = JSON.parse(JSON.stringify(this.props.usersListReducer.users));
                 this.setState({
                     users: usersClone
-                }, () => console.log('Got all users:' + JSON.stringify(this.state.users)))
+                })
             });
             this.props.getCompanies(1, () => {
                 const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
                 this.setState({
                     companies: companiesClone
-                }, () => console.log('Companies:'+JSON.stringify(this.state.companies)));
+                });
             });
         } else {
             // this.props.history.push('/login')
