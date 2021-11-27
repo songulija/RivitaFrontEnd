@@ -5,7 +5,7 @@ export const getTransportations = (callback) => async (dispatch,getState) => {
             type: 'TRANSPORTATIONS_FETCH_REQUEST'
         });
         const token = getState().usersReducer.currentUser;
-        const response = await axios.get('/api/Transportations', { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get('https://rivitabackend20211127164230.azurewebsites.net/api/Transportations', { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'TRANSPORTATIONS_FETCH_SUCCESS',
             payload: response.data
@@ -32,7 +32,7 @@ export const getTransportationsByParams = (query,callback) => async(dispatch,get
         });
         // get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        const response = await axios.get(`/api/Transportations/search?${query}`,{headers: {Authorization: `Bearer ${token}`}});
+        const response = await axios.get(`https://rivitabackend20211127164230.azurewebsites.net/api/Transportations/search?${query}`,{headers: {Authorization: `Bearer ${token}`}});
         dispatch({
             type: 'TRANSPORTATIONS_BY_PARAMS_FETCH_SUCCESS',
             payload: response.data
@@ -60,7 +60,7 @@ export const createTransportation = (postObject,callback) => async (dispatch,get
         });
 
         const token = getState().usersReducer.currentUser;
-        const response = await axios.post('/api/Transportations',postObject, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.post('https://rivitabackend20211127164230.azurewebsites.net/api/Transportations',postObject, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'TRANSPORTATIONS_CREATE_SUCCESS',
             payload: response.data
@@ -88,7 +88,7 @@ export const updateTransportation = (postObj,reducerObj,callback) => async(dispa
         });
         //get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        await axios.put(`/api/Transportations/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
+        await axios.put(`https://rivitabackend20211127164230.azurewebsites.net/api/Transportations/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
         dispatch({
             type: 'TRANSPORTATIONS_UPDATE_SUCCESS',
             payload: reducerObj

@@ -1,6 +1,6 @@
 {
   "name": "rivitafrontend",
-  "proxy": "https://localhost:44338",
+  "proxy": "https://rivitabackend20211127164230.azurewebsites.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

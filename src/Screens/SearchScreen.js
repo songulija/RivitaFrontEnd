@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Row, Col, Checkbox, Typography, Input, Space } from 'antd'
 import moment from 'moment'
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { getTransportationsByParams } from '../redux/actions/transportationsActions'
 
 
@@ -115,8 +115,7 @@ class SearchScreen extends React.Component {
     onChange = checkedValues => {
         this.setState(() => {
             return { checked: checkedValues };
-        }, () => console.log('Checked:'+this.state.checked));
-        // this.props.setProductFeatures(checkedValues);
+        });
     };
 
     isDisabled(id) {
@@ -153,13 +152,11 @@ class SearchScreen extends React.Component {
         const checkedClone = JSON.parse(JSON.stringify(this.state.checked));
         const searchClone = JSON.parse(JSON.stringify(this.state.search));
         let queryString = "";
-        console.log('Checked array'+JSON.stringify(checkedClone))
         checkedClone.map((element,index)=>{
             searchClone.map((element2,index1)=>{
                 if(element === element2.id){
                     let query = `${element2.dataIndex}=${element2.value}&`
                     queryString = queryString + query;
-                    // console.log(query)
                 }
             });
         })
@@ -172,13 +169,6 @@ class SearchScreen extends React.Component {
             pathname: '/transportations',
             state: {query: queryString}
         })
-        // this.props.getTransportationsByParams(queryString, () =>{
-        //     const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations))
-        //     console.log('Transportations are equal to:'+JSON.stringify(transportationsClone))
-        //     this.setState({
-                
-        //     });
-        // });
     }
     componentDidMount() {
         if (this.props.usersReducer.currentUser) {

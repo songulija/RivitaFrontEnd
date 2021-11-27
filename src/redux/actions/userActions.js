@@ -12,7 +12,7 @@ export const login = (email, password, callback) => async (dispatch) => {
             "email": email,
             "password": password
         }
-        const response = await axios.post('/api/Accounts/login', postObject);
+        const response = await axios.post('https://rivitabackend20211127164230.azurewebsites.net/api/Accounts/login', postObject);
         dispatch({
             type: 'USER_LOGIN_SUCCESS',
             payload: response.data
@@ -77,7 +77,7 @@ export const register = (postObject, callback) => async (dispatch, getState) => 
         })
 
         const token = getState().usersReducer.currentUser;
-        const response = await axios.post('/api/Accounts/register', postObject, { headers: { Authorization: `Bearer ${token}` } })
+        const response = await axios.post('https://rivitabackend20211127164230.azurewebsites.net/api/Accounts/register', postObject, { headers: { Authorization: `Bearer ${token}` } })
 
         dispatch({
             type: 'USER_REGISTER_SUCCESS',

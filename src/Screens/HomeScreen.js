@@ -281,7 +281,7 @@ const HomeScreen = () => {
                         <div className='container contactHover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-2 '>
-                                    <i class="fas fa-map-pin contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-map-pin contactsInfoIconsStyle"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>ADRESAS</h3>
@@ -294,7 +294,7 @@ const HomeScreen = () => {
                         <div className='container contactHover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-3 col-lg-2'>
-                                    <i class="fas fa-phone contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-phone contactsInfoIconsStyle"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>TELEFONAS UŽKLAUSOMS:</h3>
@@ -307,7 +307,7 @@ const HomeScreen = () => {
                         <div className='container contactHover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-2'>
-                                    <i class="fas fa-info contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-info contactsInfoIconsStyle"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>INFORMACIJA:</h3>
@@ -320,7 +320,7 @@ const HomeScreen = () => {
                         <div className='container contactHover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-3 col-lg-2'>
-                                    <i class="fas fa-envelope-open-text contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-envelope-open-text contactsInfoIconsStyle"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>EL. PAŠTAS:</h3>
@@ -334,7 +334,7 @@ const HomeScreen = () => {
             </section>
             <section className='container-fluid' style={{ width: '80%', paddingTop: '20px', paddingBottom: '40px' }}>
                 <div className='container'>
-                    <iframe title="Rivita lokacija" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.9415054990154!2d25.264413215888933!3d54.675457880279055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946df73d5a7f%3A0xbd6c8ddff23db111!2s%C5%A0vitrigailos%20g.%2011%2C%20Vilnius%2003223!5e0!3m2!1slt!2slt!4v1637341318123!5m2!1slt!2slt" width="100%" height="400px" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe title="Rivita lokacija" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.9415054990154!2d25.264413215888933!3d54.675457880279055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946df73d5a7f%3A0xbd6c8ddff23db111!2s%C5%A0vitrigailos%20g.%2011%2C%20Vilnius%2003223!5e0!3m2!1slt!2slt!4v1637341318123!5m2!1slt!2slt" width="100%" height="400px" allowFullScreen="" loading="lazy"></iframe>
                 </div>
             </section>
 

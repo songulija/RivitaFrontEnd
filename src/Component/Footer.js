@@ -59,7 +59,7 @@ function Footer(props) {
                     <hr style={{ color: '#D1DBDD', opacity: '0.2' }}></hr>
                     <div className='row'>
                         <div className='col-sm-12 col-md-6'>
-                            <p class="copyright">UAB "Rivita ir Ko" © 2021 Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed</p>
+                            <p className="copyright">UAB "Rivita ir Ko" © 2021 Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed</p>
                         </div>
                         <div className='col-sm-12 col-md-6'>
                         </div>

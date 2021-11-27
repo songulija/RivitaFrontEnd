@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Button, Space, Select, Table, Row, Col, Card, Typography } from 'antd';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';
-import { getWagonsByTransportation, getWagons, insertWagon, updateWagon } from '../redux/actions/wagonsActions';
+import { getWagonsByTransportation, insertWagon, updateWagon } from '../redux/actions/wagonsActions';
 import { getTransportations } from '../redux/actions/transportationsActions'
 import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
 import UpdateWagonComponent from '../Component/wagons_components/UpdateWagonComponent'
@@ -26,7 +26,7 @@ const textStyle = {
     marginRight: '40px',
 }
 
-const { Paragraph, Text } = Typography;
+const { Text } = Typography;
 const { Option } = Select;
 
 class AdminWagonScreen extends React.Component {
@@ -89,7 +89,7 @@ class AdminWagonScreen extends React.Component {
         }
         this.setState({
             updateWagon: obj
-        }, () => console.log('UpdateWagon state:' + JSON.stringify(this.state.updateWagon)));
+        });
     }
     unshowUpdateWagonModal = () => {
         const obj = {
@@ -132,12 +132,11 @@ class AdminWagonScreen extends React.Component {
 
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
-            console.log('TransportationId:' + this.props.match.params.id)
             this.props.getTransportations(() => {
                 const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
                 this.setState({
                     transportations: transportationsClone
-                }, () => console.log('Setted transportations:' + JSON.stringify(this.state.transportations)));
+                });
                 if (this.props.match.params.id === null || this.props.match.params.id === undefined) {
                     this.setState({
                         transportationId: transportationsClone[0].id
@@ -222,7 +221,7 @@ class AdminWagonScreen extends React.Component {
                                     onChange={(e) => this.transportationSelect(e)}
                                 >
                                     {this.state.transportations.map((element, index) => {
-                                        return (<Option name={element.id} value={element.id}>{element.transportationNumber}</Option>)
+                                        return (<Option key={element.id} name={element.id} value={element.id}>{element.transportationNumber}</Option>)
                                     })}
                                 </Select>
                             </Col>
