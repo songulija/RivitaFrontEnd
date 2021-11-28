@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import "../styles/Login.css";
 import { login, getUserData } from '../redux/actions/userActions.js'
 import { Link, withRouter } from 'react-router-dom'
+import HeaderMain from '../Component/HeaderMain';
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -45,6 +46,7 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <>
+            <HeaderMain/>
                 <div className="login my-auto container-fluid vh-100 vw-100">
                     <Form onSubmit={this.submitHandler}>
                         <h1 className="h3 mb-3 fw-normal">Prašom prisijungti</h1>

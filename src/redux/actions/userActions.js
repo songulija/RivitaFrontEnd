@@ -1,4 +1,3 @@
-import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Cookies from 'js-cookie'
 import rivitaAPI from "./rivitaAPI";

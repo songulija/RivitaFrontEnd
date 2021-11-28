@@ -1,4 +1,3 @@
-import axios from 'axios'
 import rivitaAPI from './rivitaAPI'
 
 export const getWagons = () => async (dispatch,getState) =>{

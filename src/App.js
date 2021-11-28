@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './Component/Header';
+// import Header from './Component/HeaderHome';
 import HomeScreen from './Screens/HomeScreen';
 import RegisterScreen from './Screens/RegisterScreen'
 import CompaniesScreen from './Screens/CompaniesScreen';
@@ -10,13 +10,12 @@ import AdminWagonScreen from './Screens/AdminWagonScreen';
 import UserTransportations from './Screens/UserTransportations';
 import SearchScreen from './Screens/SearchScreen';
 import Test from './Screens/Test';
-import { Container } from 'react-bootstrap';
 
 function App() {
   return (
     <>
       <Router>
-        <Header />
+        {/* <Header /> */}
           <Route path='/login' component={LoginScreen} />
           <Route path='/test' component={Test} />
           <Route path='/register' component={RegisterScreen} />

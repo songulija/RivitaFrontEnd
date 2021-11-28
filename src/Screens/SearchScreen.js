@@ -4,6 +4,7 @@ import { Button, Row, Col, Checkbox, Typography, Input, Space } from 'antd'
 import moment from 'moment'
 import { withRouter } from 'react-router-dom';
 import { getTransportationsByParams } from '../redux/actions/transportationsActions'
+import HeaderMain from '../Component/HeaderMain';
 
 
 const aboutTitleTextStyle = {
@@ -181,6 +182,7 @@ class SearchScreen extends React.Component {
     render() {
         return (
             <>
+            <HeaderMain/>
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={1}>
                         <Row gutter={16}>

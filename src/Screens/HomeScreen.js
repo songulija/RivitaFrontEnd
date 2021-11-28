@@ -1,35 +1,36 @@
 import React from 'react'
-import { Container, Row, Col, Form, Button, Carousel, Image } from 'react-bootstrap';
+import {Form, Button, Carousel, Image } from 'react-bootstrap';
 import { Checkbox } from 'antd'
-import mainPhoto from '../images/main_2.jpg'
-import vision from '../images/vision.png';
+
+import vision from '../images/009-vision.png';
 import mission from '../images/004-mission.png'
 import purpose from '../images/006-purpose.png'
+import wagon1 from '../images/wagons-1.jpg'
+import wagon2 from '../images/wagons-4.jpg'
+import wagon3 from '../images/wagons-3.png'
+import gelezinkeliai from '../images/gelezinkeliai.png';
+import ldzcargo from '../images/ldzcargo1.png';
+import logo_bzhd from '../images/logo_bzhd.png';
+import simvolika from '../images/simvolika-1.jpg';
+
 import '../styles/Home.css'
 import {
-    aboutTextStyle, aboutParagraphsTitlesStyles, aboutParagraphsTextStyles, aboutFormButton, serviceSectionStyle,
+    aboutTextStyle, aboutParagraphsTitlesStyles, aboutParagraphsTextStyles, serviceSectionStyle,
     serviceText, serviceTitleStyle, sectionTitleStyle, cargosTextStyle, cargoPhotoTitle, cargoPhotoText, partnersTitlesStyle,
     contactsInfoTitle, contactsInfoText, titleLineStyle
 } from '../styles/homeScreenStyles'
 import Footer from '../Component/Footer';
+import HeaderHome from '../Component/HeaderHome';
 
 const HomeScreen = () => {
     return (
         <>
-            {/* <div style={{ background: '#82979c', color: 'white' }}>
-                <Container>
-                    <Row>
-                        <Col lg={3}><i className="fas fa-map-marker"></i> <span>Švitrigailos g.11A, LT-03228 Vilnius</span></Col>
-                        <Col lg={2}><i className="fas fa-phone"></i><span>+3702650264</span></Col>
-                        <Col lg={3}><i className="far fa-clock"></i><span> Pirmdienis-Penktadienis, 8:00-17:30</span></Col>
-                    </Row>
-                </Container>
-            </div> */}
-            {/* <section className='container-fluid text-center' style={{ width: '100%', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}> */}
-            <div className='container-fluid header-img' style={{ height: '70vh',width: '100%', paddingLeft: '0', paddingRight: '0', backgroundSize: 'cover', overflow: 'hidden' }} >
+
+            <div className='header-img' >
                 {/* <Image src={mainPhoto} /> */}
-                <div className='main' >
-                    <div className='header-content '>
+                <HeaderHome/>
+                <div className='main2'>
+                    <div className='header-content' style={{height: '100%', width: '100%'}}>
                         <h3>KROVINIŲ EKSPEDIJAVIMAS GELEŽINKELIO TRANSPORTU.</h3>
                         <h1 style={{ fontWeight: 'bold', color: '#516C71' }}>25 METŲ PATIRTIS.</h1>
                     </div>
@@ -51,10 +52,10 @@ const HomeScreen = () => {
                         </div>
 
                         {/* misija, vizija, tikslai */}
-                        <div className='container pt-4'>
+                        <div className='container pt-4' style={{paddingLeft: 0}}>
                             <div className='container'>
                                 <div className="row">
-                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 aboutUsHover">
+                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 about-us-hover">
                                         <img src={mission} alt='Vision' />
                                     </div>
                                     <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
@@ -65,8 +66,8 @@ const HomeScreen = () => {
                                 </div>
                             </div>
                             <div className='container'>
-                                <div className="row test">
-                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 aboutUsHover">
+                                <div className="row">
+                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 about-us-hover">
                                         <img src={vision} alt='Vision' />
                                     </div>
                                     <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
@@ -78,7 +79,7 @@ const HomeScreen = () => {
                             </div>
                             <div className='container'>
                                 <div className="row">
-                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 aboutUsHover">
+                                    <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 about-us-hover">
                                         <img src={purpose} alt='Vision' />
                                     </div>
                                     <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
@@ -112,7 +113,7 @@ const HomeScreen = () => {
                                 </Form.Group>
                                 <Checkbox>Sutinku su šios svetainės privatumo politika.</Checkbox>
                                 <br />
-                                <button style={{ ...aboutFormButton }}>Siųsti</button>
+                                <button className='about-us-button'>Siųsti</button>
                             </Form>
 
 
@@ -130,8 +131,8 @@ const HomeScreen = () => {
                     <div className='row'>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
                             <div className='container text-center '>
-                                <div className='container text-center serviceContainerStyle' >
-                                    <i className="fas fa-train serviceIconsStyle" ></i>
+                                <div className='container text-center service-container-style' >
+                                    <i className="fas fa-train service-icons-style" ></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Krovinių ekspedijavimas geležinkelių transportu
                                     Krovinio judėjimo </p>
@@ -139,24 +140,24 @@ const HomeScreen = () => {
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
                             <div className='container text-center'>
-                                <div className='container text-center  serviceContainerStyle'>
-                                    <i className="fas fa-globe-europe serviceIconsStyle"></i>
+                                <div className='container text-center  center service-container-style'>
+                                    <i className="fas fa-globe-europe service-icons-style"></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Krovinio judėjimo kontrolė</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className='container text-center'>
-                                <div className='container text-center  serviceContainerStyle'>
-                                    <i className="fas fa-file-contract serviceIconsStyle"></i>
+                                <div className='container text-center  center service-container-style'>
+                                    <i className="fas fa-file-contract service-icons-style"></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Pasienio ir transporto veterinarinės priežiūros tarnybų teikiamų paslaugų organizavimas</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className='container text-center'>
-                                <div className='container text-center serviceContainerStyle'>
-                                    <i className="fas fa-phone serviceIconsStyle"></i>
+                                <div className='container text-center center service-container-style'>
+                                    <i className="fas fa-phone service-icons-style"></i>
                                 </div>
                                 <p style={{ ...serviceText }}>Konsultacijos krovinių vežimo klausimais</p>
                             </div>
@@ -178,17 +179,25 @@ const HomeScreen = () => {
                                 <Carousel.Item interval={3000}>
                                     <img
                                         className="d-block w-100"
-                                        src="http://www.rivita.lt/wp-content/uploads/2019/03/600-tie-down-load-out12.jpg"
+                                        src={wagon1}
                                         alt="First slide"
-                                        style={{ height: '340px' }}
+                                        style={{ height: '360px' }}
                                     />
                                 </Carousel.Item>
                                 <Carousel.Item interval={3000}>
                                     <img
                                         className="d-block w-100"
-                                        src="http://www.rivita.lt/wp-content/uploads/2019/03/jailcellload.jpg"
+                                        src={wagon3}
                                         alt="Second slide"
-                                        style={{ height: '340px' }}
+                                        style={{ height: '360px' }}
+                                    />
+                                </Carousel.Item>
+                                <Carousel.Item interval={3000}>
+                                    <img
+                                        className="d-block w-100"
+                                        src={wagon2}
+                                        alt="Second slide"
+                                        style={{ height: '360px' }}
                                     />
                                 </Carousel.Item>
                             </Carousel>
@@ -215,13 +224,13 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-            <section className='container-fluid text-center' style={{ width: '100%', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}>
+            <section className='container-fluid text-center kroviniai'>
                 <div className='row' style={{ height: '410px', position: 'relative' }}>
                     <div className='container' style={{
                         position: 'absolute', left: '50%', top: '50%',
                         transform: 'translate(-50%, -50%)'
                     }}>
-                        <h3 style={{ ...cargoPhotoTitle }}><strong>REIKA PERVEŽTI KROVINĮ?</strong></h3>
+                        <h3 style={{ ...cargoPhotoTitle }}><strong>REIKIA PERVEŽTI KROVINĮ?</strong></h3>
                         <p style={{ ...cargoPhotoText }}>SUSISIEKITE SU MUMIS</p>
                         <Button variant="outline-light">UŽPILDYKITE UŽKLAUSOS FORMĄ</Button>
                     </div>
@@ -237,26 +246,26 @@ const HomeScreen = () => {
                 <div className='container'>
                     <div className='row text-center'>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
-                            <div className="container  PartnersHover">
-                                <div className='container ' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '40px', paddingBottom: '40px' }} >
-                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/gelezinkeliai.png'} alt="Lietuvos geležinkeliai" />
+                            <div className="container  partners-hover">
+                                <div className='container ' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '30px', paddingBottom: '30px' }} >
+                                    <Image style={{ width: '100%', height: '100%' }} src={gelezinkeliai} alt="Lietuvos geležinkeliai" />
                                 </div>
 
                             </div>
                             <h3 style={{ ...partnersTitlesStyle }}>AB „Lietuvos geležinkeliai“</h3>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
-                            <div className="container PartnersHover">
-                                <div className='container' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '40px', paddingBottom: '40px' }}>
-                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/ldzcargo1.png'} alt="LDZ CARGO" />
+                            <div className="container partners-hover">
+                                <div className='container' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '60px', paddingBottom: '60px' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={ldzcargo} alt="LDZ CARGO" />
                                 </div>
                             </div>
                             <h3 style={{ ...partnersTitlesStyle }}>SIA „LDZ CARGO“</h3>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
-                            <div className="container PartnersHover">
-                                <div className='container' style={{ height: '195px', width: '204px', marginTop: '20px', padding: '0', paddingTop: '20px', paddingBottom: '20px' }}>
-                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/logo_bzhd.png'} alt="Baltarusijos geležinkeliai" />
+                            <div className="container partners-hover">
+                                <div className='container' style={{ height: '195px', width: '204px', marginTop: '20px', padding: '0', paddingTop: '40px', paddingBottom: '40px' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={logo_bzhd} alt="Baltarusijos geležinkeliai" />
                                 </div>
                             </div>
                             <h3 style={{ ...partnersTitlesStyle }}>VĮ „Baltarusijos geležinkeliai“</h3>
@@ -264,9 +273,9 @@ const HomeScreen = () => {
 
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
 
-                            <div className="container PartnersHover">
-                                <div className='container' style={{ height: '195px', marginTop: '20px', width: '204px', padding: '10px' }}>
-                                    <Image style={{ width: '100%', height: '100%' }} src={'http://www.rivita.lt/wp-content/uploads/2019/02/simvolika-1.jpg'} alt="Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba" />
+                            <div className="container partners-hover">
+                                <div className='container' style={{ height: '195px', marginTop: '20px', width: '204px', padding: '40px' }}>
+                                    <Image style={{ width: '100%', height: '100%' }} src={simvolika} alt="Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba" />
                                 </div>
                             </div>
                             <h3 style={{ ...partnersTitlesStyle }}>VĮ „Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba“</h3>
@@ -282,10 +291,10 @@ const HomeScreen = () => {
                 </div>
                 <div className='row'>
                     <div className='col-sm-12 col-md-6 py-4'>
-                        <div className='container contactHover'>
+                        <div className='container contacts-hover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-2 '>
-                                    <i className="fas fa-map-pin contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-map-pin contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>ADRESAS</h3>
@@ -295,10 +304,10 @@ const HomeScreen = () => {
                         </div>
                     </div>
                     <div className='col-sm-12 col-md-6 py-4'>
-                        <div className='container contactHover'>
+                        <div className='container contacts-hover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-3 col-lg-2'>
-                                    <i className="fas fa-phone contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-phone contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>TELEFONAS UŽKLAUSOMS:</h3>
@@ -308,10 +317,10 @@ const HomeScreen = () => {
                         </div>
                     </div>
                     <div className='col-sm-12 col-md-6 py-4'>
-                        <div className='container contactHover'>
+                        <div className='container contacts-hover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-2'>
-                                    <i className="fas fa-info contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-info contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>INFORMACIJA:</h3>
@@ -321,10 +330,10 @@ const HomeScreen = () => {
                         </div>
                     </div>
                     <div className='col-sm-12 col-md-6 py-4'>
-                        <div className='container contactHover'>
+                        <div className='container contacts-hover'>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-3 col-lg-2'>
-                                    <i className="fas fa-envelope-open-text contactsInfoIconsStyle"></i>
+                                    <i className="fas fa-envelope-open-text contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>EL. PAŠTAS:</h3>
@@ -336,7 +345,7 @@ const HomeScreen = () => {
                 </div>
 
             </section>
-            <section className='container-fluid' style={{ width: '80%', paddingTop: '20px', paddingBottom: '40px' }}>
+            <section className='container-fluid' style={{ width: '95%', paddingTop: '20px', paddingBottom: '40px' }}>
                 <div className='container'>
                     <iframe title="Rivita lokacija" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.9415054990154!2d25.264413215888933!3d54.675457880279055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946df73d5a7f%3A0xbd6c8ddff23db111!2s%C5%A0vitrigailos%20g.%2011%2C%20Vilnius%2003223!5e0!3m2!1slt!2slt!4v1637341318123!5m2!1slt!2slt" width="100%" height="400px" allowFullScreen="" loading="lazy"></iframe>
                 </div>

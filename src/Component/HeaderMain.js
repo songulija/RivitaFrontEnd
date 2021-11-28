@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { logout } from '../redux/actions/userActions'
 import logo from '../images/rivita-logo.png'
 
-class Header extends React.Component {
+class HeaderMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,28 +42,28 @@ class Header extends React.Component {
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAGRINDINIS</Nav.Link>
                                 {this.props.usersReducer.currentUser === null ?
                                     <>
-                                        <LinkContainer to='/'>
-                                            <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>APIE MUS</Nav.Link>
+                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                            <Nav.Link>APIE MUS</Nav.Link>
                                         </LinkContainer>
 
-                                        <LinkContainer to='/'>
-                                            <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PASLAUGOS</Nav.Link>
+                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                            <Nav.Link>PASLAUGOS</Nav.Link>
                                         </LinkContainer>
-                                        <LinkContainer to='/'>
-                                            <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KROVINIAI</Nav.Link>
+                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                            <Nav.Link >KROVINIAI</Nav.Link>
                                         </LinkContainer>
-                                        <LinkContainer to='/'>
+                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
                                             <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KONTAKTAI</Nav.Link>
                                         </LinkContainer>
-                                        <LinkContainer to='/login'>
-                                            <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KLIENTAMS</Nav.Link>
+                                        <LinkContainer to='/login' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                            <Nav.Link>KLIENTAMS</Nav.Link>
                                         </LinkContainer>
                                     </>
                                     : null}
                                 {this.props.usersReducer.currentUser ?
                                     <>
-                                        <LinkContainer to='/search'>
-                                            <Nav.Link href="/search" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAIEŠKA</Nav.Link>
+                                        <LinkContainer to='/search' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                            <Nav.Link href="/search">PAIEŠKA</Nav.Link>
                                         </LinkContainer>
                                         {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
                                         {this.props.userInfoReducer.role === 'Administrator' ?
@@ -105,4 +105,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { logout })(withRouter(Header));
+export default connect(mapStateToProps, { logout })(withRouter(HeaderMain));

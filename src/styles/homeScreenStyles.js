@@ -17,25 +17,12 @@ export const aboutParagraphsTextStyles = {
     fontFamily: 'Open Sans, sans-serif',
     color: '#777777'
 }
-//about Button
-export const aboutFormButton = {
-    padding: '10px 40px',
-    color: 'white',
-    backgroundColor: '#4C686E',
-    fontSize: '18px',
-    marginTop: '10px',
-    border: 'none',
-    borderRadius: '8px',
-    '&hover': {
-        backgroundColor: 'white'
-    }
-}
 
 
 // SERVICES STYLING
 export const serviceSectionStyle = {
     width: '100%',
-    backgroundImage: "linear-gradient(to bottom, #4C686E 55%, #7B9094 100%)",
+    backgroundImage: "linear-gradient(170deg, #4F636A 30%, #E0C4AE 80%, #FBBC91 100%)",
     color: 'white'
 }
 

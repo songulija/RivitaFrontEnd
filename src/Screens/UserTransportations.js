@@ -4,6 +4,7 @@ import { getTransportations, getTransportationsByParams } from '../redux/actions
 import { withRouter } from 'react-router-dom';
 import { Col, Table, Row, Typography, Button } from 'antd';
 import moment from 'moment'
+import HeaderMain from '../Component/HeaderMain';
 
 
 const aboutTitleTextStyle = {
@@ -228,6 +229,7 @@ class UserTransportations extends React.Component {
         ]
         return (
             <>
+            <HeaderMain/>
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={1}>
                         <Row gutter={16}>

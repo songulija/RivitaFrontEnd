@@ -7,6 +7,7 @@ import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/custo
 import { withRouter } from 'react-router-dom';
 import AddCompanyComponent from '../Component/companies_components/AddCompanyComponent.js';
 import UpdateCompanyComponent from '../Component/companies_components/UpdateCompanyComponent.js';
+import HeaderMain from '../Component/HeaderMain.js';
 
 const aboutTitleTextStyle = {
     fontStyle: 'normal',
@@ -126,8 +127,9 @@ class CompaniesScreen extends React.Component {
         ]
         return (
             <>
+            <HeaderMain/>
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
-                    <Col span={24} offset={3}>
+                    <Col span={24} offset={2}>
                         <Row gutter={16}>
                             <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>
@@ -142,13 +144,15 @@ class CompaniesScreen extends React.Component {
                         {/* returns second column with table */}
                         {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
                         <Row gutter={16}>
-                            <Col span={14}>
+                            <Col span={22}>
                                 <Card size={'small'} style={{ ...tableCardStyle }} bodyStyle={{ ...tableCardBodyStyle }}>
                                     <Table
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.state.companies}
                                         pagination={{ pageSize: 15 }}
+                                        bordered
+                                        scroll={{ x: 'calc(700px + 50%)' }}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
                                     <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>

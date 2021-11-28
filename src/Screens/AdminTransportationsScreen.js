@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 import AddTransportationComponent from '../Component/transportations_components/AddTransportationComponent';
 import moment from 'moment'
 import UpdateTransportationComponent from '../Component/transportations_components/UpdateTransportationComponent.js';
+import HeaderMain from '../Component/HeaderMain.js';
 
 
 const aboutTitleTextStyle = {
@@ -284,6 +285,7 @@ class AdminTransportationScreen extends React.Component {
         ]
         return (
             <>
+            <HeaderMain/>
                 {/* column has 100 percent if span 24 */}
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={1}>

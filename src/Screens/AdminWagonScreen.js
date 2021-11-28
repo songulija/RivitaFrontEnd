@@ -8,6 +8,7 @@ import { getWagonsByTransportation, insertWagon, updateWagon } from '../redux/ac
 import { getTransportations } from '../redux/actions/transportationsActions'
 import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
 import UpdateWagonComponent from '../Component/wagons_components/UpdateWagonComponent'
+import HeaderMain from '../Component/HeaderMain';
 
 
 const aboutTitleTextStyle = {
@@ -198,8 +199,9 @@ class AdminWagonScreen extends React.Component {
         ]
         return (
             <>
+            <HeaderMain/>
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
-                    <Col span={24} offset={3}>
+                    <Col span={24} offset={2}>
                         <Row gutter={16}>
                             <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>

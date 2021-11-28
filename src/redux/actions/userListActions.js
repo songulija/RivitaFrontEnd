@@ -1,4 +1,3 @@
-import axios from 'axios'
 import rivitaAPI from './rivitaAPI';
 export const getUsers = (num,callback) => async(dispatch,getState) =>{
     try {

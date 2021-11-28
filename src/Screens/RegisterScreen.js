@@ -10,6 +10,7 @@ import { getUsers } from '../redux/actions/userListActions'
 import { withRouter } from 'react-router-dom'
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
 import AddUserComponent from '../Component/register_components/AddUserComponent'
+import HeaderMain from '../Component/HeaderMain';
 
 
 const aboutTitleTextStyle = {
@@ -99,8 +100,9 @@ class RegisterScreen extends React.Component {
         ]
         return (
             <>
+            <HeaderMain/>
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
-                    <Col span={24} offset={3}>
+                    <Col span={24} offset={2}>
                         <Row gutter={16}>
                             <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>
@@ -115,13 +117,15 @@ class RegisterScreen extends React.Component {
                         {/* returns second column with table */}
                         {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
                         <Row gutter={16}>
-                            <Col span={18}>
+                            <Col span={22}>
                                 <Card size={'small'} style={{ ...tableCardStyle }} bodyStyle={{ ...tableCardBodyStyle }}>
                                     <Table
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.props.usersListReducer.users}
                                         pagination={{ pageSize: 10 }}
+                                        bordered
+                                        scroll={{ x: 'calc(700px + 50%)' }}
                                     // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
                                     <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddUser}><PlusOutlined />Pridėti naudotoją</Button></Space>
