@@ -1,17 +1,18 @@
+/* background-image: url('http://www.rivita.lt/wp-content/uploads/2019/03/Slidas4.png'); */
 .header-img{
-    background-image: url('http://www.rivita.lt/wp-content/uploads/2019/03/Slidas4.png');
-    background-repeat: no-repeat;
-    background-position: right;
+    background-image: url('../images/main_2.jpg');
+    /* background-repeat: no-repeat;
+    background-position: right; */
 }
 .header-content h3{
-    color: #5f1508!important;
+    color: #fff6ef !important;
     font-size: 54px;
     font-weight: 400;
     letter-spacing: 0px;
     line-height: 64px;
 }
 .header-content h1{
-    color: #516c71!important;
+    color: #fff6ef!important;
     font-size: 54px;
     font-weight: 700;
     letter-spacing: 0px;

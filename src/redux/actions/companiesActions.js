@@ -1,4 +1,5 @@
 import axios from "axios";
+import rivitaAPI from './rivitaAPI'
 
 export const getCompanies = (callback) => async (dispatch,getState) => {
     try {
@@ -6,7 +7,7 @@ export const getCompanies = (callback) => async (dispatch,getState) => {
             type: 'COMPANIES_FETCH_REQUEST'
         });
         const token = getState().usersReducer.currentUser;
-        const response = await axios.get('https://rivitabackend20211127164230.azurewebsites.net/api/Companies', { headers: { Authorization: `Bearer ${token}` } });
+        const response = await rivitaAPI.get('/api/Companies', { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'COMPANIES_FETCH_SUCCESS',
             payload: response.data
@@ -33,7 +34,7 @@ export const createCompany = (postObject,callback) => async (dispatch,getState) 
         });
 
         const token = getState().usersReducer.currentUser;
-        const response = await axios.post('https://rivitabackend20211127164230.azurewebsites.net/api/Companies',postObject, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await rivitaAPI.post('/api/Companies',postObject, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'COMPANIES_CREATE_SUCCESS',
             payload: response.data
@@ -62,7 +63,7 @@ export const updateCompany = (postObj,reducerObj,callback) => async(dispatch,get
         });
         //get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        await axios.put(`https://rivitabackend20211127164230.azurewebsites.net/api/Companies/${reducerObj.id}`,postObj, { headers: { Authorization: `Bearer ${token}` } });
+        await rivitaAPI.put(`/api/Companies/${reducerObj.id}`,postObj, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'COMPANIES_UPDATE_SUCCESS',
             payload: reducerObj

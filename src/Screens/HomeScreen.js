@@ -1,20 +1,22 @@
 import React from 'react'
-import { Container,Row, Col, Form, Button, Carousel, Image } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Carousel, Image } from 'react-bootstrap';
 import { Checkbox } from 'antd'
+import mainPhoto from '../images/main_2.jpg'
 import vision from '../images/vision.png';
 import mission from '../images/004-mission.png'
 import purpose from '../images/006-purpose.png'
 import '../styles/Home.css'
-import {aboutTextStyle,aboutParagraphsTitlesStyles,aboutParagraphsTextStyles,aboutFormButton,serviceSectionStyle,
-serviceText,serviceTitleStyle,sectionTitleStyle,cargosTextStyle,cargoPhotoTitle,cargoPhotoText, partnersTitlesStyle,
-contactsInfoTitle,contactsInfoText,titleLineStyle} from '../styles/homeScreenStyles'
+import {
+    aboutTextStyle, aboutParagraphsTitlesStyles, aboutParagraphsTextStyles, aboutFormButton, serviceSectionStyle,
+    serviceText, serviceTitleStyle, sectionTitleStyle, cargosTextStyle, cargoPhotoTitle, cargoPhotoText, partnersTitlesStyle,
+    contactsInfoTitle, contactsInfoText, titleLineStyle
+} from '../styles/homeScreenStyles'
 import Footer from '../Component/Footer';
 
 const HomeScreen = () => {
     return (
         <>
-        
-            <div style={{ background: '#82979c', color: 'white' }}>
+            {/* <div style={{ background: '#82979c', color: 'white' }}>
                 <Container>
                     <Row>
                         <Col lg={3}><i className="fas fa-map-marker"></i> <span>Švitrigailos g.11A, LT-03228 Vilnius</span></Col>
@@ -22,12 +24,14 @@ const HomeScreen = () => {
                         <Col lg={3}><i className="far fa-clock"></i><span> Pirmdienis-Penktadienis, 8:00-17:30</span></Col>
                     </Row>
                 </Container>
-            </div>
-            <div className='header-img' style={{ height: '70vh' }} >
+            </div> */}
+            {/* <section className='container-fluid text-center' style={{ width: '100%', paddingLeft: '0', paddingRight: '0', backgroundImage: `url("http://www.rivita.lt/wp-content/uploads/2019/02/cta.png?id=843")`, backgroundSize: 'cover', overflow: 'hidden' }}> */}
+            <div className='container-fluid header-img' style={{ height: '70vh',width: '100%', paddingLeft: '0', paddingRight: '0', backgroundSize: 'cover', overflow: 'hidden' }} >
+                {/* <Image src={mainPhoto} /> */}
                 <div className='main' >
                     <div className='header-content '>
                         <h3>KROVINIŲ EKSPEDIJAVIMAS GELEŽINKELIO TRANSPORTU.</h3>
-                        <h1 style={{ fontWeight: 'bold', color: '#516C71' }}>20 METŲ PATIRTIS.</h1>
+                        <h1 style={{ fontWeight: 'bold', color: '#516C71' }}>25 METŲ PATIRTIS.</h1>
                     </div>
                 </div>
             </div>
@@ -338,8 +342,8 @@ const HomeScreen = () => {
                 </div>
             </section>
 
-            <Footer/>
-           
+            <Footer />
+
         </>
 
     )

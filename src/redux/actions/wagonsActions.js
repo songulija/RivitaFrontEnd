@@ -1,4 +1,5 @@
 import axios from 'axios'
+import rivitaAPI from './rivitaAPI'
 
 export const getWagons = () => async (dispatch,getState) =>{
     try{
@@ -6,7 +7,7 @@ export const getWagons = () => async (dispatch,getState) =>{
             type: 'WAGONS_FETCH_REQUEST'
         });
         const token = getState().usersReducer.currentUser;
-        const response = await axios.get('https://rivitabackend20211127164230.azurewebsites.net/api/Wagons', { headers: { Authorization: `Bearer ${token}` } });
+        const response = await rivitaAPI.get('/api/Wagons', { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'WAGONS_FETCH_SUCCESS',
             payload: response.data
@@ -31,7 +32,7 @@ export const getWagonsByTransportation = (transportationId,callback) => async (d
             type: 'TRANSPORTATION_WAGONS_FETCH_REQUEST'
         });
         const token = getState().usersReducer.currentUser;
-        const response = await axios.get('https://rivitabackend20211127164230.azurewebsites.net/api/Wagons/transportation/'+transportationId, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await rivitaAPI.get('/api/Wagons/transportation/'+transportationId, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'TRANSPORTATION_WAGONS_FETCH_SUCCESS',
             payload: response.data
@@ -58,7 +59,7 @@ export const insertWagon = (postObj, callback) => async(dispatch,getState)=>{
         });
 
         const token = getState().usersReducer.currentUser;
-        const response = await axios.post('https://rivitabackend20211127164230.azurewebsites.net/api/Wagons',postObj, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await rivitaAPI.post('/api/Wagons',postObj, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
             type: 'WAGONS_CREATE_SUCCESS',
             payload: response.data
@@ -86,7 +87,7 @@ export const updateWagon = (postObj,reducerObj,callback) => async(dispatch,getSt
         });
         // get token from usersReducer
         const token = getState().usersReducer.currentUser;
-        await axios.put(`https://rivitabackend20211127164230.azurewebsites.net/api/Wagons/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
+        await rivitaAPI.put(`/api/Wagons/${reducerObj.id}`,postObj, {headers: {Authorization: `Bearer ${token}`}});
         dispatch({
             type: 'WAGONS_UPDATE_SUCCESS',
             payload: reducerObj
