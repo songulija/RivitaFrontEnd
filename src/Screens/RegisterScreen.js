@@ -51,7 +51,7 @@ class RegisterScreen extends React.Component {
 
     saveChanges = (postObj) => {
         this.props.register(postObj, () => {
-            this.props.getUsers(1 , () =>{
+            this.props.getUsers(1, () => {
                 const usersClone = JSON.parse(JSON.stringify(this.props.usersListReducer.users))
                 this.setState({
                     users: usersClone,
@@ -70,12 +70,12 @@ class RegisterScreen extends React.Component {
                     users: usersClone
                 })
             });
-            this.props.getCompanies(1, () => {
-                const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies));
+            this.props.getCompanies(() => {
+                const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
                 this.setState({
                     companies: companiesClone
-                });
-            });
+                })
+            })
         } else {
             // this.props.history.push('/login')
         }
@@ -100,7 +100,7 @@ class RegisterScreen extends React.Component {
         ]
         return (
             <>
-            <HeaderMain/>
+                <HeaderMain />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={2}>
                         <Row gutter={16}>
@@ -136,7 +136,7 @@ class RegisterScreen extends React.Component {
                 </div>
                 {this.state.addUserVisibility !== false ?
                     <AddUserComponent visible={this.state.addUserVisibility} onClose={this.unshowAddUser}
-                        save={this.saveChanges} companies={this.state.companies}/>
+                        save={this.saveChanges} companies={this.state.companies} />
                     : null}
             </>
 
