@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Button, Carousel, Image } from 'react-bootstrap';
+import { Form, Button, Carousel, Image } from 'react-bootstrap';
 import { Checkbox } from 'antd'
 
 import vision from '../images/009-vision.png';
@@ -28,9 +28,9 @@ const HomeScreen = () => {
 
             <div className='header-img' >
                 {/* <Image src={mainPhoto} /> */}
-                <HeaderHome/>
+                <HeaderHome />
                 <div className='main2'>
-                    <div className='header-content' style={{height: '100%', width: '100%'}}>
+                    <div className='header-content' style={{ height: '100%', width: '100%' }}>
                         <h3>KROVINIŲ EKSPEDIJAVIMAS GELEŽINKELIO TRANSPORTU.</h3>
                         <h1 style={{ fontWeight: 'bold', color: '#516C71' }}>25 METŲ PATIRTIS.</h1>
                     </div>
@@ -39,7 +39,7 @@ const HomeScreen = () => {
 
             <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
 
-                <div className='row'>
+                <div className='row' name="about">
 
                     <div className='col-sm-12  col-lg-6'>
                         <div className='container'>
@@ -52,7 +52,7 @@ const HomeScreen = () => {
                         </div>
 
                         {/* misija, vizija, tikslai */}
-                        <div className='container pt-4' style={{paddingLeft: 0}}>
+                        <div className='container pt-4' style={{ paddingLeft: 0 }}>
                             <div className='container'>
                                 <div className="row">
                                     <div className="col-sm-2 col-md-2 col-lg-3 col-xl-2 about-us-hover">
@@ -121,7 +121,7 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-            <section className='container-fluid pt-5 pb-5' style={{ ...serviceSectionStyle }}>
+            <section className='container-fluid pt-5 pb-5' style={{ ...serviceSectionStyle }} name='paslaugos'>
                 <div className='container' style={{ width: '80%' }}>
                     <div className='row pb-5'>
                         <h2 style={{ ...serviceTitleStyle }}>Paslaugos</h2>
@@ -167,7 +167,7 @@ const HomeScreen = () => {
 
             </section>
 
-            <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
+            <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }} name='kroviniai'>
                 <div className='row pb-5'>
                     <h2 style={{ ...sectionTitleStyle }}>Kroviniai</h2>
                     <hr style={{ ...titleLineStyle }}></hr>
@@ -284,7 +284,7 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </section>
-            <section className='container-fluid' style={{ width: '80%', paddingTop: '20px' }}>
+            <section className='container-fluid' style={{ width: '80%', paddingTop: '20px' }} name='kontaktai'>
                 <div className='row pb-5 pt-5'>
                     <h2 style={{ ...sectionTitleStyle }}>Kontaktinė informacija</h2>
                     <hr style={{ ...titleLineStyle }}></hr>

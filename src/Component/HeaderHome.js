@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { logout } from '../redux/actions/userActions'
 import logo from '../images/rivita-logo.png'
+import { animateScroll as scroll, scroller, Link } from 'react-scroll'
 
 class HeaderHome extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class HeaderHome extends React.Component {
         // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
         return (
             <div>
-                <Navbar bg="" variant='light' expand="xl" >
+                <Navbar bg="" variant='light' expand="xl"  >
                     <Container>
                         <LinkContainer to='/'>
                             <Navbar.Brand href="/">
@@ -42,20 +43,23 @@ class HeaderHome extends React.Component {
                                 <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: 'white' }}>PAGRINDINIS</Nav.Link>
                                 {this.props.usersReducer.currentUser === null ?
                                     <>
-                                        <LinkContainer to='/' style={{color: 'white', fontWeight: '500', fontSize: '18px'}}>
-                                            <Nav.Link>APIE MUS</Nav.Link>
+                                        <LinkContainer to='' style={{ color: 'white', fontWeight: '500', fontSize: '18px' }}>
+                                            <Link className="nav-link" to="about" smooth={true} duration={400} offset={-40}>APIE MUS</Link>
                                         </LinkContainer>
 
-                                        <LinkContainer to='/' style={{color: 'white', fontWeight: '500', fontSize: '18px'}}>
-                                            <Nav.Link>PASLAUGOS</Nav.Link>
+                                        <LinkContainer to='' style={{ color: 'white', fontWeight: '500', fontSize: '18px' }}>
+
+                                            <Link className="nav-link" to="paslaugos" smooth={true} duration={500}>PASLAUGOS</Link>
                                         </LinkContainer>
-                                        <LinkContainer to='/' style={{color: 'white', fontWeight: '500', fontSize: '18px'}}>
-                                            <Nav.Link>KROVINIAI</Nav.Link>
+                                        <LinkContainer to='/' style={{ color: 'white', fontWeight: '500', fontSize: '18px' }}>
+
+                                            <Link className="nav-link" to="kroviniai" smooth={true} duration={500}>KROVINIAI</Link>
                                         </LinkContainer>
-                                        <LinkContainer to='/' style={{color: 'white', fontWeight: '500', fontSize: '18px'}}>
-                                            <Nav.Link>KONTAKTAI</Nav.Link>
+                                        <LinkContainer to='/' style={{ color: 'white', fontWeight: '500', fontSize: '18px' }}>
+
+                                            <Link className="nav-link" to="kontaktai" smooth={true} duration={500}>KONTAKTAI</Link>
                                         </LinkContainer>
-                                        <LinkContainer to='/login' style={{color: 'white', fontWeight: '500', fontSize: '18px'}}>
+                                        <LinkContainer to='/login' style={{ color: 'white', fontWeight: '500', fontSize: '18px' }}>
                                             <Nav.Link>KLIENTAMS</Nav.Link>
                                         </LinkContainer>
                                     </>
@@ -83,10 +87,6 @@ class HeaderHome extends React.Component {
                                             </NavDropdown> : null}
                                         <Button onClick={this.logoutHandler}>Atsijungti</Button>
                                     </> : null}
-
-
-
-
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
