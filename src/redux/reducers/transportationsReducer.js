@@ -1,25 +1,25 @@
-export const transportationsReducer = (state = { transportations: [] }, action) => {
+export const transportationsReducer = (state = { transportations: {} }, action) => {
     switch (action.type) {
         case 'TRANSPORTATIONS_FETCH_REQUEST':
             return { 'loading': true }
         case 'TRANSPORTATIONS_FETCH_SUCCESS':
-            return { ...state,'loading': false, 'transportations': action.payload }
+            return { ...state, 'loading': false, 'transportations': action.payload }
         case 'TRANSPORTATIONS_BY_PARAMS_FETCH_REQUEST':
-            return {...state,'loading':true}
+            return { ...state, 'loading': true }
         case 'TRANSPORTATIONS_BY_PARAMS_FETCH_SUCCESS':
-            return {...state,'loading':false, 'transportations':action.payload} 
+            return { ...state, 'loading': false, 'transportations': action.payload }
         case 'TRANSPORTATIONS_CREATE_REQUEST':
-            return {...state, 'loading': true}
+            return { ...state, 'loading': true }
         case 'TRANSPORTATIONS_CREATE_SUCCESS':
             //adding new transportation to transportations state
-            const newTransportations = [...state.transportations, {...action.payload }]
-            return {...state, 'loading':false, 'transportations':newTransportations }
+            const newTransportations = [...state.transportations, { ...action.payload }]
+            return { ...state, 'loading': false, 'transportations': newTransportations }
         case 'TRANSPORTATIONS_UPDATE_REQUEST':
-            return {...state, 'loading':true}
+            return { ...state, 'loading': true }
         case 'TRANSPORTATIONS_UPDATE_SUCCESS':
             const transportationsClone = JSON.parse(JSON.stringify(state.transportations));
-            transportationsClone.map((element,index)=>{
-                if(element.id === action.payload.id){
+            transportationsClone.map((element, index) => {
+                if (element.id === action.payload.id) {
                     element.transportationNumber = action.payload.transportationNumber;
                     element.weight = action.payload.weight;
                     element.wagonsCount = action.payload.wagonsCount;
@@ -47,9 +47,25 @@ export const transportationsReducer = (state = { transportations: [] }, action) 
                     element.stationMovementEndBelarusTitle = action.payload.stationMovementEndBelarusTitle;
                 }
             });
-            return {...state, 'loading':false, 'transportations':transportationsClone}
+            return { ...state, 'loading': false, 'transportations': transportationsClone }
         case 'ERROR':
-            return {'loading': false, 'error': action.payload }
+            return { 'loading': false, 'error': action.payload }
+        default:
+            return state
+    }
+}
+
+
+export const transportationDeatailsReducer = (state = { transportation: {} }, action) => {
+    switch (action.type) {
+        case 'TRANSPORTATION_DETAILS_REQUEST':
+            console.log("passs")
+            return { 'loading': true }
+        case 'TRANSPORTATION_DETAILS_SUCCESS':
+            return { ...state, 'loading': false, 'transportation': action.payload }
+        case 'TRANSPORTATION_DETAILS_FAIL':
+            return { 'loading': false, 'error': action.payload }
+
         default:
             return state
     }
