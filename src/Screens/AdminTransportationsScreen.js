@@ -88,13 +88,14 @@ class AdminTransportationScreen extends React.Component {
         })
     }
     saveUpdateTransportation = (postObj, reducerObj) => {
-        this.props.updateTransportation(postObj,reducerObj, () => {
+        this.props.updateTransportation(postObj, reducerObj, () => {
             //get clone of changed transportations redux state
             const transportationsClone = JSON.parse(JSON.stringify(this.props.transportationsReducer.transportations));
             this.transportationsDataSet(transportationsClone);
             this.unshowUpdateTransportationModal();
         });
     }
+
 
 
     transportationsDataSet = (transportationsArray) => {
@@ -123,6 +124,8 @@ class AdminTransportationScreen extends React.Component {
             this.props.history.push('/');
         }
     }
+
+
     render() {
         const columns = [
             {
@@ -285,7 +288,7 @@ class AdminTransportationScreen extends React.Component {
         ]
         return (
             <>
-            <HeaderMain/>
+                <HeaderMain />
                 {/* column has 100 percent if span 24 */}
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={1}>
@@ -340,4 +343,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getTransportations, getWagons, createTransportation,updateTransportation })(withRouter(AdminTransportationScreen))
+export default connect(mapStateToProps, { getTransportations, getWagons, createTransportation, updateTransportation })(withRouter(AdminTransportationScreen))

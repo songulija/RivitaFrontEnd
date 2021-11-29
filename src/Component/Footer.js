@@ -1,6 +1,6 @@
 import React from 'react'
-import {footerStyle,footerTitle,footerListElementsStyle} from '../styles/footerStyles.js'
-import {titleLineStyle} from '../styles/homeScreenStyles.js'
+import { footerStyle, footerTitle, footerListElementsStyle } from '../styles/footerStyles.js'
+import { titleLineStyle } from '../styles/homeScreenStyles.js'
 function Footer(props) {
 
     return (
@@ -23,10 +23,6 @@ function Footer(props) {
                                 <li>
                                     <p>
                                         <i className="fas fa-phone"></i> +370 265 0264</p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <i className="fas fa-print mr-3"></i> +370 265 0264</p>
                                 </li>
                             </ul>
                         </div>

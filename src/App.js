@@ -10,21 +10,23 @@ import AdminWagonScreen from './Screens/AdminWagonScreen';
 import UserTransportations from './Screens/UserTransportations';
 import SearchScreen from './Screens/SearchScreen';
 import Test from './Screens/Test';
+import TransportationDetailsScreen from './Screens/TransportationDetailsScreen';
 
 function App() {
   return (
     <>
       <Router>
         {/* <Header /> */}
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/test' component={Test} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/companies' component={CompaniesScreen} />
-          <Route path='/transportations' component={UserTransportations} exact />
-          <Route path='/transportations/admin' component={AdminTransportationsScreen} />
-          <Route path='/wagons/:id?' component={AdminWagonScreen} />
-          <Route path='/search' component={SearchScreen} />
-          <Route path='/' component={HomeScreen} exact />
+        <Route path='/login' component={LoginScreen} />
+        <Route path='/test' component={Test} />
+        <Route path='/register' component={RegisterScreen} />
+        <Route path='/companies' component={CompaniesScreen} />
+        <Route path='/transportations' component={UserTransportations} exact />
+        <Route path='/transportations/admin' component={AdminTransportationsScreen} />
+        <Route path='/transportation/:id?' component={TransportationDetailsScreen} />
+        <Route path='/wagons/:id?' component={AdminWagonScreen} />
+        <Route path='/search' component={SearchScreen} />
+        <Route path='/' component={HomeScreen} exact />
       </Router>
     </>
   );

@@ -55,7 +55,7 @@ class UserTransportations extends React.Component {
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === "Administrator") {
             if (this.props.location.state.query !== null && this.props.location.state.query !== undefined) {
-                this.props.getTransportationsByParams(this.props.location.state.query, () =>{
+                this.props.getTransportationsByParams(this.props.location.state.query, () => {
                     this.transportationsDataSet(this.props.transportationsReducer.transportations);
                 })
             } else {
@@ -73,14 +73,19 @@ class UserTransportations extends React.Component {
         }
     }
 
+    showDetailsScreen = (id) => {
+        this.props.history.push(`/transportation/${id}`)
+    }
+
     render() {
-        console.log(JSON.stringify(this.props.location.state.query))
+        //console.log(JSON.stringify(this.props.location.state.query))
         const columns = [
             {
                 title: 'Pridėti vagonų',
                 width: '3%',
-                render: (value, record, index) => (
-                    <Button>Plačiau</Button>
+                dataIndex: 'id',
+                render: (text, record, index) => (
+                    <Button onClick={(e) => this.showDetailsScreen(text)}>Plačiau</Button>
                 )
             },
             {
@@ -229,7 +234,7 @@ class UserTransportations extends React.Component {
         ]
         return (
             <>
-            <HeaderMain/>
+                <HeaderMain />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={1}>
                         <Row gutter={16}>
