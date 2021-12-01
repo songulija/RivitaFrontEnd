@@ -56,7 +56,7 @@ export const transportationsReducer = (state = { transportations: {} }, action) 
 }
 
 
-export const transportationDeatailsReducer = (state = { transportation: {} }, action) => {
+export const transportationDeatailsReducer = (state = { transportation: { wagons: [] } }, action) => {
     switch (action.type) {
         case 'TRANSPORTATION_DETAILS_REQUEST':
             console.log("passs")
