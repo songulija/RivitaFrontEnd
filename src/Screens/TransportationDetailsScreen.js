@@ -82,17 +82,18 @@ class TransportationDetailsScreen extends React.Component {
 
                     <Row>
                         <Col md={4}>
+                            <h3>Bendra informacija</h3>
                             <Table striped bordered hover size="sm">
 
                                 <tbody>
 
                                     <tr>
-                                        <td>Transporto numeris</td>
+                                        <td>Transportavimo numeris</td>
                                         <td>{this.state.Transportation.transportationNumber}</td>
                                     </tr>
 
                                     <tr>
-                                        <td>Svorio</td>
+                                        <td>Svoris</td>
                                         <td>{this.state.Transportation.weight}</td>
                                     </tr>
                                     <tr>
@@ -108,7 +109,7 @@ class TransportationDetailsScreen extends React.Component {
                                         <td>{this.state.Transportation.transportationType}</td>
                                     </tr>
                                     <tr>
-                                        <td>Transporto subkodas</td>
+                                        <td>Subkodas</td>
                                         <td>{this.state.Transportation.transportationSubCode}</td>
                                     </tr>
 
@@ -116,11 +117,12 @@ class TransportationDetailsScreen extends React.Component {
                             </Table>
                         </Col>
                         <Col md={4}>
+                            <h3>Informacija apie datas</h3>
                             <Table striped bordered hover>
                                 <tbody>
                                     <tr>
 
-                                        <td>krovinio priėmimo data</td>
+                                        <td>Krovinio priėmimo data</td>
                                         <td>{moment(this.state.Transportation.cargoAcceptanceDate).format("YYYY/MM/DD")}</td>
 
                                     </tr>
@@ -131,7 +133,7 @@ class TransportationDetailsScreen extends React.Component {
 
                                     </tr>
                                     <tr>
-                                        <td>Judėjimas Pabaigos data Baltarusijoje</td>
+                                        <td>Judėjimo pabaigos data Baltarusijoje</td>
                                         <td>{moment(this.state.Transportation.movementEndDateInBelarus).format("YYYY/MM/DD")}</td>
 
 
@@ -141,32 +143,34 @@ class TransportationDetailsScreen extends React.Component {
                         </Col>
 
                         <Col md={4}>
+                        <h3>Informacija apie krovinį</h3>
                             <Table striped bordered hover>
                                 <tbody>
                                     <tr>
 
-                                        <td>Etang krovinio kodas</td>
+                                        <td>ETSNG krovinio kodas</td>
                                         <td>{this.state.Transportation.etsngCargoCode}</td>
 
                                     </tr>
                                     <tr>
 
-                                        <td>Etang krovinio titulas</td>
+                                        <td>ETSNG krovinio pavadinimas</td>
                                         <td>{this.state.Transportation.etsngCargoTitle}</td>
 
                                     </tr>
                                     <tr>
-                                        <td>Gng krovinio kodas</td>
+                                        <td>GNG krovinio kodas</td>
                                         <td>{this.state.Transportation.gngCargoCode}</td>
                                     </tr>
                                     <tr>
-                                        <td>Gng krovinio titulas</td>
+                                        <td>GNG krovinio pavadinimas</td>
                                         <td>{this.state.Transportation.gngCargoTitle}</td>
                                     </tr>
                                 </tbody>
                             </Table>
                         </Col>
                         <Col md={6}>
+                        <h3>Informacija apie stotis</h3>
                             <Table striped bordered hover>
                                 <tbody>
                                     <tr>
@@ -177,48 +181,48 @@ class TransportationDetailsScreen extends React.Component {
                                     </tr>
                                     <tr>
 
-                                        <td>išvykimo Stoties pavadinimas</td>
+                                        <td>Išvykimo stoties pavadinimas</td>
                                         <td>{this.state.Transportation.departureStationTitle}</td>
 
                                     </tr>
                                     <tr>
-                                        <td>išvykimo šalies kodas</td>
+                                        <td>Išvykimo šalies kodas</td>
                                         <td>{this.state.Transportation.departureCountryCode}</td>
                                     </tr>
                                     <tr>
-                                        <td>išvykimo šalies pavadinimas</td>
+                                        <td>Išvykimo šalies pavadinimas</td>
                                         <td>{this.state.Transportation.departureCountryTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>paskirties stoties kodas</td>
+                                        <td>Paskirties stoties kodas</td>
                                         <td>{this.state.Transportation.destinationStationCode}</td>
                                     </tr>
                                     <tr>
-                                        <td>paskirties Stoties pavadinimas</td>
+                                        <td>Paskirties stoties pavadinimas</td>
                                         <td>{this.state.Transportation.destinationStationTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>paskirties šalies kodas</td>
+                                        <td>Paskirties šalies kodas</td>
                                         <td>{this.state.Transportation.destinationCountryCode}</td>
                                     </tr>
                                     <tr>
-                                        <td>paskirties šalies pavadinimas</td>
+                                        <td>Paskirties šalies pavadinimas</td>
                                         <td>{this.state.Transportation.destinationCountryTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>stoties judėjimo pradžios Baltarusijos kodeksas</td>
+                                        <td>Judėjimo pradžios stoties kodas (Baltarusijoje)</td>
                                         <td>{this.state.Transportation.stationMovementBeginingBelarusCode}</td>
                                     </tr>
                                     <tr>
-                                        <td>stoties Judėjimo pradžia Baltarusija Pavadinimas</td>
+                                        <td>Judėjimo pradžios stoties pavadinimas (Baltarusijoje)</td>
                                         <td>{this.state.Transportation.stationMovementBeginingBelarusTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>stotis Judėjimo pabaiga Baltarusijos kodas</td>
+                                        <td>Judėjimo pabaigos stoties kodas (Baltarusijoje)</td>
                                         <td>{this.state.Transportation.stationMovementEndBelarusCode}</td>
                                     </tr>
                                     <tr>
-                                        <td>Stotis Judėjimas Pabaiga Baltarusija Pavadinimas</td>
+                                        <td>Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)</td>
                                         <td>{this.state.Transportation.stationMovementEndBelarusTitle}</td>
                                     </tr>
                                 </tbody>

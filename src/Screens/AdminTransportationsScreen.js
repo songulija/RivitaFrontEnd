@@ -143,7 +143,7 @@ class AdminTransportationScreen extends React.Component {
                 )
             },
             {
-                title: 'Transportacijos numeris',
+                title: 'Transportavimo numeris',
                 dataIndex: 'transportationNumber',
                 width: '5%'
             },
@@ -163,7 +163,7 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Transportacijos tipas',
+                title: 'Transportavimo tipas',
                 dataIndex: 'transportationType',
                 width: '5%'
             },
@@ -173,7 +173,7 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Krovinio priėmimo vežti data',
+                title: 'Krovinio priėmimo data',
                 dataIndex: 'cargoAcceptanceDate',
                 width: '30%',
                 sorter: (a, b) => {
@@ -184,7 +184,7 @@ class AdminTransportationScreen extends React.Component {
                 }
             },
             {
-                title: 'Judėjimo pradžios data per baltarusija',
+                title: 'Judėjimo pradžios data Baltarusijoje',
                 dataIndex: 'movementStartDateInBelarus',
                 width: '5%',
                 sorter: (a, b) => {
@@ -195,7 +195,7 @@ class AdminTransportationScreen extends React.Component {
                 }
             },
             {
-                title: 'Judėjimo pabaigos data per baltarusija',
+                title: 'Judėjimo pabaigos data Baltarusijoje',
                 dataIndex: 'movementEndDateInBelarus',
                 width: '5%',
                 sorter: (a, b) => {
@@ -246,42 +246,42 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Atvykimo stoties kodas',
+                title: 'Paskirties stoties kodas',
                 dataIndex: 'destinationStationCode',
                 width: '5%'
             },
             {
-                title: 'Atvykimo stoties pavadinimas',
+                title: 'Paskirties stoties pavadinimas',
                 dataIndex: 'destinationStationTitle',
                 width: '5%'
             },
             {
-                title: 'Atvykimo šalies kodas',
+                title: 'Paskirties šalies kodas',
                 dataIndex: 'destinationCountryCode',
                 width: '5%'
             },
             {
-                title: 'Atvykimo šalies pavadinimas',
+                title: 'Paskirties šalies pavadinimas',
                 dataIndex: 'destinationCountryTitle',
                 width: '5%'
             },
             {
-                title: 'Baltarusijos judėjimo pradžios stoties kodas',
+                title: 'Judėjimo pradžios stoties kodas (Baltarusijoje)',
                 dataIndex: 'stationMovementBeginingBelarusCode',
                 width: '5%'
             },
             {
-                title: 'Baltarusijos judėjimo pradžios stoties pavadinimas',
+                title: 'Judėjimo pradžios stoties pavadinimas (Baltarusijoje)',
                 dataIndex: 'stationMovementBeginingBelarusTitle',
                 width: '5%'
             },
             {
-                title: 'Baltarusijos judėjimo pabaigos stoties kodas',
+                title: 'Judėjimo pabaigos stoties kodas (Baltarusijoje)',
                 dataIndex: 'stationMovementEndBelarusCode',
                 width: '5%'
             },
             {
-                title: 'Baltarusijos judėjimo pabaigos stoties pavadinimas',
+                title: 'Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)',
                 dataIndex: 'stationMovementEndBelarusTitle',
                 width: '5%'
             },
