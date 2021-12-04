@@ -63,11 +63,6 @@ class UserTransportations extends React.Component {
                     this.transportationsDataSet(this.props.transportationsReducer.transportations);
                 })
             }
-            // console.log('Param: ' + JSON.stringify(this.state.search.gngCargoCode))
-            // this.props.getTransportations(() => {
-            //     this.transportationsDataSet(this.props.transportationsReducer.transportations);
-            // });
-            // console.log(JSON.stringify(this.props.location.state.query))
         } else {
             this.props.history.push('/login')
         }
@@ -78,7 +73,6 @@ class UserTransportations extends React.Component {
     }
 
     render() {
-        //console.log(JSON.stringify(this.props.location.state.query))
         const columns = [
             {
                 title: 'Pridėti vagonų',

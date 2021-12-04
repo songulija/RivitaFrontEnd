@@ -77,8 +77,6 @@ class AddTransportationComponent extends React.Component {
         //setting transportation object state to changed clone
         this.setState({
             transportation: transportationClone
-        },() => {
-            console.log('Transportation is equal to:'+JSON.stringify(this.state.transportation))
         });
     }
     render() {

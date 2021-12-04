@@ -38,7 +38,6 @@ export const createCompany = (postObject,callback) => async (dispatch,getState) 
             type: 'COMPANIES_CREATE_SUCCESS',
             payload: response.data
         });
-        console.log('Created company:'+JSON.stringify(response.data))
         callback();
     } catch(error){
         if (error.response === undefined) {

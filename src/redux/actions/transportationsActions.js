@@ -65,7 +65,6 @@ export const createTransportation = (postObject, callback) => async (dispatch, g
             type: 'TRANSPORTATIONS_CREATE_SUCCESS',
             payload: response.data
         });
-        console.log('Created transportation:' + JSON.stringify(response.data))
         callback();
     } catch (error) {
         if (error.response === undefined) {
@@ -113,7 +112,6 @@ export const getTransportationDetails = (id, callback) => async (dispatch, getSt
         dispatch({
             type: 'TRANSPORTATION_DETAILS_REQUEST'
         });
-        console.log("passss")
         const token = getState().usersReducer.currentUser;
         const response = await rivitaAPI.get(`/api/Transportations/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         dispatch({
@@ -121,7 +119,6 @@ export const getTransportationDetails = (id, callback) => async (dispatch, getSt
             payload: response.data
         });
         callback();
-        console.log("passss");
     } catch (error) {
         const message =
             error.response && error.response.data.message

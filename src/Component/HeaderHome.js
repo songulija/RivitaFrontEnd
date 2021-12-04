@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { logout } from '../redux/actions/userActions'
 import logo from '../images/rivita-logo.png'
 import { animateScroll as scroll, scroller, Link } from 'react-scroll'
@@ -18,13 +18,6 @@ class HeaderHome extends React.Component {
     logoutHandler = () => {
         this.props.logout();
         this.props.history.push('/')
-    }
-
-    componentDidMount() {
-        // this.props.getUserData(() =>{
-        //     console.log('Header got user data:'+JSON.stringify(this.props.userInfoReducer))
-        // })
-
     }
     render() {
         // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));

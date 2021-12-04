@@ -29,7 +29,6 @@ function AddWagonComponent(props) {
     }
     const saveChanges = () => {
         const postObj = JSON.parse(JSON.stringify(wagon))
-        console.log('POst Obj:'+JSON.stringify(postObj))
         props.save(postObj)
     }
     return (

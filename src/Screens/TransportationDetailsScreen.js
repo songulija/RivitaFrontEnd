@@ -29,12 +29,7 @@ class TransportationDetailsScreen extends React.Component {
                         wagons: this.props.wagonsReducer
                     })
                 });
-
-                console.log(this.props.match.params.id)
-                console.log(this.props.transportationDeatailsReducer)
-
             })
-            console.log(JSON.stringify(this.state.Transportation));
         } else {
             this.props.history.push('/login')
         }
@@ -71,7 +66,7 @@ class TransportationDetailsScreen extends React.Component {
                 <HeaderMain />
                 <Container>
                     <h1>Transportavimas </h1>
-                    <Link className='btn btn-dark mb-3' to={'/'}>grizti atgal </Link>
+                    <Link className='btn btn-dark mb-3' to={'/search'}>Grįžti atgal </Link>
 
                     {/* <p>{JSON.stringify(transportationDeatails)} labas</p> */}
 

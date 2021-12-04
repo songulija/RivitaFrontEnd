@@ -18,13 +18,6 @@ class HeaderMain extends React.Component {
         this.props.logout();
         this.props.history.push('/')
     }
-
-    componentDidMount() {
-        // this.props.getUserData(() =>{
-        //     console.log('Header got user data:'+JSON.stringify(this.props.userInfoReducer))
-        // })
-
-    }
     render() {
         // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
         return (

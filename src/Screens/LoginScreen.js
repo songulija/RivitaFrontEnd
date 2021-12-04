@@ -68,11 +68,11 @@ class LoginScreen extends React.Component {
                             />
                         </Form.Group>
                         <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Prisijungti</button>
-                        <Row className='py-3'>
+                        {/* <Row className='py-3'>
                             <Col>
                                 Naujas naudotojas? <Link to={'/register'}>Registracija</Link>
                             </Col>
-                        </Row>
+                        </Row> */}
                     </Form>
                 </div>
             </>
