@@ -24,6 +24,10 @@ function Footer(props) {
                                     <p>
                                         <i className="fas fa-phone"></i> +370 265 0264</p>
                                 </li>
+                                <li>
+                                    <p>
+                                        <i className="fas fa-phone"></i> +370 618 16214</p>
+                                </li>
                             </ul>
                         </div>
                         <div className='col-sm-12 col-md-6 pb-2'>

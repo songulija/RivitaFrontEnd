@@ -8,7 +8,7 @@ import purpose from '../images/006-purpose.png'
 import wagon1 from '../images/wagons-1.jpg'
 import wagon2 from '../images/wagons-4.jpg'
 import wagon3 from '../images/wagons-3.png'
-import gelezinkeliai from '../images/gelezinkeliai.png';
+import gelezinkeliai from '../images/lietuvos_gelezinkeliai.jpg';
 import ldzcargo from '../images/ldzcargo1.png';
 import logo_bzhd from '../images/logo_bzhd.png';
 import simvolika from '../images/simvolika-1.jpg';
@@ -247,7 +247,7 @@ const HomeScreen = () => {
                     <div className='row text-center'>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className="container  partners-hover">
-                                <div className='container ' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '30px', paddingBottom: '30px' }} >
+                                <div className='container ' style={{ height: '195px', width: '204px', marginTop: '20px', paddingTop: '75px', paddingBottom: '75px' }} >
                                     <Image style={{ width: '100%', height: '100%' }} src={gelezinkeliai} alt="Lietuvos geležinkeliai" />
                                 </div>
 
@@ -311,7 +311,7 @@ const HomeScreen = () => {
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>TELEFONAS UŽKLAUSOMS:</h3>
-                                    <p style={{ ...contactsInfoText }}>+370 2650264</p>
+                                    <p style={{ ...contactsInfoText }}>+370 265 0264</p>
                                 </div>
                             </div>
                         </div>
@@ -324,7 +324,8 @@ const HomeScreen = () => {
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>INFORMACIJA:</h3>
-                                    <p style={{ ...contactsInfoText }}>ĮMONĖS KODAS: 123646771 PVM KODAS: LT236467716</p>
+                                    <p style={{ ...contactsInfoText }}>ĮMONĖS KODAS: 123646771</p>
+                                    <p style={{ ...contactsInfoText }}>PVM KODAS: LT236467716</p>
                                 </div>
                             </div>
                         </div>
