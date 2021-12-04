@@ -165,7 +165,7 @@ class AdminTransportationScreen extends React.Component {
             {
                 title: 'Krovinio priėmimo data',
                 dataIndex: 'cargoAcceptanceDate',
-                width: '30%',
+                width: '7%',
                 sorter: (a, b) => {
                     if (moment(a.Created).isBefore(moment(b.Created))) {
                         return -1;
@@ -208,32 +208,32 @@ class AdminTransportationScreen extends React.Component {
             {
                 title: 'Išvykimo stoties pavadinimas',
                 dataIndex: 'departureStationTitle',
-                width: '5%'
+                width: '8%'
             },
             {
                 title: 'Išvykimo šalies pavadinimas',
                 dataIndex: 'departureCountryTitle',
-                width: '5%'
+                width: '7%'
             },
             {
                 title: 'Paskirties stoties pavadinimas',
                 dataIndex: 'destinationStationTitle',
-                width: '5%'
+                width: '8%'
             },
             {
                 title: 'Paskirties šalies pavadinimas',
                 dataIndex: 'destinationCountryTitle',
-                width: '5%'
+                width: '7%'
             },
             {
                 title: 'Judėjimo pradžios stoties pavadinimas (Baltarusijoje)',
                 dataIndex: 'stationMovementBeginingBelarusTitle',
-                width: '5%'
+                width: '8%'
             },
             {
                 title: 'Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)',
                 dataIndex: 'stationMovementEndBelarusTitle',
-                width: '5%'
+                width: '7%'
             },
         ]
         return (

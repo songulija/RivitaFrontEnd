@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Table, Space, Col, Card, Row, Typography,Button } from 'antd';
+import { Table, Space, Col, Card, Row, Typography, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { getCompanies, createCompany, updateCompany } from '../redux/actions/companiesActions.js';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles.js';
@@ -99,14 +99,14 @@ class CompaniesScreen extends React.Component {
 
 
     componentDidMount() {
-        if(this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role !== null){
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role !== null) {
             this.props.getCompanies(() => {
                 const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
                 this.setState({
                     companies: companiesClone
                 })
             })
-        }else{
+        } else {
             this.props.history.push('/')
         }
     }
@@ -127,7 +127,7 @@ class CompaniesScreen extends React.Component {
         ]
         return (
             <>
-            <HeaderMain/>
+                <HeaderMain />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={2}>
                         <Row gutter={16}>
@@ -150,12 +150,12 @@ class CompaniesScreen extends React.Component {
                                         rowKey="id"
                                         columns={columns}
                                         dataSource={this.state.companies}
-                                        pagination={{ pageSize: 15 }}
+                                        pagination={{ pageSize: 10 }}
                                         bordered
                                         scroll={{ x: 'calc(700px + 50%)' }}
-                                    // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
+                                        footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
                                     />
-                                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.showAddCompanyModel}><PlusOutlined />Pridėti kompaniją</Button></Space>
+
                                 </Card>
                             </Col>
                         </Row>

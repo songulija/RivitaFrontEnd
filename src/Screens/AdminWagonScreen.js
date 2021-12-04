@@ -171,7 +171,7 @@ class AdminWagonScreen extends React.Component {
             {
                 title: 'Transportavimo numeris',
                 dataIndex: 'transportationId',
-                width: '10%',
+                width: '25%',
                 render: (text, record, index) => (
                     <Text>{record.transportation.transportationNumber}</Text>
                 )
@@ -184,7 +184,7 @@ class AdminWagonScreen extends React.Component {
             {
                 title: 'Vagono tipas',
                 dataIndex: 'typeOfWagon',
-                width: '20%'
+                width: '25%'
             },
             {
                 title: 'Svoris(tonomis)',
