@@ -61,11 +61,6 @@ class TransportationDetailsScreen extends React.Component {
                 width: '20%'
             },
             {
-                title: 'Keliamoji galia(tonomis)',
-                dataIndex: 'liftingCapacityTons',
-                width: '20%'
-            },
-            {
                 title: 'Svoris(tonomis)',
                 dataIndex: 'weight',
                 width: '20%'
@@ -101,16 +96,8 @@ class TransportationDetailsScreen extends React.Component {
                                         <td>{this.state.Transportation.wagonsCount}</td>
                                     </tr>
                                     <tr>
-                                        <td>Transportavimo būsena</td>
-                                        <td>{this.state.Transportation.transportationStatus}</td>
-                                    </tr>
-                                    <tr>
                                         <td>Transportavimo tipas</td>
                                         <td>{this.state.Transportation.transportationType}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Subkodas</td>
-                                        <td>{this.state.Transportation.transportationSubCode}</td>
                                     </tr>
 
                                 </tbody>
@@ -153,18 +140,8 @@ class TransportationDetailsScreen extends React.Component {
 
                                     </tr>
                                     <tr>
-
-                                        <td>ETSNG krovinio pavadinimas</td>
-                                        <td>{this.state.Transportation.etsngCargoTitle}</td>
-
-                                    </tr>
-                                    <tr>
                                         <td>GNG krovinio kodas</td>
                                         <td>{this.state.Transportation.gngCargoCode}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>GNG krovinio pavadinimas</td>
-                                        <td>{this.state.Transportation.gngCargoTitle}</td>
                                     </tr>
                                 </tbody>
                             </Table>
@@ -175,51 +152,25 @@ class TransportationDetailsScreen extends React.Component {
                                 <tbody>
                                     <tr>
 
-                                        <td>Išvykimo stoties kodas</td>
-                                        <td>{this.state.Transportation.departureStationCode}</td>
-
-                                    </tr>
-                                    <tr>
-
                                         <td>Išvykimo stoties pavadinimas</td>
                                         <td>{this.state.Transportation.departureStationTitle}</td>
 
-                                    </tr>
-                                    <tr>
-                                        <td>Išvykimo šalies kodas</td>
-                                        <td>{this.state.Transportation.departureCountryCode}</td>
                                     </tr>
                                     <tr>
                                         <td>Išvykimo šalies pavadinimas</td>
                                         <td>{this.state.Transportation.departureCountryTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>Paskirties stoties kodas</td>
-                                        <td>{this.state.Transportation.destinationStationCode}</td>
-                                    </tr>
-                                    <tr>
                                         <td>Paskirties stoties pavadinimas</td>
                                         <td>{this.state.Transportation.destinationStationTitle}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paskirties šalies kodas</td>
-                                        <td>{this.state.Transportation.destinationCountryCode}</td>
                                     </tr>
                                     <tr>
                                         <td>Paskirties šalies pavadinimas</td>
                                         <td>{this.state.Transportation.destinationCountryTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>Judėjimo pradžios stoties kodas (Baltarusijoje)</td>
-                                        <td>{this.state.Transportation.stationMovementBeginingBelarusCode}</td>
-                                    </tr>
-                                    <tr>
                                         <td>Judėjimo pradžios stoties pavadinimas (Baltarusijoje)</td>
                                         <td>{this.state.Transportation.stationMovementBeginingBelarusTitle}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Judėjimo pabaigos stoties kodas (Baltarusijoje)</td>
-                                        <td>{this.state.Transportation.stationMovementEndBelarusCode}</td>
                                     </tr>
                                     <tr>
                                         <td>Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)</td>

@@ -187,11 +187,6 @@ class AdminWagonScreen extends React.Component {
                 width: '20%'
             },
             {
-                title: 'Keliamoji galia(tonomis)',
-                dataIndex: 'liftingCapacityTons',
-                width: '20%'
-            },
-            {
                 title: 'Svoris(tonomis)',
                 dataIndex: 'weight',
                 width: '20%'

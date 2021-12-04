@@ -104,19 +104,9 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Statusas',
-                dataIndex: 'transportationStatus',
-                width: '5%'
-            },
-            {
                 title: 'Transportavimo tipas',
                 dataIndex: 'transportationType',
                 width: '5%'
-            },
-            {
-                title: 'Subkodas',
-                dataIndex: 'transportationSubCode',
-                width: '5%',
             },
             {
                 title: 'Krovinio priėmimo data',
@@ -157,23 +147,8 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
-                title: 'ETSNG krovinio pavadinimas',
-                dataIndex: 'etsngCargoTitle',
-                width: '5%'
-            },
-            {
                 title: 'GNG krovinio kodas',
                 dataIndex: 'gngCargoCode',
-                width: '5%'
-            },
-            {
-                title: 'GNG krovinio pavadinimas',
-                dataIndex: 'gngCargoTitle',
-                width: '5%'
-            },
-            {
-                title: 'Išvykimo stoties kodas',
-                dataIndex: 'departureStationCode',
                 width: '5%'
             },
             {
@@ -182,18 +157,8 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Išvykimo šalies kodas',
-                dataIndex: 'departureCountryCode',
-                width: '5%'
-            },
-            {
                 title: 'Išvykimo šalies pavadinimas',
                 dataIndex: 'departureCountryTitle',
-                width: '5%'
-            },
-            {
-                title: 'Paskirties stoties kodas',
-                dataIndex: 'destinationStationCode',
                 width: '5%'
             },
             {
@@ -202,28 +167,13 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Paskirties šalies kodas',
-                dataIndex: 'destinationCountryCode',
-                width: '5%'
-            },
-            {
                 title: 'Paskirties šalies pavadinimas',
                 dataIndex: 'destinationCountryTitle',
                 width: '5%'
             },
             {
-                title: 'Judėjimo pradžios stoties kodas (Baltarusijoje)',
-                dataIndex: 'stationMovementBeginingBelarusCode',
-                width: '5%'
-            },
-            {
                 title: 'Judėjimo pradžios stoties pavadinimas (Baltarusijoje)',
                 dataIndex: 'stationMovementBeginingBelarusTitle',
-                width: '5%'
-            },
-            {
-                title: 'Judėjimo pabaigos stoties kodas (Baltarusijoje)',
-                dataIndex: 'stationMovementEndBelarusCode',
                 width: '5%'
             },
             {

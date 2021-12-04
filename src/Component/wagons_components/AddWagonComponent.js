@@ -7,7 +7,6 @@ function AddWagonComponent(props) {
         "transportationId": props.transportationId,
         "numberOfWagon": 0,
         "typeOfWagon": "string",
-        "liftingCapacityTons": 0,
         "weight": 0
     });
     const onBack = () => {
@@ -23,8 +22,6 @@ function AddWagonComponent(props) {
             wagonClone.numberOfWagon = Number(value);
         }else if(inputName === "typeOfWagon"){
             wagonClone.typeOfWagon = value;
-        }else if(inputName === "liftingCapacityTons"){
-            wagonClone.liftingCapacityTons = Number(value);
         }else if(inputName === "weight"){
             wagonClone.weight = Number(value);
         }
@@ -57,9 +54,6 @@ function AddWagonComponent(props) {
                     </Form.Item>
                     <Form.Item key="name1" name="name1" label="Vagono tipas">
                         <Input style={{ width: '100%' }} placeholder="Įrašykite vagono tipą" defaultValue={wagon.typeOfWagon} value={wagon.typeOfWagon} onChange={(e) => onDataChange(e.target.value, "typeOfWagon")} />
-                    </Form.Item>
-                    <Form.Item key="name2" name="name2" label="Keliamoji galia(tonomis)">
-                        <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono keliamają galią(tonomis)" defaultValue={wagon.liftingCapacityTons} value={wagon.liftingCapacityTons} onChange={(e) => onDataChange(e, "liftingCapacityTons")} />
                     </Form.Item>
                     <Form.Item key="name3" name="name3" label="Svoris">
                         <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono svorį" defaultValue={wagon.weight} value={wagon.weight} onChange={(e) => onDataChange(e, "weight")} />

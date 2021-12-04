@@ -34,11 +34,6 @@ function UpdateWagonComponent(props) {
                 ...prevState,
                 [inputName]: value
             }));
-        } else if (inputName === 'liftingCapacityTons') {
-            setWagon(prevState => ({
-                ...prevState,
-                [inputName]: Number(value)
-            }))
         } else if (inputName === 'weight') {
             setWagon(prevState => ({
                 ...prevState,
@@ -53,7 +48,6 @@ function UpdateWagonComponent(props) {
             "transportationId": wagonClone.transportationId,
             "numberOfWagon": wagonClone.numberOfWagon,
             "typeOfWagon": wagonClone.typeOfWagon,
-            "liftingCapacityTons": wagonClone.liftingCapacityTons,
             "weight": wagonClone.weight
         }
         const reducerObj = {
@@ -61,7 +55,6 @@ function UpdateWagonComponent(props) {
             "transportationId": wagonClone.transportationId,
             "numberOfWagon": wagonClone.numberOfWagon,
             "typeOfWagon": wagonClone.typeOfWagon,
-            "liftingCapacityTons": wagonClone.liftingCapacityTons,
             "weight": wagonClone.weight
         }
         props.save(postObj,reducerObj);
@@ -91,8 +84,6 @@ function UpdateWagonComponent(props) {
                     <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono numerį" defaultValue={wagon.numberOfWagon} value={wagon.numberOfWagon} onChange={(e) => onDataChange(e, "numberOfWagon")} />
                     <p style={{ ...textStyle }}>Vagono tipas</p>
                     <Input style={{ width: '100%' }} placeholder="Įrašykite vagono tipą" defaultValue={wagon.typeOfWagon} value={wagon.typeOfWagon} onChange={(e) => onDataChange(e.target.value, "typeOfWagon")} />
-                    <p style={{ ...textStyle }}>Vagono keliamoji galia</p>
-                    <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono keliamają galią(tonomis)" defaultValue={wagon.liftingCapacityTons} value={wagon.liftingCapacityTons} onChange={(e) => onDataChange(e, "liftingCapacityTons")} />
                     <p style={{ ...textStyle }}>Vagono svoris</p>
                     <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono svorį" defaultValue={wagon.weight} value={wagon.weight} onChange={(e) => onDataChange(e, "weight")} />
                 </Form>

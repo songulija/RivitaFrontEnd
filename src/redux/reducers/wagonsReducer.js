@@ -22,7 +22,6 @@ export const wagonsReducer = (state = { wagons: [] }, action) => {
                     element.transportationId = action.payload.transportationId;
                     element.numberOfWagon = action.payload.numberOfWagon;
                     element.typeOfWagon = action.payload.typeOfWagon;
-                    element.liftingCapacityTons = action.payload.liftingCapacityTons;
                     element.weight = action.payload.weight;
 
                 }

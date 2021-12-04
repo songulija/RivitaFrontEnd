@@ -77,31 +77,7 @@ class SearchScreen extends React.Component {
                     "title": "Krovinio tipas(GNG)",
                     "dataIndex":"gngCargoCode",
                     "value": 0,
-                },
-                {
-                    "id": 9,
-                    "title": "Išvykimo stoties kodas",
-                    "dataIndex":"departureStationCode",
-                    "value": 0,
-                },
-                {
-                    "id": 10,
-                    "title": "Atvykimo stoties kodas",
-                    "dataIndex":"destinationStationCode",
-                    "value": 0
-                },
-                {
-                    "id": 11,
-                    "title": "Judėjimo pradžios stotis(per Baltarusiją)",
-                    "dataIndex":"stationMovementBeginingBelarusCode",
-                    "value": 0,
-                },
-                {
-                    "id": 12,
-                    "title": 'Judėjimo pabaigos stotis(per Baltarusiją)',
-                    "dataIndex":"stationMovementEndBelarusCode",
-                    "value": 0
-                },
+                }
                 // "transportationStatus": "",
                 // "transportationType": "",
                 // "transportationSubCode": 0,
