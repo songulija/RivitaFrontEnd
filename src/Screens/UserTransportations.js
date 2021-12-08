@@ -184,10 +184,10 @@ class UserTransportations extends React.Component {
                         <Row gutter={16}>
                             <Col span={18}>
                                 <div style={{ marginRight: '40px', marginBottom: 25 }}>
-                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportacijos</Typography.Title>
+                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportavimai</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Pridėkite naujas transportacijas ir priskirti prie kiekvienos transportacijos vagonus.
-                                        Taip pat galite atnaujinti kiekvienos transportacijos duomenis kai reikia.
+                                        Pasirinkite jums norimus transportavimus. Galite paspausti plačiau jei norite, kad
+                                        informacija būtų išdėstyta tvarkingiau.
                                     </Typography.Text>
                                 </div>
                             </Col>

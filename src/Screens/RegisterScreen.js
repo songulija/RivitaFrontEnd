@@ -109,8 +109,8 @@ class RegisterScreen extends React.Component {
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Naudotojai</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
                                         Pridėkite naudotojus, kurie galės naudotis sveitaine. Kuriant naudotoją
-                                        jį reikia priskirti prie vienos iš kompanijų su kuriomis jus dirbate. Jei
-                                        kompajios saraše nematote pirma sukurkite kompaniją.                                    </Typography.Text>
+                                        jį reikia priskirti prie vienos iš firmų kurias galima pasirinkti sąraše.
+                                    </Typography.Text>
                                 </div>
                             </Col>
                         </Row>

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { getTransportations, createTransportation, updateTransportation } from '../redux/actions/transportationsActions.js';
 import { buttonStyle } from '../styles/customStyles';
 import { getWagons } from '../redux/actions/wagonsActions';
-import { Col, Table, Row, Space, Typography, Button } from 'antd';
+import { Col, Table, Row, Space, Typography, Button, Input } from 'antd';
 // import { Button } from 'react-bootstrap'
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import AddTransportationComponent from '../Component/transportations_components/AddTransportationComponent';
 import moment from 'moment'
@@ -125,8 +125,9 @@ class AdminTransportationScreen extends React.Component {
         }
     }
 
-
     render() {
+        let { filteredInfo } = this.state;
+        filteredInfo = filteredInfo || {};
         const columns = [
             {
                 title: 'Atnaujinimas',
@@ -145,6 +146,38 @@ class AdminTransportationScreen extends React.Component {
             {
                 title: 'Transportavimo numeris',
                 dataIndex: 'transportationNumber',
+                filterDropdown: ({ setSelectedKeys, selectedKeys, confirm,clearFilters }) => {
+                    return (
+                        <>
+                            <Input autofocus placeholder="Type text here"
+                                value={selectedKeys[0]}
+                                onChange={(e) => {
+                                    setSelectedKeys(e.target.value ? [e.target.value] : [])
+                                    confirm({closeDropdown: false})
+                                }}
+                                onPressEnter={() => {
+                                    // on enter it will be confirmin. and on confirming it will call function on filter
+                                    confirm();
+                                }}
+                                onBlur={() => {
+                                    confirm();
+                                }}></Input>
+                                <Button onClick={()=>{
+                                    confirm();
+                                }} type='primary'>Surasti</Button>
+                                <Button onClick={()=>{
+                                    clearFilters();
+                                }} type='danger'>Gražinti</Button>
+                        </>
+                    )
+
+                },
+                filterIcon: () => {
+                    return <SearchOutlined />;
+                },
+                onFilter: (value, record) => {
+                    return record.transportationNumber == value;
+                },
                 width: '5%'
             },
             {

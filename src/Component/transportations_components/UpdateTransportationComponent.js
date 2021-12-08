@@ -107,38 +107,38 @@ function UpdateTransportationComponent(props) {
                 <Form layout="vertical" id="myForm" name="myForm">
                     <Row>
                         <Col span={12} style={{ paddingLeft: '7px', paddingRight: '7px' }}>
-                            <p style={{ ...textStyle }}>Transportacijos numeris</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite transportacijos numerį" defaultValue={transportation.transportationNumber} value={transportation.transportationNumber} onChange={(e) => onDataChange(e.target.value, "transportationNumber")} />
-                            <p style={{ ...textStyle }}>Transportacijos svoris</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite transportacijos svorį" defaultValue={transportation.weight} value={transportation.weight} onChange={(e) => onDataChange(e.target.value, "weight")} />
+                            <p style={{ ...textStyle }}>Transportavimo numeris</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite numerį" defaultValue={transportation.transportationNumber} value={transportation.transportationNumber} onChange={(e) => onDataChange(e.target.value, "transportationNumber")} />
+                            <p style={{ ...textStyle }}>Svoris</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite svorį" defaultValue={transportation.weight} value={transportation.weight} onChange={(e) => onDataChange(e.target.value, "weight")} />
                             <p style={{ ...textStyle }}>Vagonų skaičius</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite vagonų skaičių" defaultValue={transportation.wagonsCount} value={transportation.wagonsCount} onChange={(e) => onDataChange(e.target.value, "wagonsCount")} />
-                            <p style={{ ...textStyle }}>Transportacijos tipas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite transportacijos tipą" defaultValue={transportation.transportationType} value={transportation.transportationType} onChange={(e) => onDataChange(e.target.value, "transportationType")} />
-                            <p style={{ ...textStyle }}>Krovinio priėmimo vežti data</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite krovinio priėmimo vežti data" defaultValue={transportation.cargoAcceptanceDate} value={transportation.cargoAcceptanceDate} onChange={(e) => onDataChange(e.target.value, "cargoAcceptanceDate")} />
-                            <p style={{ ...textStyle }}>Judėjimo pradžios data per baltarusiją</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite judėjimo pradžios data per baltarusiją" defaultValue={transportation.movementStartDateInBelarus} value={transportation.movementStartDateInBelarus} onChange={(e) => onDataChange(e.target.value, "movementStartDateInBelarus")} />
-                            <p style={{ ...textStyle }}>Judėjimo pabaigos data per baltarusiją</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite judėjimo pabaigos datą per baltarusiją" defaultValue={transportation.movementEndDateInBelarus} value={transportation.movementEndDateInBelarus} onChange={(e) => onDataChange(e.target.value, "movementEndDateInBelarus")} />
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite skaičių" defaultValue={transportation.wagonsCount} value={transportation.wagonsCount} onChange={(e) => onDataChange(e.target.value, "wagonsCount")} />
+                            <p style={{ ...textStyle }}>Transportavimo tipas</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite tipą" defaultValue={transportation.transportationType} value={transportation.transportationType} onChange={(e) => onDataChange(e.target.value, "transportationType")} />
+                            <p style={{ ...textStyle }}>Krovinio priėmimo data</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite datą" defaultValue={transportation.cargoAcceptanceDate} value={transportation.cargoAcceptanceDate} onChange={(e) => onDataChange(e.target.value, "cargoAcceptanceDate")} />
+                            <p style={{ ...textStyle }}>Judėjimo pradžios data Baltarusijoje</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite datą" defaultValue={transportation.movementStartDateInBelarus} value={transportation.movementStartDateInBelarus} onChange={(e) => onDataChange(e.target.value, "movementStartDateInBelarus")} />
+                            <p style={{ ...textStyle }}>Judėjimo pabaigos data Baltarusijoje</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite datą" defaultValue={transportation.movementEndDateInBelarus} value={transportation.movementEndDateInBelarus} onChange={(e) => onDataChange(e.target.value, "movementEndDateInBelarus")} />
                             <p style={{ ...textStyle }}>ETSNG krovinio kodas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite ETSNG krovinio kodą" defaultValue={transportation.etsngCargoCode} value={transportation.etsngCargoCode} onChange={(e) => onDataChange(e.target.value, "etsngCargoCode")} />
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={transportation.etsngCargoCode} value={transportation.etsngCargoCode} onChange={(e) => onDataChange(e.target.value, "etsngCargoCode")} />
                             <p style={{ ...textStyle }}>GNG krovinio kodas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite GNG krovinio kodą" defaultValue={transportation.gngCargoCode} value={transportation.gngCargoCode} onChange={(e) => onDataChange(e.target.value, "gngCargoCode")} />
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={transportation.gngCargoCode} value={transportation.gngCargoCode} onChange={(e) => onDataChange(e.target.value, "gngCargoCode")} />
                         </Col>
                         <Col span={12} style={{ paddingLeft: '7px', paddingRight: '7px' }}>
                             <p style={{ ...textStyle }}>Išvykimo stoties pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite išvykimo stoties pavadinimą" defaultValue={transportation.departureStationTitle} value={transportation.departureStationTitle} onChange={(e) => onDataChange(e.target.value, "departureStationTitle")} />
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.departureStationTitle} value={transportation.departureStationTitle} onChange={(e) => onDataChange(e.target.value, "departureStationTitle")} />
                             <p style={{ ...textStyle }}>Išvykimo šailes pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite išvykimo šalies pavadinimą" defaultValue={transportation.departureCountryTitle} value={transportation.departureCountryTitle} onChange={(e) => onDataChange(e.target.value, "departureCountryTitle")} />
-                            <p style={{ ...textStyle }}>Atvykimo stoties pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite atvykimo stoties pavadinimą" defaultValue={transportation.destinationStationTitle} value={transportation.destinationStationTitle} onChange={(e) => onDataChange(e.target.value, "destinationStationTitle")} />
-                            <p style={{ ...textStyle }}>Atvykimo šalies pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite atvykimo šalies pavadinimą" defaultValue={transportation.destinationCountryTitle} value={transportation.destinationCountryTitle} onChange={(e) => onDataChange(e.target.value, "destinationCountryTitle")} />
-                            <p style={{ ...textStyle }}>Judėjimo pradžios per baltarusija stoties pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite baltarusijos judėjimo pradžios stoties pavadinimą" defaultValue={transportation.stationMovementBeginingBelarusTitle} value={transportation.stationMovementBeginingBelarusTitle} onChange={(e) => onDataChange(e.target.value, "stationMovementBeginingBelarusTitle")} />
-                            <p style={{ ...textStyle }}>Judėjimo pabaigos per baltarusija stoties pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite baltarusijos judėjio pabaigos stoties pavadinimą" defaultValue={transportation.stationMovementEndBelarusTitle} value={transportation.stationMovementEndBelarusTitle} onChange={(e) => onDataChange(e.target.value, "stationMovementEndBelarusTitle")} />
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.departureCountryTitle} value={transportation.departureCountryTitle} onChange={(e) => onDataChange(e.target.value, "departureCountryTitle")} />
+                            <p style={{ ...textStyle }}>Paskirties stoties pavadinimas</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.destinationStationTitle} value={transportation.destinationStationTitle} onChange={(e) => onDataChange(e.target.value, "destinationStationTitle")} />
+                            <p style={{ ...textStyle }}>Paskirties šalies pavadinimas</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.destinationCountryTitle} value={transportation.destinationCountryTitle} onChange={(e) => onDataChange(e.target.value, "destinationCountryTitle")} />
+                            <p style={{ ...textStyle }}>Judėjimo pradžios stoties pavadinimas (Baltarusijoje)</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.stationMovementBeginingBelarusTitle} value={transportation.stationMovementBeginingBelarusTitle} onChange={(e) => onDataChange(e.target.value, "stationMovementBeginingBelarusTitle")} />
+                            <p style={{ ...textStyle }}>Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.stationMovementEndBelarusTitle} value={transportation.stationMovementEndBelarusTitle} onChange={(e) => onDataChange(e.target.value, "stationMovementEndBelarusTitle")} />
                         </Col>
                     </Row>
 

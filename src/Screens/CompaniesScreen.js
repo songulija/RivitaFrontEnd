@@ -135,8 +135,8 @@ class CompaniesScreen extends React.Component {
                                 <div style={{ marginRight: '40px' }}>
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Kompanijos</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Įveskite kompanijas, kurios darbuotojai galės naudotis sveitaine. Tik tada
-                                        galėsite registruoti vartotojus ir priskirti juos prie pridėtos kompanijos.
+                                        Galima pridėti ir atnaujinti firmas su kuriomis jus dirbate. Norint sukurti naujus
+                                        naudotojus jiems reikės priskirti firmą kuriai jie priklauso.
                                     </Typography.Text>
                                 </div>
                             </Col>

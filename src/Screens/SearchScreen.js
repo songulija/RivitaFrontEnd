@@ -40,7 +40,7 @@ class SearchScreen extends React.Component {
                     "id": 2,
                     "title": "Krovinio priėmimo data",
                     "dataIndex":"cargoAcceptanceDate",
-                    "value": moment().format("DD/MM/YYYY"),
+                    "value": moment().format("YYYY/MM/DD"),
                 },
                 {
                     "id": 3,
@@ -68,13 +68,13 @@ class SearchScreen extends React.Component {
                 },
                 {
                     "id": 7,
-                    "title": "Krovinio tipas(ETSNG)",
+                    "title": "Krovinio kodas (ETSNG)",
                     "dataIndex":"etsngCargoCode",
                     "value": 0,
                 },
                 {
                     "id": 8,
-                    "title": "Krovinio tipas(GNG)",
+                    "title": "Krovinio kodas (GNG)",
                     "dataIndex":"gngCargoCode",
                     "value": 0,
                 }
@@ -166,13 +166,11 @@ class SearchScreen extends React.Component {
                                 <div style={{ marginRight: '40px' }}>
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Paieška</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Parinkite parametrus pagal kuriuos ieškosite transportacijų
+                                        Parinkite parametrus pagal kuriuos ieškosite transportavimus
                                     </Typography.Text>
                                 </div>
                             </Col>
                         </Row>
-                        {/* returns second column with table */}
-                        {/* <FixedCostTable data={obj.types} countryVats={this.props.countryVats} category_title={obj.category_title} category_id={obj.category_id} /> */}
                         <Row gutter={16} style={{ marginTop: '15px' }}>
                         <Col span={22}>
                             

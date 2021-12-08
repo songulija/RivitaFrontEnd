@@ -200,10 +200,9 @@ class AdminWagonScreen extends React.Component {
                         <Row gutter={16}>
                             <Col span={16}>
                                 <div style={{ marginRight: '40px' }}>
-                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportacijos vagonai</Typography.Title>
+                                    <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportavimo vagonai</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Atvaizduojami pasirinktos transportacijos vagonai. Galima pridėti naujus vagonus,
-                                        tačiau yra galimybė ir atnaujinti esamus duomenis.
+                                        Atvaizduojami pasirinkto transportavimo vagonai. Galima pridėti arba atnaujinti vagonus.
                                     </Typography.Text>
                                 </div>
                             </Col>
