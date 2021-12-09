@@ -4,7 +4,7 @@ import HeaderMain from '../Component/HeaderMain';
 import SystemFooter from '../Component/SystemFooter'
 import { getTransportationDetails } from '../redux/actions/transportationsActions';
 import { getWagonsByTransportation } from '../redux/actions/wagonsActions'
-import { Table, Row, Col, Container } from 'react-bootstrap'
+import { Table, Row, Col, Container,Button } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import moment from 'moment';
 import { Typography, Table as TableAnt } from 'antd';
@@ -125,7 +125,7 @@ class TransportationDetailsScreen extends React.Component {
                         </Col>
 
                         <Col md={4}>
-                        <h3>Informacija apie krovinį</h3>
+                            <h3>Informacija apie krovinį</h3>
                             <Table striped bordered hover>
                                 <tbody>
                                     <tr>
@@ -142,7 +142,7 @@ class TransportationDetailsScreen extends React.Component {
                             </Table>
                         </Col>
                         <Col md={6}>
-                        <h3>Informacija apie stotis</h3>
+                            <h3>Informacija apie stotis</h3>
                             <Table striped bordered hover>
                                 <tbody>
                                     <tr>

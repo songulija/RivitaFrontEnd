@@ -194,7 +194,7 @@ class AdminWagonScreen extends React.Component {
         ]
         return (
             <>
-            <HeaderMain/>
+                <HeaderMain />
                 <div style={{ marginTop: 45, marginBottom: 45 }}>
                     <Col span={24} offset={2}>
                         <Row gutter={16}>

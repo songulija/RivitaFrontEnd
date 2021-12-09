@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
 import Form from "react-bootstrap/Form";
+import { Spin, notification, Alert } from 'antd';
 import "../styles/Login.css";
 import { login, getUserData } from '../redux/actions/userActions.js'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import HeaderMain from '../Component/HeaderMain';
+
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -46,7 +47,17 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <>
-            <HeaderMain/>
+                <HeaderMain />
+                {this.props.usersReducer.error ?
+                    <Alert
+                        message="Klaida įvyko prisijungiant"
+                        description="Neteisingai įvestas el. paštas arba slaptažodis"
+                        type="error"
+                    /> : null}
+                {this.props.usersReducer.loading !== false && this.props.usersReducer.loading !== undefined ?
+                    <div style={{ textAlign: 'center' }}>
+                        <Spin size="large" />
+                    </div> : null}
                 <div className="login my-auto container-fluid vh-100 vw-100">
                     <Form onSubmit={this.submitHandler}>
                         <h1 className="h3 mb-3 fw-normal">Prašom prisijungti</h1>
@@ -68,6 +79,7 @@ class LoginScreen extends React.Component {
                             />
                         </Form.Group>
                         <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Prisijungti</button>
+
                         {/* <Row className='py-3'>
                             <Col>
                                 Naujas naudotojas? <Link to={'/register'}>Registracija</Link>
@@ -80,10 +92,10 @@ class LoginScreen extends React.Component {
     }
 }
 // get redux states
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
     return {
-        usersReducer : state.usersReducer
+        usersReducer: state.usersReducer
     }
 }
 // connect to redux states and defining all actions
-export default connect(mapStateToProps, {getUserData,login})(withRouter(LoginScreen));
+export default connect(mapStateToProps, { getUserData, login })(withRouter(LoginScreen));
