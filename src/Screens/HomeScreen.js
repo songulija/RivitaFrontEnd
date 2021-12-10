@@ -36,7 +36,6 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </div>
-
             <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
 
                 <div className='row' name="about">

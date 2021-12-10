@@ -2,14 +2,14 @@ import jwt_decode from "jwt-decode";
 import Cookies from 'js-cookie'
 import rivitaAPI from "./rivitaAPI";
 
-export const login = (email, password, callback) => async (dispatch) => {
+export const login = (username, password, callback) => async (dispatch) => {
     try {
         dispatch({
             type: 'USER_LOGIN_REQUEST'
         });
 
         const postObject = {
-            "email": email,
+            "username": username,
             "password": password
         }
         const response = await rivitaAPI.post('/api/Accounts/login', postObject);
@@ -23,8 +23,8 @@ export const login = (email, password, callback) => async (dispatch) => {
         });
         const userData = jwt_decode(response.data.token);
        
-        if (userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Administrator') {
-            Cookies.set('role', 'Administrator', {
+        if (userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'ADMINISTRATOR') {
+            Cookies.set('role', 'ADMINISTRATOR', {
                 expires: inFifteenMinutes
             });
         }

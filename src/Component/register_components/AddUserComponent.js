@@ -10,7 +10,7 @@ function AddUserComponent(props) {
     const [user, setUser] = useState({
         phoneNumber: '',
         companyId: '',
-        email: '',
+        username: '',
         password: ''
     });
 
@@ -20,7 +20,7 @@ function AddUserComponent(props) {
     const saveChanges = () => {
         const userClone = JSON.parse(JSON.stringify(user));
         const postObj = {
-            "email": userClone.email,
+            "username": userClone.username,
             "password": userClone.password,
             "phoneNumber": userClone.phoneNumber,
             "companyId": userClone.companyId,
@@ -29,6 +29,7 @@ function AddUserComponent(props) {
             ]
         }
         props.save(postObj);
+        console.log('post:'+JSON.stringify(postObj))
     }
 
     const onDataChange = (value, inputName) => {
@@ -37,8 +38,8 @@ function AddUserComponent(props) {
             userClone.phoneNumber = value;
         } else if (inputName === "companyId") {
             userClone.companyId = value;
-        } else if (inputName === "email") {
-            userClone.email = value;
+        } else if (inputName === "username") {
+            userClone.username = value;
         } else if (inputName === "password") {
             userClone.password = value;
         }
@@ -86,13 +87,13 @@ function AddUserComponent(props) {
                     })}
                 </Select>
 
-                <Form.Group controlId='email'>
-                    <Form.Label>Email</Form.Label>
+                <Form.Group controlId='username'>
+                    <Form.Label>Vartotojo vardas</Form.Label>
                     <Form.Control
-                        type='email'
-                        placeholder='Įveskite el. paštą'
-                        value={user.email}
-                        onChange={(e) => onDataChange(e.target.value, "email")}
+                        type='text'
+                        placeholder='Įveskite vartotojo vardą'
+                        value={user.username}
+                        onChange={(e) => onDataChange(e.target.value, "username")}
                     >
                     </Form.Control>
                 </Form.Group>

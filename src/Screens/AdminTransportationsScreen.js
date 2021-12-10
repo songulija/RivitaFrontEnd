@@ -116,7 +116,7 @@ class AdminTransportationScreen extends React.Component {
         });
     }
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'ADMINISTRATOR') {
             this.props.getTransportations(() => {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
             });

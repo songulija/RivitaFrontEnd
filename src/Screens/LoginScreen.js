@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Alert } from 'react-bootstrap'
 import Form from "react-bootstrap/Form";
-import { Spin, notification, Alert } from 'antd';
+import { Spin } from 'antd';
 import "../styles/Login.css";
 import { login, getUserData } from '../redux/actions/userActions.js'
 import { withRouter } from 'react-router-dom'
@@ -12,7 +13,7 @@ class LoginScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            username: '',
             password: ''
         }
     }
@@ -30,16 +31,16 @@ class LoginScreen extends React.Component {
             password: value
         });
     }
-    changeEmail = (value) => {
+    changeUsername = (value) => {
         this.setState({
-            email: value
+            username: value
         })
     }
 
     submitHandler = (e) => {
         e.preventDefault();//prevemnt default behaviour when submit button is clicked. preved refresh of page
         //DISPATCH LOGIN action. pass email and password that user typed
-        this.props.login(this.state.email, this.state.password, () => {
+        this.props.login(this.state.username, this.state.password, () => {
             this.props.getUserData();
             this.props.history.push('/search')
         });
@@ -48,26 +49,29 @@ class LoginScreen extends React.Component {
         return (
             <>
                 <HeaderMain />
-                {this.props.usersReducer.error ?
-                    <Alert
-                        message="Klaida įvyko prisijungiant"
-                        description="Neteisingai įvestas el. paštas arba slaptažodis"
-                        type="error"
-                    /> : null}
+
                 {this.props.usersReducer.loading !== false && this.props.usersReducer.loading !== undefined ?
                     <div style={{ textAlign: 'center' }}>
                         <Spin size="large" />
                     </div> : null}
                 <div className="login my-auto container-fluid vh-100 vw-100">
                     <Form onSubmit={this.submitHandler}>
+                        {this.props.usersReducer.error ?
+                            <Alert key={1} variant={'danger'}>
+                                <Alert.Heading>Prisijungimas buvo nesėkmnigas</Alert.Heading>
+                                <p>
+                                    Vartotojo vardas arba slaptažodis buvo įvesti neteisingai.
+                                    Pabandykite dar kartą.
+                                </p>
+                            </Alert> : null}
                         <h1 className="h3 mb-3 fw-normal">Prašom prisijungti</h1>
-                        <Form.Group size="lg" controlId="email">
-                            <Form.Label>El. paštas</Form.Label>
+                        <Form.Group size="lg" controlId="username">
+                            <Form.Label>Vartotojo vardas</Form.Label>
                             <Form.Control
                                 autoFocus
-                                type="email"
-                                value={this.state.email}
-                                onChange={(e) => this.changeEmail(e.target.value)}
+                                type="text"
+                                value={this.state.username}
+                                onChange={(e) => this.changeUsername(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group size="lg" controlId="password">

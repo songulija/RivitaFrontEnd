@@ -53,7 +53,7 @@ class UserTransportations extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === "Administrator") {
+        if (this.props.usersReducer.currentUser !== null) {
             if (this.props.location.state.query !== null && this.props.location.state.query !== undefined) {
                 this.props.getTransportationsByParams(this.props.location.state.query, () => {
                     this.transportationsDataSet(this.props.transportationsReducer.transportations);

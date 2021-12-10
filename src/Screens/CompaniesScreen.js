@@ -99,7 +99,7 @@ class CompaniesScreen extends React.Component {
 
 
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role !== null) {
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === "ADMINISTRATOR") {
             this.props.getCompanies(() => {
                 const companiesClone = JSON.parse(JSON.stringify(this.props.companiesReducer.companies))
                 this.setState({

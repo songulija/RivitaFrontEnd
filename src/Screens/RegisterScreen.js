@@ -63,7 +63,7 @@ class RegisterScreen extends React.Component {
 
     //get companies. becouse when register we asign companies
     componentDidMount() {
-        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'Administrator') {
+        if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'ADMINISTRATOR') {
             this.props.getUsers(1, () => {
                 const usersClone = JSON.parse(JSON.stringify(this.props.usersListReducer.users));
                 this.setState({
@@ -83,8 +83,8 @@ class RegisterScreen extends React.Component {
     render() {
         const columns = [
             {
-                title: 'El. pašas',
-                dataIndex: 'email',
+                title: 'Vartotojo vardas',
+                dataIndex: 'username',
                 width: '40%'
             },
             {
