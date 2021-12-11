@@ -24,7 +24,7 @@ class HeaderHome extends React.Component {
         // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
         return (
             <div>
-                <Navbar bg="" variant='light' expand="xl"  >
+                <Navbar bg="" variant='dark' expand="xl"  >
                     <Container>
                         <LinkContainer to='/'>
                             <Navbar.Brand href="/">
@@ -65,7 +65,7 @@ class HeaderHome extends React.Component {
                                         </LinkContainer>
                                         {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
                                         {this.props.userInfoReducer.role === 'ADMINISTRATOR' ?
-                                        <NavDropdown title="ADMIN" id="basic-nav-dropdown" className="dropdownStyle">
+                                        <NavDropdown title="ADMIN" id="basic-nav-dropdown"  className='dropdownStyle'>
                                                 <LinkContainer to='/companies'>
                                                     <NavDropdown.Item>KOMPANIJOS</NavDropdown.Item>
                                                 </LinkContainer>
