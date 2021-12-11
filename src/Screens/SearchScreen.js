@@ -5,6 +5,7 @@ import moment from 'moment'
 import { withRouter } from 'react-router-dom';
 import { getTransportationsByParams } from '../redux/actions/transportationsActions'
 import HeaderMain from '../Component/HeaderMain';
+import { userCompanyReducer } from '../redux/reducers/usersReducer';
 
 
 const aboutTitleTextStyle = {
@@ -137,11 +138,13 @@ class SearchScreen extends React.Component {
                 }
             });
         })
+        let companyName = this.props.userCompanyReducer.company;
+        queryString = queryString + `companyName=${companyName}&`;
         queryString = queryString.slice(0,-1)
         this.setState({
             queryString: queryString
         });
-
+        console.log(queryString)
         this.props.history.push({
             pathname: '/transportations',
             state: {query: queryString}
@@ -212,7 +215,8 @@ class SearchScreen extends React.Component {
 const mapStateToProps = (state) => {
     return {
         usersReducer: state.usersReducer,
-        transportationsReducer: state.transportationsReducer
+        transportationsReducer: state.transportationsReducer,
+        userCompanyReducer: state.userCompanyReducer
     }
 }
 

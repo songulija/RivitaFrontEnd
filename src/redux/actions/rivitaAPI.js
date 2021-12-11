@@ -1,7 +1,8 @@
 import axios from 'axios';
 // https://rivitabackend20211127230328.azurewebsites.net
+//https://localhost:44338
 const rivitaAPI = axios.create({
-    baseURL: 'https://rivitabackend20211127230328.azurewebsites.net',
+    baseURL: 'https://localhost:44338',
     headers: {
         'Access-Control-Allow-Origin': '*'
     }

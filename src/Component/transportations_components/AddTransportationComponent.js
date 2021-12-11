@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { createTransportation } from '../../redux/actions/transportationsActions.js';
-import {Form, Button, Input, Modal,Space} from 'antd';
-import {ArrowLeftOutlined} from '@ant-design/icons'
+import { Form, Button, Input, Modal, Space, Select } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import moment from 'moment';
 
+const { Option } = Select;
 class AddTransportationComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -25,25 +26,29 @@ class AddTransportationComponent extends React.Component {
                 "destinationStationTitle": "string",
                 "destinationCountryTitle": "string",
                 "stationMovementBeginingBelarusTitle": "string",
-                "stationMovementEndBelarusTitle": "string"
-            }
+                "stationMovementEndBelarusTitle": "string",
+                "companyName": ""
+            },
+            companies: this.props.companies
         }
     }
 
-    onCancel = () =>{
+    onCancel = () => {
         this.props.onClose();
     }
 
-    saveChanges = () =>{
+    saveChanges = () => {
         const postObj = JSON.parse(JSON.stringify(this.state.transportation));
         this.props.save(postObj);
         this.props.onClose();
     }
 
-    onDataChange = (value,inputName) => {
+    onDataChange = (value, inputName) => {
         const transportationClone = JSON.parse(JSON.stringify(this.state.transportation));
         if (inputName === "transportationNumber") {
             transportationClone.transportationNumber = Number(value);
+        } else if (inputName === "companyName") {
+            transportationClone.companyName = value
         } else if (inputName === "weight") {
             transportationClone.weight = Number(value)
         } else if (inputName === "wagonsCount") {
@@ -79,15 +84,18 @@ class AddTransportationComponent extends React.Component {
             transportation: transportationClone
         });
     }
+    componentDidMount() {
+    }
     render() {
+        console.log(JSON.stringify(this.state.companies))
         return (
             <>
-            <Modal
+                <Modal
                     onCancel={this.onCancel}
                     saveChanges={this.saveChanges}
                     okButtonProps={{ disabled: false }}
                     cancelButtonProps={{ disabled: false }}
-                    title={<Space><ArrowLeftOutlined onClick={this.onBack} />Pridėti naują transportaciją</Space>}
+                    title={<Space><ArrowLeftOutlined onClick={this.onBack} />Pridėti naują transportavimą</Space>}
                     visible={this.props.visible}
                     footer={
                         <div>
@@ -97,6 +105,20 @@ class AddTransportationComponent extends React.Component {
                     }
                 >
                     <Form layout="vertical" id="myForm" name="myForm">
+                        <p>Kompanija</p>
+                        <Select
+                            showSearch
+                            style={{ width: '320px' }}
+                            placeholder="Priskirkite kompaniją"
+                            optionFilterProp="children"
+                            onChange={(e) => this.onDataChange(e, "companyName")}
+                            value={this.state.transportation.companyName}
+                        >
+                            {this.props.companies.map((element, index) => (
+                                <Option key={element.id} value={element.name}>{element.name}</Option>
+                            ))}
+                        </Select>
+
                         <Form.Item key="name" name="name" label="Transportavimo numeris">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite numerį" defaultValue={this.state.transportation.transportationNumber} value={this.state.transportation.transportationNumber} onChange={(e) => this.onDataChange(e.target.value, "transportationNumber")} />
                         </Form.Item>
@@ -118,8 +140,6 @@ class AddTransportationComponent extends React.Component {
                         <Form.Item key="name8" name="name8" label="Judėjimo pabaigos data Baltarusijoje">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite datą" defaultValue={this.state.transportation.movementEndDateInBelarus} value={this.state.transportation.movementEndDateInBelarus} onChange={(e) => this.onDataChange(e.target.value, "movementEndDateInBelarus")} />
                         </Form.Item>
-
-
                         <Form.Item key="name9" name="name9" label="ETSNG krovinio kodas">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={this.state.transportation.etsngCargoCode} value={this.state.transportation.etsngCargoCode} onChange={(e) => this.onDataChange(e.target.value, "etsngCargoCode")} />
                         </Form.Item>

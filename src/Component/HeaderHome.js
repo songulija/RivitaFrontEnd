@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { logout } from '../redux/actions/userActions'
 import logo from '../images/rivita-logo.png'
 import { animateScroll as scroll, scroller, Link } from 'react-scroll'
+import '../styles/headerHomeStyle.css'
 
 class HeaderHome extends React.Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class HeaderHome extends React.Component {
                                         </LinkContainer>
                                         {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
                                         {this.props.userInfoReducer.role === 'ADMINISTRATOR' ?
-                                            <NavDropdown title="Admin" id="basic-nav-dropdown">
+                                        <NavDropdown title="ADMIN" id="basic-nav-dropdown" className="dropdownStyle">
                                                 <LinkContainer to='/companies'>
                                                     <NavDropdown.Item>KOMPANIJOS</NavDropdown.Item>
                                                 </LinkContainer>

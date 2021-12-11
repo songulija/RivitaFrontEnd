@@ -60,7 +60,7 @@ class HeaderMain extends React.Component {
                                         </LinkContainer>
                                         {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
                                         {this.props.userInfoReducer.role === 'ADMINISTRATOR' ?
-                                            <NavDropdown title="Admin" id="basic-nav-dropdown">
+                                            <NavDropdown title="ADMIN" id="basic-nav-dropdown" style={{fontWeight: '500', fontSize: '18px', color: '#436066'}}>
                                                 <LinkContainer to='/companies'>
                                                     <NavDropdown.Item>KOMPANIJOS</NavDropdown.Item>
                                                 </LinkContainer>

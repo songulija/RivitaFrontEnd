@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getTransportations, createTransportation, updateTransportation } from '../redux/actions/transportationsActions.js';
+import { getCompanies } from '../redux/actions/companiesActions'
 import { buttonStyle } from '../styles/customStyles';
 import { getWagons } from '../redux/actions/wagonsActions';
 import { Col, Table, Row, Space, Typography, Button, Input } from 'antd';
@@ -119,7 +120,10 @@ class AdminTransportationScreen extends React.Component {
         if (this.props.usersReducer.currentUser !== null && this.props.userInfoReducer.role === 'ADMINISTRATOR') {
             this.props.getTransportations(() => {
                 this.transportationsDataSet(this.props.transportationsReducer.transportations);
+                this.props.getCompanies(() => {
+                })
             });
+            
         } else {
             this.props.history.push('/');
         }
@@ -178,6 +182,11 @@ class AdminTransportationScreen extends React.Component {
                 onFilter: (value, record) => {
                     return record.transportationNumber == value;
                 },
+                width: '5%'
+            },
+            {
+                title: 'Kompanija',
+                dataIndex: 'companyName',
                 width: '5%'
             },
             {
@@ -305,7 +314,7 @@ class AdminTransportationScreen extends React.Component {
                     </Col>
                     {this.state.addPanelVisibility !== false ?
                         <AddTransportationComponent visible={this.state.addPanelVisibility} onClose={this.unshowTransportationAddPanel}
-                            save={this.addTransportation} />
+                            save={this.addTransportation} companies={this.props.companiesReducer.companies} />
                         : null}
                     {this.state.updateTransportation.visibility !== false ?
                         <UpdateTransportationComponent visible={this.state.updateTransportation.visibility} save={this.saveUpdateTransportation}
@@ -322,8 +331,9 @@ const mapStateToProps = (state) => {
         usersReducer: state.usersReducer,
         userInfoReducer: state.userInfoReducer,
         transportationsReducer: state.transportationsReducer,
-        wagonsReducer: state.wagonsReducer
+        wagonsReducer: state.wagonsReducer,
+        companiesReducer: state.companiesReducer
     }
 }
 
-export default connect(mapStateToProps, { getTransportations, getWagons, createTransportation, updateTransportation })(withRouter(AdminTransportationScreen))
+export default connect(mapStateToProps, { getTransportations, getWagons,getCompanies, createTransportation, updateTransportation })(withRouter(AdminTransportationScreen))

@@ -4,7 +4,7 @@ import { Alert } from 'react-bootstrap'
 import Form from "react-bootstrap/Form";
 import { Spin } from 'antd';
 import "../styles/Login.css";
-import { login, getUserData } from '../redux/actions/userActions.js'
+import { login, getUserData, getUserCompany } from '../redux/actions/userActions.js'
 import { withRouter } from 'react-router-dom'
 import HeaderMain from '../Component/HeaderMain';
 
@@ -42,6 +42,7 @@ class LoginScreen extends React.Component {
         //DISPATCH LOGIN action. pass email and password that user typed
         this.props.login(this.state.username, this.state.password, () => {
             this.props.getUserData();
+            this.props.getUserCompany();
             this.props.history.push('/search')
         });
     }
@@ -98,8 +99,8 @@ class LoginScreen extends React.Component {
 // get redux states
 const mapStateToProps = (state) => {
     return {
-        usersReducer: state.usersReducer
+        usersReducer: state.usersReducer,
     }
 }
 // connect to redux states and defining all actions
-export default connect(mapStateToProps, { getUserData, login })(withRouter(LoginScreen));
+export default connect(mapStateToProps, { getUserData,getUserCompany, login })(withRouter(LoginScreen));

@@ -88,6 +88,11 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
+                title: 'Kompanija',
+                dataIndex: 'companyName',
+                width: '5%'
+            },
+            {
                 title: 'Svoris',
                 dataIndex: 'weight',
                 width: '5%'

@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import { Space, Select,Modal } from 'antd'
+import React, { useState, useEffect } from 'react';
+import {useDispatch,useSelector} from 'react-redux';
+import {getUserTypes} from '../../redux/actions/userActions';
+import { Space, Select,Modal } from 'antd';
 import {Form} from 'react-bootstrap'
-import { ArrowLeftOutlined } from '@ant-design/icons'
 import Button from "react-bootstrap/Button";
+import {ArrowLeftOutlined} from '@ant-design/icons'
+
 
 const {Option} = Select;
 
 function AddUserComponent(props) {
+    const dispatch = useDispatch();
     const [user, setUser] = useState({
         phoneNumber: '',
         companyId: '',
         username: '',
-        password: ''
+        password: '',
+        typeId: 0
     });
+    const userTypesReducer = useSelector((state) => state.userTypesReducer);
 
     const onCancel = () =>{
         props.onClose();
@@ -24,9 +30,7 @@ function AddUserComponent(props) {
             "password": userClone.password,
             "phoneNumber": userClone.phoneNumber,
             "companyId": userClone.companyId,
-            "roles": [
-                "USER"
-            ]
+            "typeId": userClone.typeId
         }
         props.save(postObj);
         console.log('post:'+JSON.stringify(postObj))
@@ -42,10 +46,17 @@ function AddUserComponent(props) {
             userClone.username = value;
         } else if (inputName === "password") {
             userClone.password = value;
+        }else if (inputName === "typeId") {
+            userClone.typeId = value;
         }
 
         setUser(userClone);
     }
+    useEffect(() => {
+        dispatch(getUserTypes(() =>{
+
+        }))
+    },[])
     return (
         <Modal
             onCancel={onCancel}
@@ -74,6 +85,7 @@ function AddUserComponent(props) {
 
                     </Form.Control>
                 </Form.Group>
+
                 <p style={{ marginBottom: '5px' }}>Kompanija</p>
                 <Select
                     showSearch
@@ -84,6 +96,18 @@ function AddUserComponent(props) {
                 >
                     {props.companies.map((element, index) => {
                         return (<Option key={element.id} value={element.id}>{element.name}</Option>)
+                    })}
+                </Select>
+                <p style={{ marginBottom: '5px' }}>Vartotojo tipas</p>
+                <Select
+                    showSearch
+                    style={{ width: '320px' }}
+                    placeholder="Priskirkite tipą"
+                    optionFilterProp="children"
+                    onChange={(e) => onDataChange(e, "typeId")}
+                >
+                    {userTypesReducer.userTypes.map((element, index) => {
+                        return (<Option key={element.id} value={element.id}>{element.title}</Option>)
                     })}
                 </Select>
 
