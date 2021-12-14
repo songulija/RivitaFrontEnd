@@ -12,21 +12,21 @@ class AddTransportationComponent extends React.Component {
         super(props);
         this.state = {
             transportation: {
-                "transportationNumber": 10,
-                "weight": 10,
-                "wagonsCount": 10,
-                "transportationType": "string",
+                "transportationNumber": 0,
+                "weight": 0,
+                "wagonsCount": 0,
+                "transportationType": "Tranzitas",
                 "cargoAcceptanceDate": moment().format("YYYY/MM/DD"),
                 "movementStartDateInBelarus": moment().format("YYYY/MM/DD"),
                 "movementEndDateInBelarus": null,
-                "etsngCargoCode": 10,
-                "gngCargoCode": 10,
-                "departureStationTitle": "string",
+                "etsngCargoCode": 0,
+                "gngCargoCode": 0,
+                "departureStationTitle": "",
                 "departureCountryTitle": "Baltarusija",
-                "destinationStationTitle": "string",
-                "destinationCountryTitle": "string",
-                "stationMovementBeginingBelarusTitle": "string",
-                "stationMovementEndBelarusTitle": "string",
+                "destinationStationTitle": "",
+                "destinationCountryTitle": "",
+                "stationMovementBeginingBelarusTitle": "",
+                "stationMovementEndBelarusTitle": "",
                 "companyName": ""
             },
             companies: this.props.companies
@@ -161,6 +161,8 @@ class AddTransportationComponent extends React.Component {
                             <Option value="Rusija">Rusija</Option>
                             <Option value="Ukraina">Ukraina</Option>
                             <Option value="Baltarusija">Baltarusija</Option>
+                            <Option value="Lietuva">Lietuva</Option>
+                            <Option value="Latvija">Latvija</Option>
                         </Select>
                         <Form.Item key="name18" name="name18" label="Galinė stotis">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite stotį" defaultValue={this.state.transportation.destinationStationTitle} value={this.state.transportation.destinationStationTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationStationTitle")} />
