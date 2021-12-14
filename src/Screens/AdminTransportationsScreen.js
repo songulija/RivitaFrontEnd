@@ -106,7 +106,10 @@ class AdminTransportationScreen extends React.Component {
             //for each element in array change dates
             let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
             let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
-            let date3 = moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+            let date3 = "";
+            if(element.movementEndDateInBelarus !== null &&  element.movementEndDateInBelarus !== undefined){
+                date3 =  moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+            }
             element.cargoAcceptanceDate = date1;
             element.movementStartDateInBelarus = date2;
             element.movementEndDateInBelarus = date3;
@@ -148,12 +151,12 @@ class AdminTransportationScreen extends React.Component {
                 )
             },
             {
-                title: 'Transportavimo numeris',
+                title: 'Siuntos numeris',
                 dataIndex: 'transportationNumber',
                 filterDropdown: ({ setSelectedKeys, selectedKeys, confirm,clearFilters }) => {
                     return (
                         <>
-                            <Input autofocus placeholder="Type text here"
+                            <Input autofocus placeholder="Įrašykite numerį"
                                 value={selectedKeys[0]}
                                 onChange={(e) => {
                                     setSelectedKeys(e.target.value ? [e.target.value] : [])
@@ -190,7 +193,7 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Svoris',
+                title: 'Svoris (kg)',
                 dataIndex: 'weight',
                 width: '5%'
             },
@@ -229,13 +232,7 @@ class AdminTransportationScreen extends React.Component {
             {
                 title: 'Judėjimo pabaigos data Baltarusijoje',
                 dataIndex: 'movementEndDateInBelarus',
-                width: '5%',
-                sorter: (a, b) => {
-                    if (moment(a.Created).isBefore(moment(b.Created))) {
-                        return -1;
-                    }
-                    return 1;
-                }
+                width: '5%'
             },
             {
                 title: 'ETSNG krovinio kodas',
@@ -243,27 +240,27 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%'
             },
             {
-                title: 'GNG krovinio kodas',
+                title: 'BKN krovinio kodas',
                 dataIndex: 'gngCargoCode',
                 width: '5%'
             },
             {
-                title: 'Išvykimo stoties pavadinimas',
+                title: 'Pradinė stotis',
                 dataIndex: 'departureStationTitle',
                 width: '8%'
             },
             {
-                title: 'Išvykimo šalies pavadinimas',
+                title: 'Pradinė šalis',
                 dataIndex: 'departureCountryTitle',
                 width: '7%'
             },
             {
-                title: 'Paskirties stoties pavadinimas',
+                title: 'Galinė stotis',
                 dataIndex: 'destinationStationTitle',
                 width: '8%'
             },
             {
-                title: 'Paskirties šalies pavadinimas',
+                title: 'Galinė šalis',
                 dataIndex: 'destinationCountryTitle',
                 width: '7%'
             },

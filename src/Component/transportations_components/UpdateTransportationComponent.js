@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Input, Modal, Space,Col,Row } from 'antd';
+import { Form, Button, Input, Modal, Space, Col, Row, Select} from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import moment from 'moment';
-
+const {Option} = Select;
 const textStyle = {
     fontSize: '18px',
     color: '#8C8C8C',
@@ -14,7 +14,6 @@ const textStyle = {
     marginTop: '10px',
     paddingBottom: '5px'
 }
-
 function UpdateTransportationComponent(props) {
     const [transportation, setTransportation] = useState({});
     const onBack = () => {
@@ -79,7 +78,8 @@ function UpdateTransportationComponent(props) {
             "destinationStationTitle": transportationClone.destinationStationTitle,
             "destinationCountryTitle": transportationClone.destinationCountryTitle,
             "stationMovementBeginingBelarusTitle": transportationClone.stationMovementBeginingBelarusTitle,
-            "stationMovementEndBelarusTitle": transportationClone.stationMovementEndBelarusCode
+            "stationMovementEndBelarusTitle": transportationClone.stationMovementEndBelarusCode,
+            "companyName": transportationClone.companyName
         }
         props.save(postObj, reducerObj);
     }
@@ -107,9 +107,9 @@ function UpdateTransportationComponent(props) {
                 <Form layout="vertical" id="myForm" name="myForm">
                     <Row>
                         <Col span={12} style={{ paddingLeft: '7px', paddingRight: '7px' }}>
-                            <p style={{ ...textStyle }}>Transportavimo numeris</p>
+                            <p style={{ ...textStyle }}>Siuntos numeris</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite numerį" defaultValue={transportation.transportationNumber} value={transportation.transportationNumber} onChange={(e) => onDataChange(e.target.value, "transportationNumber")} />
-                            <p style={{ ...textStyle }}>Svoris</p>
+                            <p style={{ ...textStyle }}>Svoris (kg)</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite svorį" defaultValue={transportation.weight} value={transportation.weight} onChange={(e) => onDataChange(e.target.value, "weight")} />
                             <p style={{ ...textStyle }}>Vagonų skaičius</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite skaičių" defaultValue={transportation.wagonsCount} value={transportation.wagonsCount} onChange={(e) => onDataChange(e.target.value, "wagonsCount")} />
@@ -123,18 +123,26 @@ function UpdateTransportationComponent(props) {
                             <Input style={{ width: '100%' }} placeholder="Įrašykite datą" defaultValue={transportation.movementEndDateInBelarus} value={transportation.movementEndDateInBelarus} onChange={(e) => onDataChange(e.target.value, "movementEndDateInBelarus")} />
                             <p style={{ ...textStyle }}>ETSNG krovinio kodas</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={transportation.etsngCargoCode} value={transportation.etsngCargoCode} onChange={(e) => onDataChange(e.target.value, "etsngCargoCode")} />
-                            <p style={{ ...textStyle }}>GNG krovinio kodas</p>
+                            <p style={{ ...textStyle }}>BKN krovinio kodas</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={transportation.gngCargoCode} value={transportation.gngCargoCode} onChange={(e) => onDataChange(e.target.value, "gngCargoCode")} />
                         </Col>
                         <Col span={12} style={{ paddingLeft: '7px', paddingRight: '7px' }}>
-                            <p style={{ ...textStyle }}>Išvykimo stoties pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.departureStationTitle} value={transportation.departureStationTitle} onChange={(e) => onDataChange(e.target.value, "departureStationTitle")} />
-                            <p style={{ ...textStyle }}>Išvykimo šailes pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.departureCountryTitle} value={transportation.departureCountryTitle} onChange={(e) => onDataChange(e.target.value, "departureCountryTitle")} />
-                            <p style={{ ...textStyle }}>Paskirties stoties pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.destinationStationTitle} value={transportation.destinationStationTitle} onChange={(e) => onDataChange(e.target.value, "destinationStationTitle")} />
-                            <p style={{ ...textStyle }}>Paskirties šalies pavadinimas</p>
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.destinationCountryTitle} value={transportation.destinationCountryTitle} onChange={(e) => onDataChange(e.target.value, "destinationCountryTitle")} />
+                            <p style={{ ...textStyle }}>Pradinė stotis</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite stotį" defaultValue={transportation.departureStationTitle} value={transportation.departureStationTitle} onChange={(e) => onDataChange(e.target.value, "departureStationTitle")} />
+                            <p style={{ ...textStyle }}>Pradinė šalis</p>
+                            <Select
+                                style={{ width: '320px' }}
+                                defaultValue={transportation.departureCountryTitle}
+                                value={transportation.departureCountryTitle}
+                                style={{ width: 120 }} onChange={(e) => onDataChange(e, "departureCountryTitle")}>
+                                <Option value="Rusija">Rusija</Option>
+                                <Option value="Ukraina">Ukraina</Option>
+                                <Option value="Baltarusija">Baltarusija</Option>
+                            </Select>
+                            <p style={{ ...textStyle }}>Galinė stotis</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite stotis" defaultValue={transportation.destinationStationTitle} value={transportation.destinationStationTitle} onChange={(e) => onDataChange(e.target.value, "destinationStationTitle")} />
+                            <p style={{ ...textStyle }}>Galinė šalis</p>
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite šalį" defaultValue={transportation.destinationCountryTitle} value={transportation.destinationCountryTitle} onChange={(e) => onDataChange(e.target.value, "destinationCountryTitle")} />
                             <p style={{ ...textStyle }}>Judėjimo pradžios stoties pavadinimas (Baltarusijoje)</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={transportation.stationMovementBeginingBelarusTitle} value={transportation.stationMovementBeginingBelarusTitle} onChange={(e) => onDataChange(e.target.value, "stationMovementBeginingBelarusTitle")} />
                             <p style={{ ...textStyle }}>Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)</p>

@@ -133,8 +133,7 @@ const HomeScreen = () => {
                                 <div className='container text-center service-container-style' >
                                     <i className="fas fa-train service-icons-style" ></i>
                                 </div>
-                                <p style={{ ...serviceText }}>Krovinių ekspedijavimas geležinkelių transportu
-                                    Krovinio judėjimo </p>
+                                <p style={{ ...serviceText }}>Krovinių ekspedijavimas geležinkelių transportu</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>

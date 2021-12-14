@@ -18,11 +18,11 @@ class AddTransportationComponent extends React.Component {
                 "transportationType": "string",
                 "cargoAcceptanceDate": moment().format("YYYY/MM/DD"),
                 "movementStartDateInBelarus": moment().format("YYYY/MM/DD"),
-                "movementEndDateInBelarus": moment().format("YYYY/MM/DD"),
+                "movementEndDateInBelarus": null,
                 "etsngCargoCode": 10,
                 "gngCargoCode": 10,
                 "departureStationTitle": "string",
-                "departureCountryTitle": "string",
+                "departureCountryTitle": "Baltarusija",
                 "destinationStationTitle": "string",
                 "destinationCountryTitle": "string",
                 "stationMovementBeginingBelarusTitle": "string",
@@ -119,10 +119,10 @@ class AddTransportationComponent extends React.Component {
                             ))}
                         </Select>
 
-                        <Form.Item key="name" name="name" label="Transportavimo numeris">
+                        <Form.Item key="name" name="name" label="Siuntos numeris">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite numerį" defaultValue={this.state.transportation.transportationNumber} value={this.state.transportation.transportationNumber} onChange={(e) => this.onDataChange(e.target.value, "transportationNumber")} />
                         </Form.Item>
-                        <Form.Item key="name1" name="name1" label="Svoris">
+                        <Form.Item key="name1" name="name1" label="Svoris (kg)">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite svorį" defaultValue={this.state.transportation.weight} value={this.state.transportation.weight} onChange={(e) => this.onDataChange(e.target.value, "weight")} />
                         </Form.Item>
                         <Form.Item key="name2" name="name2" label="Vagonų skaičius">
@@ -143,20 +143,30 @@ class AddTransportationComponent extends React.Component {
                         <Form.Item key="name9" name="name9" label="ETSNG krovinio kodas">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={this.state.transportation.etsngCargoCode} value={this.state.transportation.etsngCargoCode} onChange={(e) => this.onDataChange(e.target.value, "etsngCargoCode")} />
                         </Form.Item>
-                        <Form.Item key="name11" name="name11" label="GNG krovinio kodas">
+                        <Form.Item key="name11" name="name11" label="BKN krovinio kodas">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite kodą" defaultValue={this.state.transportation.gngCargoCode} value={this.state.transportation.gngCargoCode} onChange={(e) => this.onDataChange(e.target.value, "gngCargoCode")} />
                         </Form.Item>
-                        <Form.Item key="name14" name="name14" label="Išvykimo stoties pavadinimas">
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={this.state.transportation.departureStationTitle} value={this.state.transportation.departureStationTitle} onChange={(e) => this.onDataChange(e.target.value, "departureStationTitle")} />
+                        <Form.Item key="name14" name="name14" label="Pradinė stotis">
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite stotį" defaultValue={this.state.transportation.departureStationTitle} value={this.state.transportation.departureStationTitle} onChange={(e) => this.onDataChange(e.target.value, "departureStationTitle")} />
                         </Form.Item>
-                        <Form.Item key="name16" name="name16" label="Išvykimo šalies pavadinimas">
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={this.state.transportation.departureCountryTitle} value={this.state.transportation.departureCountryTitle} onChange={(e) => this.onDataChange(e.target.value, "departureCountryTitle")} />
+                        {/* <Form.Item key="name16" name="name16" label="Pradinė šalis">
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite šalį" defaultValue={this.state.transportation.departureCountryTitle} value={this.state.transportation.departureCountryTitle} onChange={(e) => this.onDataChange(e.target.value, "departureCountryTitle")} />
+                        </Form.Item> */}
+                        <p>Pradinė šalis</p>
+                        <Select
+                            style={{ width: '320px' }}
+                            defaultValue={this.state.transportation.departureCountryTitle}
+                            value={this.state.transportation.departureCountryTitle}
+                            style={{ width: 120 }} onChange={(e) => this.onDataChange(e, "departureCountryTitle")}>
+                            <Option value="Rusija">Rusija</Option>
+                            <Option value="Ukraina">Ukraina</Option>
+                            <Option value="Baltarusija">Baltarusija</Option>
+                        </Select>
+                        <Form.Item key="name18" name="name18" label="Galinė stotis">
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite stotį" defaultValue={this.state.transportation.destinationStationTitle} value={this.state.transportation.destinationStationTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationStationTitle")} />
                         </Form.Item>
-                        <Form.Item key="name18" name="name18" label="Paskirties stoties pavadinimas">
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={this.state.transportation.destinationStationTitle} value={this.state.transportation.destinationStationTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationStationTitle")} />
-                        </Form.Item>
-                        <Form.Item key="name20" name="name20" label="Paskirties šalies pavadinimas">
-                            <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={this.state.transportation.destinationCountryTitle} value={this.state.transportation.destinationCountryTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationCountryTitle")} />
+                        <Form.Item key="name20" name="name20" label="Galinė šalis">
+                            <Input style={{ width: '100%' }} placeholder="Įrašykite šalį" defaultValue={this.state.transportation.destinationCountryTitle} value={this.state.transportation.destinationCountryTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationCountryTitle")} />
                         </Form.Item>
                         <Form.Item key="name22" name="name22" label="Judėjimo pradžios stoties pavadinimas (Baltarusijoje)">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={this.state.transportation.stationMovementBeginingBelarusTitle} value={this.state.transportation.stationMovementBeginingBelarusTitle} onChange={(e) => this.onDataChange(e.target.value, "stationMovementBeginingBelarusTitle")} />

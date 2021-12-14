@@ -33,7 +33,7 @@ class SearchScreen extends React.Component {
             search: [
                 {
                     "id": 1,
-                    "title": "Tranportavimo numeris",
+                    "title": "Siuntos numeris",
                     "dataIndex":"transportationNumber",
                     "value": 0
                 },
@@ -75,7 +75,7 @@ class SearchScreen extends React.Component {
                 },
                 {
                     "id": 8,
-                    "title": "Krovinio kodas (GNG)",
+                    "title": "Krovinio kodas (BKN)",
                     "dataIndex":"gngCargoCode",
                     "value": 0,
                 }

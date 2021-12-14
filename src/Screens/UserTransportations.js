@@ -83,7 +83,7 @@ class UserTransportations extends React.Component {
                 )
             },
             {
-                title: 'Transportavimo numeris',
+                title: 'Siuntos numeris',
                 dataIndex: 'transportationNumber',
                 width: '5%'
             },
@@ -93,7 +93,7 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Svoris',
+                title: 'Svoris (kg)',
                 dataIndex: 'weight',
                 width: '5%'
             },
@@ -146,27 +146,27 @@ class UserTransportations extends React.Component {
                 width: '5%'
             },
             {
-                title: 'GNG krovinio kodas',
+                title: 'BKN krovinio kodas',
                 dataIndex: 'gngCargoCode',
                 width: '5%'
             },
             {
-                title: 'Išvykimo stoties pavadinimas',
+                title: 'Pradinė stotis',
                 dataIndex: 'departureStationTitle',
                 width: '5%'
             },
             {
-                title: 'Išvykimo šalies pavadinimas',
+                title: 'Pradinė šalis',
                 dataIndex: 'departureCountryTitle',
                 width: '5%'
             },
             {
-                title: 'Paskirties stoties pavadinimas',
+                title: 'Galinė stotis',
                 dataIndex: 'destinationStationTitle',
                 width: '5%'
             },
             {
-                title: 'Paskirties šalies pavadinimas',
+                title: 'Galinė šalis',
                 dataIndex: 'destinationCountryTitle',
                 width: '5%'
             },

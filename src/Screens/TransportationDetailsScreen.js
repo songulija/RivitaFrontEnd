@@ -38,7 +38,7 @@ class TransportationDetailsScreen extends React.Component {
     render() {
         const columns = [
             {
-                title: 'Transportavimo numeris',
+                title: 'Siuntos numeris',
                 dataIndex: 'transportationId',
                 width: '10%',
                 render: (text, record, index) => (
@@ -56,7 +56,7 @@ class TransportationDetailsScreen extends React.Component {
                 width: '20%'
             },
             {
-                title: 'Svoris(tonomis)',
+                title: 'Svoris (kg)',
                 dataIndex: 'weight',
                 width: '20%'
             },
@@ -78,12 +78,12 @@ class TransportationDetailsScreen extends React.Component {
                                 <tbody>
 
                                     <tr>
-                                        <td>Transportavimo numeris</td>
+                                        <td>Siuntos numeris</td>
                                         <td>{this.state.Transportation.transportationNumber}</td>
                                     </tr>
 
                                     <tr>
-                                        <td>Svoris</td>
+                                        <td>Svoris (kg)</td>
                                         <td>{this.state.Transportation.weight}</td>
                                     </tr>
                                     <tr>
@@ -135,7 +135,7 @@ class TransportationDetailsScreen extends React.Component {
 
                                     </tr>
                                     <tr>
-                                        <td>GNG krovinio kodas</td>
+                                        <td>BKN krovinio kodas</td>
                                         <td>{this.state.Transportation.gngCargoCode}</td>
                                     </tr>
                                 </tbody>
@@ -147,20 +147,20 @@ class TransportationDetailsScreen extends React.Component {
                                 <tbody>
                                     <tr>
 
-                                        <td>Išvykimo stoties pavadinimas</td>
+                                        <td>Pradinė stotis</td>
                                         <td>{this.state.Transportation.departureStationTitle}</td>
 
                                     </tr>
                                     <tr>
-                                        <td>Išvykimo šalies pavadinimas</td>
+                                        <td>Pradinė šalis</td>
                                         <td>{this.state.Transportation.departureCountryTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>Paskirties stoties pavadinimas</td>
+                                        <td>Galinė stotis</td>
                                         <td>{this.state.Transportation.destinationStationTitle}</td>
                                     </tr>
                                     <tr>
-                                        <td>Paskirties šalies pavadinimas</td>
+                                        <td>Galinė šalis</td>
                                         <td>{this.state.Transportation.destinationCountryTitle}</td>
                                     </tr>
                                     <tr>
