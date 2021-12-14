@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import {Button,Form,Input,Modal,Space,InputNumber} from 'antd'
-import {ArrowLeftOutlined} from '@ant-design/icons'
-
+import { Button, Form, Input, Modal, Space, InputNumber, Select } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
+const {Option} = Select;
 function AddWagonComponent(props) {
     const [wagon, setWagon] = useState({
         "transportationId": props.transportationId,
         "numberOfWagon": 0,
-        "typeOfWagon": "string",
+        "typeOfWagon": "Cisterna",
         "weight": 0
     });
     const onBack = () => {
@@ -16,13 +16,13 @@ function AddWagonComponent(props) {
     const onCancel = () => {
         props.onClose();
     }
-    const onDataChange = (value,inputName) => {
+    const onDataChange = (value, inputName) => {
         const wagonClone = JSON.parse(JSON.stringify(wagon))
-        if(inputName === "numberOfWagon"){
+        if (inputName === "numberOfWagon") {
             wagonClone.numberOfWagon = Number(value);
-        }else if(inputName === "typeOfWagon"){
+        } else if (inputName === "typeOfWagon") {
             wagonClone.typeOfWagon = value;
-        }else if(inputName === "weight"){
+        } else if (inputName === "weight") {
             wagonClone.weight = Number(value);
         }
         setWagon(wagonClone);
@@ -51,10 +51,17 @@ function AddWagonComponent(props) {
                     <Form.Item key="name" name="name" label="Vagono numeris">
                         <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono numerį" defaultValue={wagon.numberOfWagon} value={wagon.numberOfWagon} onChange={(e) => onDataChange(e, "numberOfWagon")} />
                     </Form.Item>
-                    <Form.Item key="name1" name="name1" label="Vagono tipas">
-                        <Input style={{ width: '100%' }} placeholder="Įrašykite vagono tipą" defaultValue={wagon.typeOfWagon} value={wagon.typeOfWagon} onChange={(e) => onDataChange(e.target.value, "typeOfWagon")} />
-                    </Form.Item>
-                    <Form.Item key="name3" name="name3" label="Svoris">
+                    <p>Vagono tipas</p>
+                    <Select
+                        style={{ width: '100%' }}
+                        placeholder="Pasirinkite tipą"
+                        defaultValue={wagon.typeOfWagon}
+                        value={wagon.typeOfWagon}
+                        style={{ width: '100%' }} onChange={(e) => onDataChange(e, "typeOfWagon")}>
+                        <Option value="Cisterna">Cisterna</Option>
+                        <Option value="Grūdovežis">Grūdovežis</Option>
+                    </Select>
+                    <Form.Item key="name3" name="name3" label="Svoris (kg)">
                         <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono svorį" defaultValue={wagon.weight} value={wagon.weight} onChange={(e) => onDataChange(e, "weight")} />
                     </Form.Item>
                 </Form>

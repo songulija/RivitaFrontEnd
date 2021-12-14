@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Input, Modal, Space, InputNumber } from 'antd'
+import { Button, Form, Input, Modal, Space, InputNumber, Select } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons';
-
+const {Option} = Select;
 const textStyle = {
     fontSize: '18px',
     color: '#8C8C8C',
@@ -82,8 +82,16 @@ function UpdateWagonComponent(props) {
                     <p style={{ ...textStyle }}>Vagono numeris</p>
                     <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono numerį" defaultValue={wagon.numberOfWagon} value={wagon.numberOfWagon} onChange={(e) => onDataChange(e, "numberOfWagon")} />
                     <p style={{ ...textStyle }}>Vagono tipas</p>
-                    <Input style={{ width: '100%' }} placeholder="Įrašykite vagono tipą" defaultValue={wagon.typeOfWagon} value={wagon.typeOfWagon} onChange={(e) => onDataChange(e.target.value, "typeOfWagon")} />
-                    <p style={{ ...textStyle }}>Vagono svoris</p>
+                    <Select
+                        style={{ width: '100%' }}
+                        placeholder="Pasirinkite tipą"
+                        defaultValue={wagon.typeOfWagon}
+                        value={wagon.typeOfWagon}
+                        style={{ width: '100%' }} onChange={(e) => onDataChange(e, "typeOfWagon")}>
+                        <Option value="Cisterna">Cisterna</Option>
+                        <Option value="Grūdovežis">Grūdovežis</Option>
+                    </Select>
+                    <p style={{ ...textStyle }}>Svoris (kg)</p>
                     <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono svorį" defaultValue={wagon.weight} value={wagon.weight} onChange={(e) => onDataChange(e, "weight")} />
                 </Form>
             </Modal>
