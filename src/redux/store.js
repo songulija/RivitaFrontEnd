@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { usersReducer, userInfoReducer } from './reducers/usersReducer';
 import { companiesReducer } from './reducers/companiesReducers'
-import { transportationsReducer, transportationDeatailsReducer } from './reducers/transportationsReducer.js'
+import { transportationsReducer, transportationDetailsReducer } from './reducers/transportationsReducer.js'
 import { wagonsReducer } from './reducers/wagonsReducer';
 import { usersListReducer } from './reducers/userListReducer'
 import {userTypesReducer} from './reducers/userTypesReducer'
@@ -17,7 +17,7 @@ const allReducers = combineReducers({
     transportationsReducer,
     wagonsReducer,
     usersListReducer,
-    transportationDeatailsReducer,
+    transportationDetailsReducer,
     userTypesReducer,
     userCompanyReducer
 });

@@ -1,4 +1,4 @@
-export const transportationsReducer = (state = { transportations: {} }, action) => {
+export const transportationsReducer = (state = { transportations: [] }, action) => {
     switch (action.type) {
         case 'TRANSPORTATIONS_FETCH_REQUEST':
             return { 'loading': true }
@@ -46,16 +46,15 @@ export const transportationsReducer = (state = { transportations: {} }, action) 
 }
 
 
-export const transportationDeatailsReducer = (state = { transportation: { wagons: [] } }, action) => {
+export const transportationDetailsReducer = (state = { transportation: {} }, action) => {
     switch (action.type) {
         case 'TRANSPORTATION_DETAILS_REQUEST':
             console.log("passs")
-            return { 'loading': true }
+            return { ...state,'loading': true }
         case 'TRANSPORTATION_DETAILS_SUCCESS':
-            return { ...state, 'loading': false, 'transportation': action.payload }
-        case 'TRANSPORTATION_DETAILS_FAIL':
-            return { 'loading': false, 'error': action.payload }
-
+            return { ...state, 'loading': false, transportation: action.payload }
+        case 'ERROR':
+            return { ...state,'loading': false, error: action.payload }
         default:
             return state
     }

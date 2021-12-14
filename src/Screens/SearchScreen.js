@@ -139,10 +139,12 @@ class SearchScreen extends React.Component {
             });
         })
         let companyName = this.props.userCompanyReducer.company;
-        if(companyName === undefined)
-            companyName = null;
-        queryString = queryString + `companyName=${companyName}&`;
-        queryString = queryString.slice(0,-1)
+        if(companyName !== undefined && companyName !== null){
+            queryString = queryString + `companyName=${companyName}&`;
+        }
+            // companyName = null;
+            queryString = queryString.slice(0,-1)
+        
         this.setState({
             queryString: queryString
         });

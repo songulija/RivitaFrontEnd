@@ -120,15 +120,14 @@ export const getTransportationDetails = (id, callback) => async (dispatch, getSt
         });
         callback();
     } catch (error) {
-        const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
-        if (message === 'Not authorized, token failed') {
-
+        if (error.response === undefined) {
+            dispatch({
+                type: "ERROR",
+                payload: { message: "Oopsie... System error. Try again, later" },
+            });
         } else {
             dispatch({
-                type: "TRANSPORTATION_DETAILS_FAIL", payload: message
+                type: "ERROR", payload: error.response.data
             });
         }
     }

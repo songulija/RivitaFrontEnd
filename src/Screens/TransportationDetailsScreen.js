@@ -4,7 +4,7 @@ import HeaderMain from '../Component/HeaderMain';
 import SystemFooter from '../Component/SystemFooter'
 import { getTransportationDetails } from '../redux/actions/transportationsActions';
 import { getWagonsByTransportation } from '../redux/actions/wagonsActions'
-import { Table, Row, Col, Container,Button } from 'react-bootstrap'
+import { Table, Row, Col, Container, Button } from 'react-bootstrap'
 import { Link, withRouter } from 'react-router-dom'
 import moment from 'moment';
 import { Typography, Table as TableAnt } from 'antd';
@@ -14,7 +14,7 @@ class TransportationDetailsScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Transportation: {},
+            transportation: {},
             wagons: []
         }
     }
@@ -22,14 +22,26 @@ class TransportationDetailsScreen extends React.Component {
         if (this.props.usersReducer.currentUser !== null) {//if user info exist than means we already are logged in
             this.props.getTransportationDetails(this.props.match.params.id, () => {
                 this.setState({
-                    Transportation: this.props.transportationDeatailsReducer
+                    transportation: this.props.transportationDetailsReducer.transportation
                 })
-                this.props.getWagonsByTransportation(this.props.match.params.id, () => {
-                    this.setState({
-                        wagons: this.props.wagonsReducer
-                    })
-                });
             })
+            this.props.getWagonsByTransportation(this.props.match.params.id, () =>{
+                const clone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
+                this.setState({
+                    wagons: clone
+                })
+            })
+            // this.props.getTransportationDetails(this.props.match.params.id, () => {
+            //     this.setState({
+            //         Transportation: this.props.transportationDeatailsReducer
+            //     })
+            //     this.props.getWagonsByTransportation(this.props.match.params.id, () => {
+            //         const clone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
+            //         this.setState({
+            //             wagons: clone
+            //         })
+            //     });
+            // })
         } else {
             this.props.history.push('/login')
         }
@@ -79,20 +91,20 @@ class TransportationDetailsScreen extends React.Component {
 
                                     <tr>
                                         <td>Siuntos numeris</td>
-                                        <td>{this.state.Transportation.transportationNumber}</td>
+                                        <td>{this.state.transportation.transportationNumber}</td>
                                     </tr>
 
                                     <tr>
                                         <td>Svoris (kg)</td>
-                                        <td>{this.state.Transportation.weight}</td>
+                                        <td>{this.state.transportation.weight}</td>
                                     </tr>
                                     <tr>
                                         <td>Vagonų skaičius</td>
-                                        <td>{this.state.Transportation.wagonsCount}</td>
+                                        <td>{this.state.transportation.wagonsCount}</td>
                                     </tr>
                                     <tr>
                                         <td>Transportavimo tipas</td>
-                                        <td>{this.state.Transportation.transportationType}</td>
+                                        <td>{this.state.transportation.transportationType}</td>
                                     </tr>
 
                                 </tbody>
@@ -105,18 +117,18 @@ class TransportationDetailsScreen extends React.Component {
                                     <tr>
 
                                         <td>Krovinio priėmimo data</td>
-                                        <td>{moment(this.state.Transportation.cargoAcceptanceDate).format("YYYY/MM/DD")}</td>
+                                        <td>{moment(this.state.transportation.cargoAcceptanceDate).format("YYYY/MM/DD")}</td>
 
                                     </tr>
                                     <tr>
 
                                         <td>Judėjimo pradžios data Baltarusijoje</td>
-                                        <td>{moment(this.state.Transportation.movementStartDateInBelarus).format("YYYY/MM/DD")}</td>
+                                        <td>{moment(this.state.transportation.movementStartDateInBelarus).format("YYYY/MM/DD")}</td>
 
                                     </tr>
                                     <tr>
                                         <td>Judėjimo pabaigos data Baltarusijoje</td>
-                                        <td>{moment(this.state.Transportation.movementEndDateInBelarus).format("YYYY/MM/DD")}</td>
+                                        <td>{moment(this.state.transportation.movementEndDateInBelarus).format("YYYY/MM/DD")}</td>
 
 
                                     </tr>
@@ -131,12 +143,12 @@ class TransportationDetailsScreen extends React.Component {
                                     <tr>
 
                                         <td>ETSNG krovinio kodas</td>
-                                        <td>{this.state.Transportation.etsngCargoCode}</td>
+                                        <td>{this.state.transportation.etsngCargoCode}</td>
 
                                     </tr>
                                     <tr>
                                         <td>BKN krovinio kodas</td>
-                                        <td>{this.state.Transportation.gngCargoCode}</td>
+                                        <td>{this.state.transportation.gngCargoCode}</td>
                                     </tr>
                                 </tbody>
                             </Table>
@@ -148,28 +160,28 @@ class TransportationDetailsScreen extends React.Component {
                                     <tr>
 
                                         <td>Pradinė stotis</td>
-                                        <td>{this.state.Transportation.departureStationTitle}</td>
+                                        <td>{this.state.transportation.departureStationTitle}</td>
 
                                     </tr>
                                     <tr>
                                         <td>Pradinė šalis</td>
-                                        <td>{this.state.Transportation.departureCountryTitle}</td>
+                                        <td>{this.state.transportation.departureCountryTitle}</td>
                                     </tr>
                                     <tr>
                                         <td>Galinė stotis</td>
-                                        <td>{this.state.Transportation.destinationStationTitle}</td>
+                                        <td>{this.state.transportation.destinationStationTitle}</td>
                                     </tr>
                                     <tr>
                                         <td>Galinė šalis</td>
-                                        <td>{this.state.Transportation.destinationCountryTitle}</td>
+                                        <td>{this.state.transportation.destinationCountryTitle}</td>
                                     </tr>
                                     <tr>
                                         <td>Judėjimo pradžios stoties pavadinimas (Baltarusijoje)</td>
-                                        <td>{this.state.Transportation.stationMovementBeginingBelarusTitle}</td>
+                                        <td>{this.state.transportation.stationMovementBeginingBelarusTitle}</td>
                                     </tr>
                                     <tr>
                                         <td>Judėjimo pabaigos stoties pavadinimas (Baltarusijoje)</td>
-                                        <td>{this.state.Transportation.stationMovementEndBelarusTitle}</td>
+                                        <td>{this.state.transportation.stationMovementEndBelarusTitle}</td>
                                     </tr>
                                 </tbody>
                             </Table>
@@ -197,8 +209,8 @@ class TransportationDetailsScreen extends React.Component {
 const mapStateToProps = (state) => {
     return {
         usersReducer: state.usersReducer,
-        transportationDeatailsReducer: state.transportationDeatailsReducer.transportation,
-        wagonsReducer: state.wagonsReducer.wagons
+        transportationDetailsReducer: state.transportationDetailsReducer,
+        wagonsReducer: state.wagonsReducer
     }
 }
 
