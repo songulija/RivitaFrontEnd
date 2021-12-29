@@ -139,6 +139,7 @@ function UpdateTransportationComponent(props) {
                                 <Option value="Ukraina">Ukraina</Option>
                                 <Option value="Baltarusija">Baltarusija</Option>
                                 <Option value="Lietuva">Lietuva</Option>
+                                <Option value="Latvija">Latvija</Option>
                             </Select>
                             <p style={{ ...textStyle }}>Galinė stotis</p>
                             <Input style={{ width: '100%' }} placeholder="Įrašykite stotis" defaultValue={transportation.destinationStationTitle} value={transportation.destinationStationTitle} onChange={(e) => onDataChange(e.target.value, "destinationStationTitle")} />

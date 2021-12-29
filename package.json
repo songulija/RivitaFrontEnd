@@ -1,6 +1,6 @@
 {
   "name": "rivitafrontend",
-  "proxy": "https://rivitabackend20211127230328.azurewebsites.net",
+  "proxy": "https://rivitabackend20211229160732.azurewebsites.net",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

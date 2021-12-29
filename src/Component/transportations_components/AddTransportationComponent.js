@@ -24,7 +24,7 @@ class AddTransportationComponent extends React.Component {
                 "departureStationTitle": "",
                 "departureCountryTitle": "Baltarusija",
                 "destinationStationTitle": "",
-                "destinationCountryTitle": "",
+                "destinationCountryTitle": "Rusija",
                 "stationMovementBeginingBelarusTitle": "",
                 "stationMovementEndBelarusTitle": "",
                 "companyName": ""
@@ -108,7 +108,7 @@ class AddTransportationComponent extends React.Component {
                         <p>Kompanija</p>
                         <Select
                             showSearch
-                            style={{ width: '320px' }}
+                            style={{ width: '100%' }}
                             placeholder="Priskirkite kompaniją"
                             optionFilterProp="children"
                             onChange={(e) => this.onDataChange(e, "companyName")}
@@ -154,22 +154,38 @@ class AddTransportationComponent extends React.Component {
                         </Form.Item> */}
                         <p>Pradinė šalis</p>
                         <Select
-                            style={{ width: '320px' }}
+                            showSearch
+                            style={{ width: '100%' }}
                             defaultValue={this.state.transportation.departureCountryTitle}
                             value={this.state.transportation.departureCountryTitle}
-                            style={{ width: 120 }} onChange={(e) => this.onDataChange(e, "departureCountryTitle")}>
+                            onChange={(e) => this.onDataChange(e, "departureCountryTitle")}>
                             <Option value="Rusija">Rusija</Option>
                             <Option value="Ukraina">Ukraina</Option>
                             <Option value="Baltarusija">Baltarusija</Option>
                             <Option value="Lietuva">Lietuva</Option>
                             <Option value="Latvija">Latvija</Option>
                         </Select>
+                        <div style={{paddingBottom: '10px', paddingTop: '10px'}}></div>
                         <Form.Item key="name18" name="name18" label="Galinė stotis">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite stotį" defaultValue={this.state.transportation.destinationStationTitle} value={this.state.transportation.destinationStationTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationStationTitle")} />
                         </Form.Item>
-                        <Form.Item key="name20" name="name20" label="Galinė šalis">
+                        {/* <Form.Item key="name20" name="name20" label="Galinė šalis">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite šalį" defaultValue={this.state.transportation.destinationCountryTitle} value={this.state.transportation.destinationCountryTitle} onChange={(e) => this.onDataChange(e.target.value, "destinationCountryTitle")} />
-                        </Form.Item>
+                        </Form.Item> */}
+                        <p>Galinė šalis</p>
+                        <Select
+                            showSearch
+                            style={{ width: '100%' }}
+                            defaultValue={this.state.transportation.destinationCountryTitle}
+                            value={this.state.transportation.destinationCountryTitle}
+                            onChange={(e) => this.onDataChange(e, "destinationCountryTitle")}>
+                            <Option value="Rusija">Rusija</Option>
+                            <Option value="Ukraina">Ukraina</Option>
+                            <Option value="Baltarusija">Baltarusija</Option>
+                            <Option value="Lietuva">Lietuva</Option>
+                            <Option value="Latvija">Latvija</Option>
+                        </Select>
+                        <div style={{paddingBottom: '10px', paddingTop: '10px'}}></div>
                         <Form.Item key="name22" name="name22" label="Judėjimo pradžios stoties pavadinimas (Baltarusijoje)">
                             <Input style={{ width: '100%' }} placeholder="Įrašykite pavadinimą" defaultValue={this.state.transportation.stationMovementBeginingBelarusTitle} value={this.state.transportation.stationMovementBeginingBelarusTitle} onChange={(e) => this.onDataChange(e.target.value, "stationMovementBeginingBelarusTitle")} />
                         </Form.Item>
