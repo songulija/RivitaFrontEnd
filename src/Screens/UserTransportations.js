@@ -41,7 +41,10 @@ class UserTransportations extends React.Component {
             //for each element in array change dates
             let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
             let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
-            let date3 = moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+            let date3 = "";
+            if(element.movementEndDateInBelarus !== null &&  element.movementEndDateInBelarus !== undefined){
+                date3 =  moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+            }
             element.cargoAcceptanceDate = date1;
             element.movementStartDateInBelarus = date2;
             element.movementEndDateInBelarus = date3;
@@ -133,12 +136,6 @@ class UserTransportations extends React.Component {
                 title: 'Judėjimo pabaigos data Baltarusijoje',
                 dataIndex: 'movementEndDateInBelarus',
                 width: '5%',
-                sorter: (a, b) => {
-                    if (moment(a.Created).isBefore(moment(b.Created))) {
-                        return -1;
-                    }
-                    return 1;
-                }
             },
             {
                 title: 'ETSNG krovinio kodas',

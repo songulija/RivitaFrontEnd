@@ -31,17 +31,6 @@ class TransportationDetailsScreen extends React.Component {
                     wagons: clone
                 })
             })
-            // this.props.getTransportationDetails(this.props.match.params.id, () => {
-            //     this.setState({
-            //         Transportation: this.props.transportationDeatailsReducer
-            //     })
-            //     this.props.getWagonsByTransportation(this.props.match.params.id, () => {
-            //         const clone = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
-            //         this.setState({
-            //             wagons: clone
-            //         })
-            //     });
-            // })
         } else {
             this.props.history.push('/login')
         }
@@ -128,7 +117,10 @@ class TransportationDetailsScreen extends React.Component {
                                     </tr>
                                     <tr>
                                         <td>Judėjimo pabaigos data Baltarusijoje</td>
-                                        <td>{moment(this.state.transportation.movementEndDateInBelarus).format("YYYY/MM/DD")}</td>
+                                        {this.state.transportation.movementEndDateInBelarus !== null &&this.state.transportation.movementEndDateInBelarus !== undefined?
+                                            <td>{moment(this.state.transportation.movementEndDateInBelarus).format("YYYY/MM/DD")}</td>:
+                                            <td></td>}
+                                        
 
 
                                     </tr>
