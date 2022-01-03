@@ -78,7 +78,7 @@ function UpdateTransportationComponent(props) {
             "destinationStationTitle": transportationClone.destinationStationTitle,
             "destinationCountryTitle": transportationClone.destinationCountryTitle,
             "stationMovementBeginingBelarusTitle": transportationClone.stationMovementBeginingBelarusTitle,
-            "stationMovementEndBelarusTitle": transportationClone.stationMovementEndBelarusCode,
+            "stationMovementEndBelarusTitle": transportationClone.stationMovementEndBelarusTitle,
             "companyName": transportationClone.companyName
         }
         props.save(postObj, reducerObj);

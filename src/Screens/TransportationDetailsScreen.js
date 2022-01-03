@@ -18,6 +18,9 @@ class TransportationDetailsScreen extends React.Component {
             wagons: []
         }
     }
+    getBack = () =>{
+        this.props.history.goBack();
+    }
     componentDidMount() {
         if (this.props.usersReducer.currentUser !== null) {//if user info exist than means we already are logged in
             this.props.getTransportationDetails(this.props.match.params.id, () => {
@@ -67,7 +70,7 @@ class TransportationDetailsScreen extends React.Component {
                 <HeaderMain />
                 <Container>
                     <h1>Transportavimas </h1>
-                    <Link className='btn btn-dark mb-3' to={'/search'}>Grįžti atgal </Link>
+                    <Button className='btn btn-dark mb-3'onClick={this.getBack}>Grįžti atgal </Button>
 
                     {/* <p>{JSON.stringify(transportationDeatails)} labas</p> */}
 

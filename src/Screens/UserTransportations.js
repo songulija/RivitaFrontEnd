@@ -2,9 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTransportations, getTransportationsByParams } from '../redux/actions/transportationsActions'
 import { withRouter } from 'react-router-dom';
-import { Col, Table, Row, Typography, Button } from 'antd';
+import {PlusOutlined} from '@ant-design/icons'
+import { Col, Table, Row, Typography, Button, Space } from 'antd';
 import moment from 'moment'
 import HeaderMain from '../Component/HeaderMain';
+import { buttonStyle } from '../styles/customStyles.js';
+
 
 
 const aboutTitleTextStyle = {
@@ -33,7 +36,9 @@ class UserTransportations extends React.Component {
             queryString: ""
         }
     }
-
+    redirectToSearch = () =>{
+        this.props.history.push('/search')
+    }
     transportationsDataSet = (transportationsArray) => {
         const transportationsClone = JSON.parse(JSON.stringify(transportationsArray));
         //removing time from data that we get
@@ -42,8 +47,8 @@ class UserTransportations extends React.Component {
             let date1 = moment(element.cargoAcceptanceDate).format("YYYY/MM/DD");
             let date2 = moment(element.movementStartDateInBelarus).format("YYYY/MM/DD");
             let date3 = "";
-            if(element.movementEndDateInBelarus !== null &&  element.movementEndDateInBelarus !== undefined){
-                date3 =  moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
+            if (element.movementEndDateInBelarus !== null && element.movementEndDateInBelarus !== undefined) {
+                date3 = moment(element.movementEndDateInBelarus).format("YYYY/MM/DD");
             }
             element.cargoAcceptanceDate = date1;
             element.movementStartDateInBelarus = date2;
@@ -204,7 +209,7 @@ class UserTransportations extends React.Component {
                                     pagination={{ pageSize: 15 }}
                                     bordered
                                     scroll={{ x: 'calc(700px + 50%)' }}
-                                // footer={() => (<Space style={{ display: 'flex', justifyContent: 'space-between' }}><Button size="large" style={{ ...buttonStyle }} onClick={this.onOpenAddCompany()}><PlusOutlined />Pridėti kompaniją</Button></Space>)}
+                                    footer={() => (<Button type='primary' size="large" style={{ ...buttonStyle }} onClick={this.redirectToSearch}><PlusOutlined />Nauja paieška</Button>)}
                                 />
                             </Col>
                         </Row>
