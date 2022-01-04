@@ -45,25 +45,25 @@ class SearchScreen extends React.Component {
                 },
                 {
                     "id": 3,
-                    "title": "Judėjimo pradžios data per baltarusija nuo",
+                    "title": "Judėjimo pradžios data per Baltarusija nuo",
                     "dataIndex":"movementStartDateInBelarusFrom",
                     "value": moment().format("YYYY/MM/DD"),
                 },
                 {
                     "id": 4,
-                    "title": "Judėjimo pradžios data per baltarusija iki",
+                    "title": "Judėjimo pradžios data per Baltarusija iki",
                     "dataIndex":"movementStartDateInBelarusTo",
                     "value": moment().format("YYYY/MM/DD"),
                 },
                 {
                     "id": 5,
-                    "title": "Judėjimo pabaigos data per baltarusija nuo",
+                    "title": "Judėjimo pabaigos data per Baltarusija nuo",
                     "dataIndex":"movementEndDateInBelarusFrom",
                     "value": moment().format("YYYY/MM/DD"),
                 },
                 {
                     "id": 6,
-                    "title": "Judėjimo pabaigos data per baltarusija iki",
+                    "title": "Judėjimo pabaigos data per Baltarusija iki",
                     "dataIndex":"movementEndDateInBelarusTo",
                     "value": moment().format("YYYY/MM/DD"),
                 },
@@ -173,7 +173,7 @@ class SearchScreen extends React.Component {
                                 <div style={{ marginRight: '40px' }}>
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Paieška</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Parinkite parametrus pagal kuriuos ieškosite transportavimus
+                                        Parinkite parametrus pagal kuriuos ieškosite
                                     </Typography.Text>
                                 </div>
                             </Col>

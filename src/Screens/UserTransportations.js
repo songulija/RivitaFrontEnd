@@ -193,7 +193,7 @@ class UserTransportations extends React.Component {
                                 <div style={{ marginRight: '40px', marginBottom: 25 }}>
                                     <Typography.Title style={{ ...aboutTitleTextStyle }}>Transportavimai</Typography.Title>
                                     <Typography.Text style={{ ...textStyle }}>
-                                        Pasirinkite jums norimus transportavimus. Galite paspausti plačiau jei norite, kad
+                                        Galite paspausti plačiau jei norite, kad
                                         informacija būtų išdėstyta tvarkingiau.
                                     </Typography.Text>
                                 </div>

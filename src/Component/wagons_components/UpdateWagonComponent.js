@@ -91,7 +91,7 @@ function UpdateWagonComponent(props) {
                         <Option value="Cisterna">Cisterna</Option>
                         <Option value="Grūdovežis">Grūdovežis</Option>
                     </Select>
-                    <p style={{ ...textStyle }}>Svoris (kg)</p>
+                    <p style={{ ...textStyle }}>Svoris (tn.)</p>
                     <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono svorį" defaultValue={wagon.weight} value={wagon.weight} onChange={(e) => onDataChange(e, "weight")} />
                 </Form>
             </Modal>

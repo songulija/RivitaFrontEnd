@@ -60,7 +60,7 @@ class TransportationDetailsScreen extends React.Component {
                 width: '20%'
             },
             {
-                title: 'Svoris (kg)',
+                title: 'Svoris (tn.)',
                 dataIndex: 'weight',
                 width: '20%'
             },

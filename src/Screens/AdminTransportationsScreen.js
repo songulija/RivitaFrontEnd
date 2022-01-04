@@ -193,7 +193,7 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%'
             },
             {
-                title: 'Svoris (kg)',
+                title: 'Svoris (tn.)',
                 dataIndex: 'weight',
                 width: '5%'
             },

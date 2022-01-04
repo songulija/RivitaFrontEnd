@@ -61,7 +61,7 @@ function AddWagonComponent(props) {
                         <Option value="Cisterna">Cisterna</Option>
                         <Option value="Grūdovežis">Grūdovežis</Option>
                     </Select>
-                    <Form.Item key="name3" name="name3" label="Svoris (kg)">
+                    <Form.Item key="name3" name="name3" label="Svoris (tn.)">
                         <InputNumber style={{ width: '100%' }} placeholder="Įrašykite vagono svorį" defaultValue={wagon.weight} value={wagon.weight} onChange={(e) => onDataChange(e, "weight")} />
                     </Form.Item>
                 </Form>
