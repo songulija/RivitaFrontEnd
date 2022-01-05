@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Space, Select, Table, Row, Col, Card, Typography } from 'antd';
+import { Button, Space, Select, Table, Row, Col, Card, Typography, Popconfirm } from 'antd';
 import { tableCardStyle, tableCardBodyStyle, buttonStyle } from '../styles/customStyles';
 import { PlusOutlined } from '@ant-design/icons';
-import { getWagonsByTransportation, insertWagon, updateWagon } from '../redux/actions/wagonsActions';
+import { getWagonsByTransportation, insertWagon, updateWagon, deleteWagon } from '../redux/actions/wagonsActions';
 import { getTransportations } from '../redux/actions/transportationsActions'
 import AddWagonComponent from '../Component/wagons_components/AddWagonComponent';
 import UpdateWagonComponent from '../Component/wagons_components/UpdateWagonComponent'
@@ -80,6 +80,17 @@ class AdminWagonScreen extends React.Component {
             });
             this.unshowWagonAdd();
         });
+    }
+
+    deleteWagon = (id) => {
+        this.props.deleteWagon(id, () => {
+            const newWagons = JSON.parse(JSON.stringify(this.props.wagonsReducer.wagons))
+            this.setState({
+                wagons: newWagons
+            });
+        })
+        
+        console.log(id)
     }
 
     // For UpdateTransportationScreen
@@ -169,9 +180,18 @@ class AdminWagonScreen extends React.Component {
                 )
             },
             {
+                title: 'Ištrinti',
+                width: '10%',
+                render: (text, record, index) => (
+                    <Popconfirm title="Tikrai ištrinti?" onConfirm={() => this.deleteWagon(record.id)}>
+                        <Button type="primary" danger>Ištrinti</Button>
+                    </Popconfirm>
+                )
+            },
+            {
                 title: 'Transportavimo numeris',
                 dataIndex: 'transportationId',
-                width: '25%',
+                width: '20%',
                 render: (text, record, index) => (
                     <Text>{record.transportation.transportationNumber}</Text>
                 )
@@ -184,13 +204,14 @@ class AdminWagonScreen extends React.Component {
             {
                 title: 'Vagono tipas',
                 dataIndex: 'typeOfWagon',
-                width: '25%'
+                width: '20%'
             },
             {
                 title: 'Svoris(tonomis)',
                 dataIndex: 'weight',
                 width: '20%'
             },
+            
         ]
         return (
             <>
@@ -265,4 +286,4 @@ const mapStateToProps = (state) => {
         transportationsReducer: state.transportationsReducer
     }
 }
-export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon, updateWagon })(withRouter(AdminWagonScreen));
+export default connect(mapStateToProps, { getTransportations, getWagonsByTransportation, insertWagon, updateWagon, deleteWagon })(withRouter(AdminWagonScreen));

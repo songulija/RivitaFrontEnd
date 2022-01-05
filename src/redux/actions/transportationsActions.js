@@ -132,3 +132,30 @@ export const getTransportationDetails = (id, callback) => async (dispatch, getSt
         }
     }
 }
+
+
+export const deleteTransportation = (id, callback) => async(dispatch,getState)=> {
+    try{
+        dispatch({
+            type: 'TRANSPORTATIONS_DELETE_REQUEST'
+        })
+        const token = getState().usersReducer.currentUser;
+        await rivitaAPI.delete(`/api/Transportations/${id}`, {headers: {Authorization: `Bearer ${token}`}})
+        dispatch({
+            type: 'TRANSPORTATIONS_DELETE_SUCCESS',
+            payload: id
+        })
+        callback();
+    }catch (error) {
+        if (error.response === undefined) {
+            dispatch({
+                type: "ERROR",
+                payload: { message: "Oopsie... System error. Try again, later" },
+            });
+        } else {
+            dispatch({
+                type: "ERROR", payload: error.response.data
+            });
+        }
+    }
+}

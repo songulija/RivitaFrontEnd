@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTransportations, createTransportation, updateTransportation } from '../redux/actions/transportationsActions.js';
+import { getTransportations, createTransportation, updateTransportation,deleteTransportation } from '../redux/actions/transportationsActions.js';
 import { getCompanies } from '../redux/actions/companiesActions'
 import { buttonStyle } from '../styles/customStyles';
 import { getWagons } from '../redux/actions/wagonsActions';
-import { Col, Table, Row, Space, Typography, Button, Input } from 'antd';
+import { Col, Table, Row, Space, Typography, Button, Input,Popconfirm } from 'antd';
 // import { Button } from 'react-bootstrap'
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
@@ -67,6 +67,12 @@ class AdminTransportationScreen extends React.Component {
         this.props.createTransportation(postObj, () => {
             this.transportationsDataSet(this.props.transportationsReducer.transportations);
         });
+    }
+
+    deleteTransportations = (id)=>{
+        this.props.deleteTransportation(id, () =>{
+            this.transportationsDataSet(this.props.transportationsReducer.transportations)
+        })
     }
 
     // FOR UpdateTransportationComponent
@@ -141,6 +147,15 @@ class AdminTransportationScreen extends React.Component {
                 width: '5%',
                 render: (value, record, index) => (
                     <Button onClick={(e) => this.showUpdateTransportationModal(record)}>Atnaujinti</Button>
+                )
+            },
+            {
+                title: 'Ištrinti',
+                width: '5%',
+                render: (text, record, index) => (
+                    <Popconfirm title="Tikrai ištrinti?" onConfirm={() => this.deleteTransportations(record.transportationNumber)}>
+                        <Button type="primary" danger>Ištrinti</Button>
+                    </Popconfirm>
                 )
             },
             {
@@ -333,4 +348,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getTransportations, getWagons,getCompanies, createTransportation, updateTransportation })(withRouter(AdminTransportationScreen))
+export default connect(mapStateToProps, { getTransportations, getWagons,getCompanies, createTransportation, updateTransportation,deleteTransportation })(withRouter(AdminTransportationScreen))

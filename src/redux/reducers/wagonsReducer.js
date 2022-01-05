@@ -27,6 +27,12 @@ export const wagonsReducer = (state = { wagons: [] }, action) => {
                 }
             })
             return {...state, 'loading':false, 'wagons':wagonsClone}
+        case 'WAGONS_DELETE_REQUEST':
+            return {...state, 'loading':true}
+        case 'WAGONS_DELETE_SUCCESS':
+            const clone = [...state.wagons];
+            const wagons = clone.filter(x => x.id !== action.payload)
+            return {...state, 'loading':false, wagons:wagons}
         case 'ERROR':
             return { ...state,'loading': false, 'error': action.payload }
         default:

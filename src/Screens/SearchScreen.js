@@ -39,7 +39,7 @@ class SearchScreen extends React.Component {
                 },
                 {
                     "id": 2,
-                    "title": "Krovinio priėmimo data",
+                    "title": "Krovinio priėmimo data nuo",
                     "dataIndex":"cargoAcceptanceDate",
                     "value": moment().format("YYYY/MM/DD"),
                 },

@@ -105,3 +105,30 @@ export const updateWagon = (postObj,reducerObj,callback) => async(dispatch,getSt
         }
     }
 }
+
+export const deleteWagon = (id, callback) => async(dispatch,getState)=>{
+    try{
+        dispatch({
+            type: 'WAGONS_DELETE_REQUEST'
+        })
+        const token = getState().usersReducer.currentUser;
+        await rivitaAPI.delete(`/api/Wagons/${id}`, {headers: {Authorization: `Bearer ${token}`}})
+        dispatch({
+            type: 'WAGONS_DELETE_SUCCESS',
+            payload: id
+        })
+        callback()
+    }catch(error){
+        if (error.response === undefined) {
+            dispatch({
+                type: "ERROR",
+                payload: { message: "Oopsie... System error. Try again, later" },
+            });
+        }else{
+            dispatch({
+                type: "ERROR", payload: error.response.data
+            });
+        }
+    }
+}
+

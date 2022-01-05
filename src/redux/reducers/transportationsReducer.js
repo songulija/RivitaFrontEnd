@@ -38,6 +38,12 @@ export const transportationsReducer = (state = { transportations: [] }, action) 
                 }
             });
             return { ...state, 'loading': false, 'transportations': transportationsClone }
+        case 'TRANSPORTATIONS_DELETE_REQUEST':
+            return { ...state, 'loading': true }
+        case 'TRANSPORTATIONS_DELETE_SUCCESS':
+            const clone = [...state.transportations];
+            const transportations = clone.filter(x => x.id !== action.payload)
+            return {...state, 'loading':false, 'transportations': transportations}
         case 'ERROR':
             return { 'loading': false, 'error': action.payload }
         default:
@@ -50,11 +56,11 @@ export const transportationDetailsReducer = (state = { transportation: {} }, act
     switch (action.type) {
         case 'TRANSPORTATION_DETAILS_REQUEST':
             console.log("passs")
-            return { ...state,'loading': true }
+            return { ...state, 'loading': true }
         case 'TRANSPORTATION_DETAILS_SUCCESS':
             return { ...state, 'loading': false, transportation: action.payload }
         case 'ERROR':
-            return { ...state,'loading': false, error: action.payload }
+            return { ...state, 'loading': false, error: action.payload }
         default:
             return state
     }
