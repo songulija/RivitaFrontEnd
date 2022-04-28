@@ -22,7 +22,7 @@ function Footer(props) {
                                 </li>
                                 <li>
                                     <p>
-                                        <i className="fas fa-phone"></i> +370 265 0264</p>
+                                        <i className="fas fa-phone"></i> +370 5 265 0264</p>
                                 </li>
                                 <li>
                                     <p>

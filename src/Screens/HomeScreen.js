@@ -309,7 +309,7 @@ const HomeScreen = () => {
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
                                     <h3 style={{ ...contactsInfoTitle }}>TELEFONAS UŽKLAUSOMS:</h3>
-                                    <p style={{ ...contactsInfoText }}>+370 265 0264</p>
+                                    <p style={{ ...contactsInfoText }}>+370 5 265 0264</p>
                                 </div>
                             </div>
                         </div>
