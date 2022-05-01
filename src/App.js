@@ -11,6 +11,7 @@ import UserTransportations from './Screens/UserTransportations';
 import SearchScreen from './Screens/SearchScreen';
 import TransportationDetailsScreen from './Screens/TransportationDetailsScreen';
 
+
 function App() {
   return (
     <>

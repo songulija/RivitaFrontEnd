@@ -12,7 +12,6 @@ import gelezinkeliai from '../images/lietuvos_gelezinkeliai.jpg';
 import ldzcargo from '../images/ldzcargo1.png';
 import logo_bzhd from '../images/logo_bzhd.png';
 import simvolika from '../images/simvolika-1.jpg';
-
 import '../styles/Home.css'
 import {
     aboutTextStyle, aboutParagraphsTitlesStyles, aboutParagraphsTextStyles, serviceSectionStyle,
@@ -21,8 +20,10 @@ import {
 } from '../styles/homeScreenStyles'
 import Footer from '../Component/Footer';
 import HeaderHome from '../Component/HeaderHome';
+import { useTranslation } from "react-i18next";
 
 const HomeScreen = () => {
+    const { t } = useTranslation();
     return (
         <>
 
@@ -31,21 +32,19 @@ const HomeScreen = () => {
                 <HeaderHome />
                 <div className='main2'>
                     <div className='header-content' style={{ height: '100%', width: '100%' }}>
-                        <h3>KROVINIŲ EKSPEDIJAVIMAS GELEŽINKELIO TRANSPORTU.</h3>
-                        <h1 style={{ fontWeight: 'bold', color: '#516C71' }}>25 METŲ PATIRTIS.</h1>
+                        <h3>{t("main_title")}</h3>
+                        <h1 style={{ fontWeight: 'bold', color: '#516C71' }}>{t("main_subtitle")}</h1>
                     </div>
                 </div>
             </div>
             <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }}>
-
                 <div className='row' name="about">
-
                     <div className='col-sm-12  col-lg-6'>
                         <div className='container'>
-                            <h2 style={{ ...sectionTitleStyle }}>Apie mus</h2>
+                            <h2 style={{ ...sectionTitleStyle }}>{t("about_title")}</h2>
                             <hr style={{ ...titleLineStyle }}></hr>
                             <div>
-                                <div><p style={{ ...aboutTextStyle }}>UAB “Rivita ir Ko” vykdo krovinių ekspedijavimo veiklą ir teikia kitas papildomas paslaugas šioje srityje nuo 1996 metų. Ilgametė patirtis ir per du dešimtmečius užtarnautas patikimumas, leidžia bendrovei palaikyti tvarius santykius su vežėjais ir įmonėmis, teikiančiomis paslaugas, susijusias su krovinių vežimo procesu.</p>
+                                <div><p style={{ ...aboutTextStyle }}>{t("about_main_text")}</p>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +57,8 @@ const HomeScreen = () => {
                                         <img src={mission} alt='Vision' />
                                     </div>
                                     <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
-                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>MISIJA:</h3>
-                                        <div><p style={{ ...aboutParagraphsTextStyles }}>Kasdienėje veikloje, naudojantis ilgamete ekspedijavimo patirtimi į ir iš NVS, Baltijos ir Europos šalis, skirti išskirtinį dėmesį klientams ir atsižvelgiant į jų individualius poreikius kompetetingai formuoti bei įgyvendinti optimaliausius ekspedijavimo sprendimus.</p>
+                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>{t("about_mission_title")}</h3>
+                                        <div><p style={{ ...aboutParagraphsTextStyles }}>{t("about_mission_text")}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,8 +69,8 @@ const HomeScreen = () => {
                                         <img src={vision} alt='Vision' />
                                     </div>
                                     <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
-                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>VIZIJA:</h3>
-                                        <div><p style={{ ...aboutParagraphsTextStyles }}>Siekiame tapti lyderiaujančia įmone ekspedijuojančia krovinius į ir iš NVS, Baltijos bei Europos šalis.</p>
+                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>{t("about_vission_title")}:</h3>
+                                        <div><p style={{ ...aboutParagraphsTextStyles }}>{t("about_vission_text")}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -82,12 +81,9 @@ const HomeScreen = () => {
                                         <img src={purpose} alt='Vision' />
                                     </div>
                                     <div className="col-sm-12 col-md-10 col-lg-9 col-xl-10 pt-3">
-                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>TIKSLAI:</h3>
-                                        <div><p style={{ ...aboutParagraphsTextStyles }}>Sėkmingai užmegzti ir puoselėti verslo santykius vadovaujantis įmonės vertybėmis:
-                                            • Sąžiningumas ir atvirumas – rūpintis visais savo klientais, suteikti informaciją apie vežimo kainodarą ir pateikti optimaliausius krovinių gabenimo maršrutus
-                                            • Bendradarbiavimo įgūdžiai – nuolat komunikuoti ir suprasti kliento poreikius, gebėti pasiūlyti alternatyvius ir lanksčius sprendimus
-                                            • Atsakingumas – laiku įvykdyti patikėtus darbus, prisiimti atsakomybę už patikėtus krovinius ir jų sklandų pervežimą</p>
-                                        </div>
+                                        <h3 style={{ ...aboutParagraphsTitlesStyles }}>{t("about_goals_title")}</h3>
+                                        <div><p style={{ ...aboutParagraphsTextStyles }}>{t("about_goals_text")}</p>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -99,20 +95,20 @@ const HomeScreen = () => {
                         <div className='container mt-3' >
                             <Form>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Vardas</Form.Label>
-                                    <Form.Control type="text" placeholder="Įveskite vardą" />
-                                    <Form.Label>E-paštas</Form.Label>
-                                    <Form.Control type="text" placeholder="Įveskite paštą" />
-                                    <Form.Label>Tema</Form.Label>
-                                    <Form.Control type="email" placeholder="Įveskite tema" />
+                                    <Form.Label>{t("form_name")}</Form.Label>
+                                    <Form.Control type="text" placeholder={t("form_name_placeholder")} />
+                                    <Form.Label>{t("form_mail")}</Form.Label>
+                                    <Form.Control type="text" placeholder={t("form_mail_placeholder")} />
+                                    <Form.Label>{t("form_topic")}</Form.Label>
+                                    <Form.Control type="text" placeholder={t("form_topic_placeholder")} />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Žinutė</Form.Label>
-                                    <Form.Control as="textarea" rows={3} style={{ height: '250px' }} placeholder="Įveskite žinutę" />
+                                    <Form.Label>{t("form_message")}</Form.Label>
+                                    <Form.Control as="textarea" rows={3} style={{ height: '250px' }} placeholder={t("form_message_placeholder")} />
                                 </Form.Group>
-                                <Checkbox>Sutinku su šios svetainės privatumo politika.</Checkbox>
+                                <Checkbox>{t("form_politics")}</Checkbox>
                                 <br />
-                                <button className='about-us-button'>Siųsti</button>
+                                <button className='about-us-button'>{t("form_submit")}</button>
                             </Form>
 
 
@@ -123,7 +119,7 @@ const HomeScreen = () => {
             <section className='container-fluid pt-5 pb-5' style={{ ...serviceSectionStyle }} name='paslaugos'>
                 <div className='container' style={{ width: '80%' }}>
                     <div className='row pb-5'>
-                        <h2 style={{ ...serviceTitleStyle }}>Paslaugos</h2>
+                        <h2 style={{ ...serviceTitleStyle }}>{t("services_title")}</h2>
                         <hr style={{ ...titleLineStyle }}></hr>
                     </div>
 
@@ -133,7 +129,7 @@ const HomeScreen = () => {
                                 <div className='container text-center service-container-style' >
                                     <i className="fas fa-train service-icons-style" ></i>
                                 </div>
-                                <p style={{ ...serviceText }}>Krovinių ekspedijavimas geležinkelių transportu</p>
+                                <p style={{ ...serviceText }}>{t("services_first")}</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3 pb-5'>
@@ -141,7 +137,7 @@ const HomeScreen = () => {
                                 <div className='container text-center  center service-container-style'>
                                     <i className="fas fa-globe-europe service-icons-style"></i>
                                 </div>
-                                <p style={{ ...serviceText }}>Krovinio judėjimo kontrolė</p>
+                                <p style={{ ...serviceText }}>{t("services_second")}</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
@@ -149,7 +145,7 @@ const HomeScreen = () => {
                                 <div className='container text-center  center service-container-style'>
                                     <i className="fas fa-file-contract service-icons-style"></i>
                                 </div>
-                                <p style={{ ...serviceText }}>Pasienio ir transporto veterinarinės priežiūros tarnybų teikiamų paslaugų organizavimas</p>
+                                <p style={{ ...serviceText }}>{t("services_third")}</p>
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
@@ -157,7 +153,7 @@ const HomeScreen = () => {
                                 <div className='container text-center center service-container-style'>
                                     <i className="fas fa-phone service-icons-style"></i>
                                 </div>
-                                <p style={{ ...serviceText }}>Konsultacijos krovinių vežimo klausimais</p>
+                                <p style={{ ...serviceText }}>{t("services_fourth")}</p>
                             </div>
                         </div>
                     </div>
@@ -167,7 +163,7 @@ const HomeScreen = () => {
 
             <section className='container-fluid pt-5 pb-5' style={{ width: '80%' }} name='kroviniai'>
                 <div className='row pb-5'>
-                    <h2 style={{ ...sectionTitleStyle }}>Kroviniai</h2>
+                    <h2 style={{ ...sectionTitleStyle }}>{t("cargos_title")}</h2>
                     <hr style={{ ...titleLineStyle }}></hr>
                 </div>
                 <div className='row'>
@@ -205,17 +201,17 @@ const HomeScreen = () => {
                         <div className='container py-4 shadow'>
                             <div className='container'>
                                 <h3 style={{ ...cargosTextStyle }}>
-                                    <span>Skysti kroviniai cisterniniuose vagonuose;</span>
+                                    <span>{t("cargos_text_first")}</span>
                                 </h3>
                             </div>
                             <div className='container'>
                                 <h3 style={{ ...cargosTextStyle }}>
-                                    <span>Birūs  ir masiniai kroviniai universaliuose ir specializuotuosiuose vagonuose;</span>
+                                    <span>{t("cargos_text_second")}</span>
                                 </h3>
                             </div>
                             <div className='container'>
                                 <h3 style={{ ...cargosTextStyle }}>
-                                    <span>Kroviniai konteineriuose.</span>
+                                    <span>{t("cargos_text_third")}</span>
                                 </h3>
                             </div>
                         </div>
@@ -228,9 +224,9 @@ const HomeScreen = () => {
                         position: 'absolute', left: '50%', top: '50%',
                         transform: 'translate(-50%, -50%)'
                     }}>
-                        <h3 style={{ ...cargoPhotoTitle }}><strong>REIKIA PERVEŽTI KROVINĮ?</strong></h3>
-                        <p style={{ ...cargoPhotoText }}>SUSISIEKITE SU MUMIS</p>
-                        <Button variant="outline-light">UŽPILDYKITE UŽKLAUSOS FORMĄ</Button>
+                        <h3 style={{ ...cargoPhotoTitle }}><strong>{t("reikia_title")}</strong></h3>
+                        <p style={{ ...cargoPhotoText }}>{t("reikia_second")}</p>
+                        <Button variant="outline-light">{t("reikia_third")}</Button>
                     </div>
                 </div>
 
@@ -238,7 +234,7 @@ const HomeScreen = () => {
 
             <section className='container-fluid' style={{ width: '80%' }}>
                 <div className='row pb-5 pt-5'>
-                    <h2 style={{ ...sectionTitleStyle }}>Partneriai</h2>
+                    <h2 style={{ ...sectionTitleStyle }}>{t("partners_title")}</h2>
                     <hr style={{ ...titleLineStyle }}></hr>
                 </div>
                 <div className='container'>
@@ -250,7 +246,7 @@ const HomeScreen = () => {
                                 </div>
 
                             </div>
-                            <h3 style={{ ...partnersTitlesStyle }}>AB „Lietuvos geležinkeliai“</h3>
+                            <h3 style={{ ...partnersTitlesStyle }}>{t("partners_gelez")}</h3>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className="container partners-hover">
@@ -258,7 +254,7 @@ const HomeScreen = () => {
                                     <Image style={{ width: '100%', height: '100%' }} src={ldzcargo} alt="LDZ CARGO" />
                                 </div>
                             </div>
-                            <h3 style={{ ...partnersTitlesStyle }}>SIA „LDZ CARGO“</h3>
+                            <h3 style={{ ...partnersTitlesStyle }}>{t("partners_ldz")}</h3>
                         </div>
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
                             <div className="container partners-hover">
@@ -266,7 +262,7 @@ const HomeScreen = () => {
                                     <Image style={{ width: '100%', height: '100%' }} src={logo_bzhd} alt="Baltarusijos geležinkeliai" />
                                 </div>
                             </div>
-                            <h3 style={{ ...partnersTitlesStyle }}>VĮ „Baltarusijos geležinkeliai“</h3>
+                            <h3 style={{ ...partnersTitlesStyle }}>{t("partners_bel_gel")}</h3>
                         </div>
 
                         <div className='col-sm-12 col-md-6 col-lg-4 col-xl-3'>
@@ -276,7 +272,7 @@ const HomeScreen = () => {
                                     <Image style={{ width: '100%', height: '100%' }} src={simvolika} alt="Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba" />
                                 </div>
                             </div>
-                            <h3 style={{ ...partnersTitlesStyle }}>VĮ „Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba“</h3>
+                            <h3 style={{ ...partnersTitlesStyle }}>{t("partners_balt")}</h3>
                         </div>
 
                     </div>
@@ -284,7 +280,7 @@ const HomeScreen = () => {
             </section>
             <section className='container-fluid' style={{ width: '80%', paddingTop: '20px' }} name='kontaktai'>
                 <div className='row pb-5 pt-5'>
-                    <h2 style={{ ...sectionTitleStyle }}>Kontaktinė informacija</h2>
+                    <h2 style={{ ...sectionTitleStyle }}>{t("contact_title")}</h2>
                     <hr style={{ ...titleLineStyle }}></hr>
                 </div>
                 <div className='row'>
@@ -295,8 +291,8 @@ const HomeScreen = () => {
                                     <i className="fas fa-map-pin contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
-                                    <h3 style={{ ...contactsInfoTitle }}>ADRESAS</h3>
-                                    <p style={{ ...contactsInfoText }}>Švitrigailos g.11A, LT-03228 Vilnius</p>
+                                    <h3 style={{ ...contactsInfoTitle }}>{t("contacts_adress_title")}</h3>
+                                    <p style={{ ...contactsInfoText }}>{t("contacts_adress_text")}</p>
                                 </div>
                             </div>
                         </div>
@@ -308,8 +304,9 @@ const HomeScreen = () => {
                                     <i className="fas fa-phone contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
-                                    <h3 style={{ ...contactsInfoTitle }}>TELEFONAS UŽKLAUSOMS:</h3>
-                                    <p style={{ ...contactsInfoText }}>+370 5 265 0264</p>
+                                    <h3 style={{ ...contactsInfoTitle }}>{t("contacts_phone_title")}</h3>
+                                    <p style={{ ...contactsInfoText }}>{t("contacts_phone_text")}</p>
+                                    <p style={{ ...contactsInfoText }}>{t("footer_second_phone")}</p>
                                 </div>
                             </div>
                         </div>
@@ -321,9 +318,9 @@ const HomeScreen = () => {
                                     <i className="fas fa-info contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-10'>
-                                    <h3 style={{ ...contactsInfoTitle }}>INFORMACIJA:</h3>
-                                    <p style={{ ...contactsInfoText }}>ĮMONĖS KODAS: 123646771</p>
-                                    <p style={{ ...contactsInfoText }}>PVM KODAS: LT236467716</p>
+                                    <h3 style={{ ...contactsInfoTitle }}>{t("contacts_info_title")}:</h3>
+                                    <p style={{ ...contactsInfoText }}>{t("contacts_info_code")}</p>
+                                    <p style={{ ...contactsInfoText }}>{t("contacts_info_pvm")}</p>
                                 </div>
                             </div>
                         </div>
@@ -335,8 +332,8 @@ const HomeScreen = () => {
                                     <i className="fas fa-envelope-open-text contacts-info-icons-style"></i>
                                 </div>
                                 <div className='col-sm-12 col-md-9 col-lg-10'>
-                                    <h3 style={{ ...contactsInfoTitle }}>EL. PAŠTAS:</h3>
-                                    <p style={{ ...contactsInfoText }}>info@rivita.lt</p>
+                                    <h3 style={{ ...contactsInfoTitle }}>{t("contacts_email_title")}</h3>
+                                    <p style={{ ...contactsInfoText }}>{t("contacts_email_text")}</p>
                                 </div>
                             </div>
                         </div>

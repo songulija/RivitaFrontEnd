@@ -1,101 +1,90 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Container, Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { logout } from '../redux/actions/userActions'
 import logo from '../images/rivita-logo.png'
+import { useTranslation } from 'react-i18next';
 
-class HeaderMain extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: null
-        }
+function HeaderMain(props) {
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const usersReducer = useSelector((state) => state.usersReducer);
+    const userInfoReducer = useSelector((state) => state.userInfoReducer);
+
+    //for language
+    const { t } = useTranslation();
+    const logoutHandler = () => {
+        dispatch(logout());
+        history.push('/')
     }
+    return (
+        <div>
+            <Navbar bg="light" expand="xl">
+                <Container>
+                    <LinkContainer to='/'>
+                        <Navbar.Brand href="/">
+                            <img style={{ width: '100px' }} src={logo} alt='Logo' />
+                        </Navbar.Brand>
+                    </LinkContainer>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>{t('header_main')}</Nav.Link>
+                            {usersReducer.currentUser === null ?
+                                <>
+                                    <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                        <Nav.Link>{t('header_about')}</Nav.Link>
+                                    </LinkContainer>
 
-    logoutHandler = () => {
-        this.props.logout();
-        this.props.history.push('/')
-    }
-    render() {
-        // const naudotojas = JSON.parse(JSON.stringify(this.props.userInfoReducer.role));
-        return (
-            <div>
-                <Navbar bg="light" expand="xl">
-                    <Container>
-                        <LinkContainer to='/'>
-                            <Navbar.Brand href="/">
-                                <img style={{ width: '100px' }} src={logo} alt='Logo' />
-                            </Navbar.Brand>
-                        </LinkContainer>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-                                <Nav.Link href="/" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>PAGRINDINIS</Nav.Link>
-                                {this.props.usersReducer.currentUser === null ?
-                                    <>
-                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
-                                            <Nav.Link>APIE MUS</Nav.Link>
-                                        </LinkContainer>
-
-                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
-                                            <Nav.Link>PASLAUGOS</Nav.Link>
-                                        </LinkContainer>
-                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
-                                            <Nav.Link >KROVINIAI</Nav.Link>
-                                        </LinkContainer>
-                                        <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
-                                            <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>KONTAKTAI</Nav.Link>
-                                        </LinkContainer>
-                                        <LinkContainer to='/login' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
-                                            <Nav.Link>KLIENTAMS</Nav.Link>
-                                        </LinkContainer>
-                                    </>
-                                    : null}
-                                {this.props.usersReducer.currentUser ?
-                                    <>
-                                        <LinkContainer to='/search' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
-                                            <Nav.Link href="/search">PAIEŠKA</Nav.Link>
-                                        </LinkContainer>
-                                        {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
-                                        {this.props.userInfoReducer.role === 'ADMINISTRATOR' ?
-                                            <NavDropdown title="ADMIN" id="basic-nav-dropdown" style={{fontWeight: '500', fontSize: '18px', color: '#436066'}}>
-                                                <LinkContainer to='/companies'>
-                                                    <NavDropdown.Item>KOMPANIJOS</NavDropdown.Item>
-                                                </LinkContainer>
-                                                <LinkContainer to='/transportations/admin'>
-                                                    <NavDropdown.Item>TRANSPORTAVIMAS</NavDropdown.Item>
-                                                </LinkContainer>
-                                                <LinkContainer to='/wagons'>
-                                                    <NavDropdown.Item>VAGONAI</NavDropdown.Item>
-                                                </LinkContainer>
-                                                <LinkContainer to='/register'>
-                                                    <NavDropdown.Item>NAUDOTOJŲ REGISTRACIJA</NavDropdown.Item>
-                                                </LinkContainer>
-                                            </NavDropdown> : null}
-                                        <Button onClick={this.logoutHandler}>Atsijungti</Button>
-                                    </> : null}
+                                    <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                        <Nav.Link>{t('header_services')}</Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                        <Nav.Link >{t('header_cargos')}</Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer to='/' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                        <Nav.Link style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>{t('header_contacts')}</Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer to='/login' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                        <Nav.Link>{t('header_clients')}</Nav.Link>
+                                    </LinkContainer>
+                                </>
+                                : null}
+                            {usersReducer.currentUser ?
+                                <>
+                                    <LinkContainer to='/search' style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>
+                                        <Nav.Link href="/search">{t('header_search')}</Nav.Link>
+                                    </LinkContainer>
+                                    {/* <Nav.Link href="/transportations" style={{ fontWeight: '500', fontSize: '18px', color: '#436066' }}>TRANSPORTAVIMAS</Nav.Link> */}
+                                    {userInfoReducer.role === 'ADMINISTRATOR' ?
+                                        <NavDropdown title="ADMIN" id="basic-nav-dropdown" style={{fontWeight: '500', fontSize: '18px', color: '#436066'}}>
+                                            <LinkContainer to='/companies'>
+                                                <NavDropdown.Item>KOMPANIJOS</NavDropdown.Item>
+                                            </LinkContainer>
+                                            <LinkContainer to='/transportations/admin'>
+                                                <NavDropdown.Item>TRANSPORTAVIMAS</NavDropdown.Item>
+                                            </LinkContainer>
+                                            <LinkContainer to='/wagons'>
+                                                <NavDropdown.Item>VAGONAI</NavDropdown.Item>
+                                            </LinkContainer>
+                                            <LinkContainer to='/register'>
+                                                <NavDropdown.Item>NAUDOTOJŲ REGISTRACIJA</NavDropdown.Item>
+                                            </LinkContainer>
+                                        </NavDropdown> : null}
+                                    <Button onClick={logoutHandler}>Atsijungti</Button>
+                                </> : null}
 
 
 
 
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-            </div>
-        )
-    }
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </div>
+    )
 
 }
-
-//selecting part of data from store. like with useSelector
-const mapStateToProps = (state) => {
-    return {
-        usersReducer: state.usersReducer,
-        userInfoReducer: state.userInfoReducer
-    }
-}
-
-export default connect(mapStateToProps, { logout })(withRouter(HeaderMain));
+export default HeaderMain;

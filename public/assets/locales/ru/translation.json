@@ -1,10 +1,13 @@
 {
+  "app_title": "Rivita - ЭКСПЕДИРОВАНИЕ ГРУЗОВ ЖЕЛЕЗНОДОРОЖНЫМ ТРАНСПОРТОМ.",
+  "language": "Language",
   "header_main": "НАЧАЛО",
   "header_about": "О КОМПАНИИ",
   "header_services": "УСЛУГИ",
   "header_cargos": "ГРУЗЫ",
   "header_contacts": "КОНТАКТЫ",
   "header_search": "ПОИСК",
+  "header_clients": "ДЛЯ КЛИЕНТОВ",
   "main_title": "ЭКСПЕДИРОВАНИЕ ГРУЗОВ ЖЕЛЕЗНОДОРОЖНЫМ ТРАНСПОРТОМ.",
   "main_subtitle": "25-ЛЕТНИЙ ОПЫТ.",
   "about_title": "О нас",
@@ -44,7 +47,7 @@
   "partners_balt": "VĮ „Baltarusijos pasienio ir transporto Valstybinės veterinarinės priežiūros valdyba“",
   "contact_title": "Контактная информация",
   "contacts_adress_title": "АДРЕС:",
-  "contacts_adress_text": ": LT-03228 Вильнюс, ул. Швитригайлос, 11A",
+  "contacts_adress_text": "LT-03228 Вильнюс, ул. Швитригайлос, 11A",
   "contacts_phone_title": "ТЕЛЕФОН ДЛЯ ЗАПРОСОВ:",
   "contacts_phone_text": "+370 5 265 0264",
   "footer_second_phone": "+370 618 16214",
@@ -60,5 +63,11 @@
   "footer_second_cargos": "ГРУЗЫ",
   "footer_second_partners": "ПАРТНЕРЫ",
   "footer_second_contacts": "КОНТАКТЫ",
-  "footer_last_title": "UAB \"Rivita ir Ko\" © 2021 Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed"
+  "footer_last_title": "UAB \"Rivita ir Ko\" © 2021 Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed",
+  "login_title": "Войдите в систему",
+  "login_username": "Имя пользователя",
+  "login_password": "Пароль",
+  "login_button": "Aвторизоваться",
+  "login_error_title": "Авторизация не удалась",
+  "login_error_text": "Имя пользователя или пароль были введены неверно. Пожалуйста, попробуйте еще раз."
 }

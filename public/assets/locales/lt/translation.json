@@ -1,10 +1,13 @@
 {
+  "app_title": "Rivita - Krovinių gabenimas geležinkelio transportu",
+  "language": "Language",
   "header_main": "PAGRINDINIS",
   "header_about": "APIE MUS",
   "header_services": "PASLAUGOS",
   "header_cargos": "KROVINIAI",
   "header_contacts": "KONTAKTAI",
   "header_search": "PAIEŠKA",
+  "header_clients": "KLIENTAMS",
   "main_title": "KROVINIŲ EKSPEDIJAVIMAS GELEŽINKELIO TRANSPORTU.",
   "main_subtitle": "25 METŲ PATIRTIS.",
   "about_title": "Apie mus",
@@ -60,5 +63,11 @@
   "footer_second_cargos": "KROVINIAI",
   "footer_second_partners": "PARTNERIAI",
   "footer_second_contacts": "KONTAKTINĖ INFORMACIJA",
-  "footer_last_title": "UAB \"Rivita ir Ko\" © 2021 Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed"
+  "footer_last_title": "UAB \"Rivita ir Ko\" © 2021 Lukas Songulija & Abdelrahman Ahmed Ali Mohamed Elsayed",
+  "login_title": "Prašome prisijungti",
+  "login_username": "Vartotojo vardas",
+  "login_password": "Slaptažodis",
+  "login_button": "Prisijungti",
+  "login_error_title": "Prisijungimas buvo nesėkmnigas",
+  "login_error_text": "Vartotojo vardas arba slaptažodis buvo įvesti neteisingai. Pabandykite dar kartą."
 }
